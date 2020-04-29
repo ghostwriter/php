@@ -1,8 +1,8 @@
-FROM php:7.0.33-cli
+FROM php:7.1.33-cli
 
 RUN apt-get update && apt-get -y install git libjpeg-dev libmagickwand-dev \
-  libmemcached-dev libpng-dev libpq-dev libsqlite3-dev libxml2-dev uuid-dev \
-  unzip wget zlib1g-dev && \
+  libmemcached-dev libpng-dev libpq-dev libsqlite3-dev libxml2-dev unzip \
+  wget zlib1g-dev && \
   rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr && \
   docker-php-ext-install bcmath gd intl opcache pcntl pdo pdo_mysql \
