@@ -1,12 +1,11 @@
-FROM php:7.3.17-cli
+FROM php:7.4.5-cli
 
 RUN apt-get update && apt-get -y install git libjpeg-dev libmagickwand-dev \
   libmemcached-dev libpng-dev libpq-dev libsqlite3-dev libxml2-dev \
   libzip-dev unzip wget zlib1g-dev && \
   rm -rf /var/lib/apt/lists/*
-RUN docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr && \
-  docker-php-ext-install bcmath gd intl opcache pcntl pdo pdo_mysql \
-  pdo_pgsql pdo_sqlite soap sockets zip
+RUN docker-php-ext-configure gd --with-jpeg && docker-php-ext-install bcmath \
+  gd intl opcache pcntl pdo pdo_mysql pdo_pgsql pdo_sqlite soap sockets zip
 RUN pecl install ast-1.0.6 imagick-3.4.4 memcached-3.1.5 mongodb-1.8.0beta1 \
   uuid-1.1.0 redis-5.2.1 && docker-php-ext-enable ast imagick memcached \
   mongodb uuid redis
