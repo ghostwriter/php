@@ -1,4 +1,4 @@
-FROM ghcr.io/nathane/php:7.4-base
+FROM ghcr.io/ghostwriter/php:7.4-base
 
 ENV XDEBUG_VERSION 3.0.3
 
