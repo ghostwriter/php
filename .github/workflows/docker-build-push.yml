@@ -15,13 +15,13 @@ jobs:
           - "7.4"
         php-version:
           - "5.6"
-          - "7.4"
-          - "8.0"
-          - "8.1"
+          # - "7.4"
+          # - "8.0"
+          # - "8.1"
         php-type:
           - cli
-          - fpm
-          - composer
+          # - fpm
+          # - composer
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
