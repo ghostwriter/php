@@ -21,7 +21,7 @@ jobs:
         php-type:
           - cli
           - fpm
-          - composer
+          # - composer
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
