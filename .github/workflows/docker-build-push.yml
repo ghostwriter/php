@@ -4,7 +4,10 @@ on:
   push:
   pull_request:
   schedule:
-    - cron: "0 0 * * *" # Runs at 00:00 UTC every day
+    - cron: "0 */6 * * *" # Runs daily every 6 hours.
+
+env:
+  SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
 
 jobs:
   build:
@@ -25,6 +28,8 @@ jobs:
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
 
       - name: Set up Docker Buildx
         id: buildx
@@ -99,6 +104,7 @@ jobs:
       - name: Push PHP ${{ matrix.php-version }}-${{ matrix.php-type }} image
         uses: docker/build-push-action@v2
         with:
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
@@ -108,6 +114,7 @@ jobs:
       - name: Push PHP ${{ matrix.php-version }}
         uses: docker/build-push-action@v2
         with:
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
           file: ./${{ matrix.php-version}}/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
@@ -117,6 +124,7 @@ jobs:
       - name: Push PHP ${{ matrix.php-default }} as latest
         uses: docker/build-push-action@v2
         with:
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
           file: ./${{ matrix.php-default}}/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
