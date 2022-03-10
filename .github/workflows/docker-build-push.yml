@@ -76,7 +76,17 @@ jobs:
       - name: Test ${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
         run: docker run --rm ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }} php --version
 
-  build:
+      - name: Push PHP ${{ matrix.php-version }}-${{ matrix.php-type }}
+        uses: docker/build-push-action@v2
+        with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
+
+  composer:
     needs: base
     runs-on: ubuntu-latest
     strategy:
@@ -88,6 +98,72 @@ jobs:
           - "8.1"
         php-type:
           - composer
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Inspect builder
+        run: |
+          echo "Name:      ${{ steps.buildx.outputs.name }}"
+          echo "Endpoint:  ${{ steps.buildx.outputs.endpoint }}"
+          echo "Status:    ${{ steps.buildx.outputs.status }}"
+          echo "Flags:     ${{ steps.buildx.outputs.flags }}"
+          echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
+
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v1
+        if: github.event_name != 'pull_request'
+        with:
+          password: ${{ secrets.GHT }}
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          github-token: ${{ secrets.GHT }}
+          images: ${{ github.repository_owner }}/php
+          labels: ${{ env.SUPPORTED_LABELS }}
+
+      - name: Build PHP ${{ matrix.php-version }}-${{ matrix.php-type }}
+        uses: docker/build-push-action@v2
+        with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
+          load: true
+          tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
+
+      - name: Test ${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
+        run: docker run --rm ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }} composer --version
+
+      - name: Push PHP ${{ matrix.php-version }}-${{ matrix.php-type }} image
+        uses: docker/build-push-action@v2
+        with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
+
+  build:
+    needs: composer
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version:
+          - "5.6"
+          - "7.4"
+          - "8.0"
+          - "8.1"
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -134,8 +210,62 @@ jobs:
       - name: Test ${{ github.repository_owner }}/php:${{ matrix.php-version }}
         run: docker run --rm ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }} php --version
 
+      - name: Push PHP ${{ matrix.php-version }}
+        uses: docker/build-push-action@v2
+        with:
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}
+
+  latest:
+    if: ${{ env.SUPPORTED_DEFAULT == matrix.php-version }}
+    needs: composer
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-version:
+          - "5.6"
+          - "7.4"
+          - "8.0"
+          - "8.1"
+    steps:
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+        with:
+          platforms: all
+
+      - name: Set up Docker Buildx
+        id: buildx
+        uses: docker/setup-buildx-action@v1
+
+      - name: Inspect builder
+        run: |
+          echo "Name:      ${{ steps.buildx.outputs.name }}"
+          echo "Endpoint:  ${{ steps.buildx.outputs.endpoint }}"
+          echo "Status:    ${{ steps.buildx.outputs.status }}"
+          echo "Flags:     ${{ steps.buildx.outputs.flags }}"
+          echo "Platforms: ${{ steps.buildx.outputs.platforms }}"
+
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v1
+        if: github.event_name != 'pull_request'
+        with:
+          password: ${{ secrets.GHT }}
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          github-token: ${{ secrets.GHT }}
+          images: ${{ github.repository_owner }}/php
+          labels: ${{ env.SUPPORTED_LABELS }}
+
       - name: Build PHP ${{ env.SUPPORTED_DEFAULT }} as latest
-        if: ${{ env.SUPPORTED_DEFAULT == matrix.php-version }}
         uses: docker/build-push-action@v2
         with:
           cache-from: type=gha
@@ -145,31 +275,9 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/php:latest
 
       - name: Test ${{ github.repository_owner }}/php:latest
-        if: ${{ env.SUPPORTED_DEFAULT == matrix.php-version }}
         run: docker run --rm ghcr.io/${{ github.repository_owner }}/php:latest php --version
 
-      - name: Push PHP ${{ matrix.php-version }}-${{ matrix.php-type }} image
-        uses: docker/build-push-action@v2
-        with:
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
-          platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
-
-      - name: Push PHP ${{ matrix.php-version }}
-        uses: docker/build-push-action@v2
-        with:
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          file: ./${{ matrix.php-version}}/Dockerfile
-          platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version}}
-
       - name: Push PHP ${{ env.SUPPORTED_DEFAULT }} as latest
-        if: ${{ env.SUPPORTED_DEFAULT == matrix.php-version }}
         uses: docker/build-push-action@v2
         with:
           file: ./${{ env.SUPPORTED_DEFAULT }}/Dockerfile
