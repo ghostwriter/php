@@ -226,7 +226,7 @@ jobs:
     strategy:
       matrix:
         php-version:
-          - ${{ env.SUPPORTED_DEFAULT }}
+          - "7.4"
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -261,7 +261,7 @@ jobs:
           images: ${{ github.repository_owner }}/php
           labels: ${{ env.SUPPORTED_LABELS }}
 
-      - name: Build PHP ${{ env.SUPPORTED_DEFAULT }} as latest
+      - name: Build PHP ${{ matrix.php-version }} as latest
         uses: docker/build-push-action@v2
         with:
           cache-from: type=gha
@@ -273,10 +273,10 @@ jobs:
       - name: Test ${{ github.repository_owner }}/php:latest
         run: docker run --rm ghcr.io/${{ github.repository_owner }}/php:latest php --version
 
-      - name: Push PHP ${{ env.SUPPORTED_DEFAULT }} as latest
+      - name: Push PHP ${{ matrix.php-version }} as latest
         uses: docker/build-push-action@v2
         with:
-          file: ./${{ env.SUPPORTED_DEFAULT }}/Dockerfile
+          file: ./${{ matrix.php-version }}/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
