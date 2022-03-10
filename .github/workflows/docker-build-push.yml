@@ -5,6 +5,9 @@ on:
   pull_request:
   schedule:
     - cron: "0 */6 * * *" # Runs daily every 6 hours.
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
@@ -72,28 +75,26 @@ jobs:
           tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
 
       - name: Test ${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
-        if: ${{ matrix.php-type != 'fpm'}}
         run: docker run --rm ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }} php --version
 
       - name: Build PHP ${{ matrix.php-version }}
         uses: docker/build-push-action@v2
         with:
-          file: ./${{ matrix.php-version}}/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          file: ./${{ matrix.php-version}}/Dockerfile
           load: true
           tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}
 
       - name: Test ${{ github.repository_owner }}/php:${{ matrix.php-version }}
-        if: ${{ matrix.php-type != 'fpm'}}
         run: docker run --rm ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }} php --version
 
       - name: Build PHP ${{ matrix.php-default }} as latest
         uses: docker/build-push-action@v2
         with:
-          file: ./${{ matrix.php-default}}/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          file: ./${{ matrix.php-default}}/Dockerfile
           load: true
           tags: ghcr.io/${{ github.repository_owner }}/php:latest
 
@@ -104,29 +105,29 @@ jobs:
       - name: Push PHP ${{ matrix.php-version }}-${{ matrix.php-type }} image
         uses: docker/build-push-action@v2
         with:
-          platforms: ${{ env.SUPPORTED_PLATFORMS}}
           cache-from: type=gha
           cache-to: type=gha,mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version }}-${{ matrix.php-type }}
 
       - name: Push PHP ${{ matrix.php-version }}
         uses: docker/build-push-action@v2
         with:
-          platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          file: ./${{ matrix.php-version}}/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          file: ./${{ matrix.php-version}}/Dockerfile
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ghcr.io/${{ github.repository_owner }}/php:${{ matrix.php-version}}
 
       - name: Push PHP ${{ matrix.php-default }} as latest
         uses: docker/build-push-action@v2
         with:
-          platforms: ${{ env.SUPPORTED_PLATFORMS}}
           file: ./${{ matrix.php-default}}/Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ghcr.io/${{ github.repository_owner }}/php:latest
