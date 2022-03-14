@@ -31,9 +31,6 @@ jobs:
           - cli
           - fpm
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
@@ -90,9 +87,6 @@ jobs:
         php-type:
           - composer
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
@@ -149,9 +143,6 @@ jobs:
           - "8.0"
           - "8.1"
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
         with:
