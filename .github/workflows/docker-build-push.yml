@@ -13,8 +13,8 @@ concurrency:
 env:
   SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
   SUPPORTED_DEFAULT: "7.4"
-  SUPPORTED_LABELS: "maintainer=Nathanael Esayeas
-    org.opencontainers.image.title=PHP for Docker
+  SUPPORTED_LABELS: "maintainer=Nathanael Esayeas \
+    org.opencontainers.image.title=PHP for Docker \
     org.opencontainers.image.description=Development and Production-ready PHP Images for Docker"
 
 jobs:
