@@ -69,8 +69,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.php-version }}-${{ matrix.php-type }}
         uses: docker/build-push-action@v2
         with:
-          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-${{ matrix.php-type }}
-          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
+          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-${{ matrix.php-type }}-cache
+          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-${{ matrix.php-type }}-cache,mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -130,8 +130,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.php-version }}-${{ matrix.php-type }} image
         uses: docker/build-push-action@v2
         with:
-          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-${{ matrix.php-type }}
-          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
+          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-${{ matrix.php-type }}-cache
+          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-${{ matrix.php-type }}-cache,mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -181,8 +181,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.php-version }}
         uses: docker/build-push-action@v2
         with:
-          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}
-          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }},mode=max
+          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-cache
+          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-cache,mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -193,8 +193,8 @@ jobs:
         if: ${{ matrix.php-latest == matrix.php-version}}
         uses: docker/build-push-action@v2
         with:
-          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-latest
-          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-latest,mode=max
+          cache-from: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-latest-cache
+          cache-to: type=registry,ref=${{ env.DEFAULT_IMAGE }}:${{ matrix.php-version }}-latest-cache,mode=max
           file: ./${{ matrix.php-version }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
