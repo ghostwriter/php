@@ -7,7 +7,7 @@ on:
     - cron: "0 */8 * * *" # Runs daily every 8 hours.
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 env:
