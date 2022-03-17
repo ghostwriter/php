@@ -7,8 +7,8 @@ on:
     - cron: "0 */8 * * *" # Runs daily every 8 hours.
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.sha }}-${{ github.head_ref || github.run_id }}
-  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 env:
   SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
