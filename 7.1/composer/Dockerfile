@@ -1,7 +1,7 @@
 FROM ghcr.io/ghostwriter/php:7.1-cli
 
 ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV COMPOSER_1_VERSION 1.10.24
+ENV COMPOSER_1_VERSION 1.10.25 
 ENV COMPOSER_2_VERSION 2.2.9
 
 RUN wget https://getcomposer.org/download/$COMPOSER_1_VERSION/composer.phar \
