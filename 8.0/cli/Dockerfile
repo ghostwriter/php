@@ -8,7 +8,7 @@ RUN apt-get update && apt-get -y install git libjpeg-dev libmagickwand-dev \
 RUN docker-php-ext-configure gd --with-jpeg && docker-php-ext-install bcmath \
     gd intl opcache pcntl pdo pdo_mysql pdo_pgsql pdo_sqlite soap sockets zip
 
-RUN pecl install apcu-5.1.21 ast-1.0.16 imagick-3.7.0 memcached-3.2.0RC2 \
+RUN pecl install apcu-5.1.21 ast-1.0.16 imagick-3.7.0 memcached-3.2.0 \
     mongodb-1.12.1 uuid-1.2.0 redis-5.3.7 && docker-php-ext-enable ast apcu \
     imagick memcached mongodb uuid redis
 
