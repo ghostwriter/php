@@ -68,8 +68,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.php-version }}-${{ matrix.php-type }}
         uses: docker/build-push-action@v2
         with:
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }}
+          cache-to: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -128,8 +128,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.php-version }}-${{ matrix.php-type }} image
         uses: docker/build-push-action@v2
         with:
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }}
+          cache-to: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -178,8 +178,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.php-version }}
         uses: docker/build-push-action@v2
         with:
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ matrix.php-version }}
+          cache-to: type=gha,scope=${{ matrix.php-version }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -190,8 +190,8 @@ jobs:
         if: ${{ matrix.php-latest == matrix.php-version}}
         uses: docker/build-push-action@v2
         with:
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+          cache-from: type=gha,scope=${{ matrix.php-version }}
+          cache-to: type=gha,scope=${{ matrix.php-version }},mode=max
           file: ./${{ matrix.php-version }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
