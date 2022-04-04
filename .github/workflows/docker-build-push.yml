@@ -2,6 +2,8 @@ name: Docker CI/CD
 
 on:
   push:
+    branches:
+      - main
   pull_request:
   schedule:
     - cron: "0 */8 * * *" # Runs daily every 8 hours.
