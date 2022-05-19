@@ -79,7 +79,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           cache-from: type=local,src=/tmp/.buildx-cache,scope=${{ matrix.php-version }}-${{ matrix.php-type }}
-          cache-to: type=local,src=/tmp/.buildx-cache-latest,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
+          cache-to: type=local,dest=/tmp/.buildx-cache-latest,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -155,7 +155,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           cache-from: type=local,src=/tmp/.buildx-cache,scope=${{ matrix.php-version }}-${{ matrix.php-type }}
-          cache-to: type=local,src=/tmp/.buildx-cache-latest,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
+          cache-to: type=local,dest=/tmp/.buildx-cache-latest,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -221,7 +221,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           cache-from: type=local,src=/tmp/.buildx-cache,scope=${{ matrix.php-version }}
-          cache-to: type=local,src=/tmp/.buildx-cache-latest,scope=${{ matrix.php-version }},mode=max
+          cache-to: type=local,dest=/tmp/.buildx-cache-latest,scope=${{ matrix.php-version }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
@@ -233,7 +233,7 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           cache-from: type=local,src=/tmp/.buildx-cache,scope=${{ matrix.php-version }}
-          cache-to: type=local,src=/tmp/.buildx-cache-latest,scope=${{ matrix.php-version }},mode=max
+          cache-to: type=local,dest=/tmp/.buildx-cache-latest,scope=${{ matrix.php-version }},mode=max
           file: ./${{ matrix.php-version }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.event_name != 'pull_request' }}
