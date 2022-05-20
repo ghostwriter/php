@@ -60,7 +60,7 @@ jobs:
           username: ${{ github.repository_owner }}
 
       - name: Cache Docker layers
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ matrix.php-version }}-${{ matrix.php-type }}
@@ -136,7 +136,7 @@ jobs:
           username: ${{ github.repository_owner }}
 
       - name: Cache Docker layers
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ matrix.php-version }}-${{ matrix.php-type }}
@@ -202,7 +202,7 @@ jobs:
           username: ${{ github.repository_owner }}
 
       - name: Cache Docker layers
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache
           key: ${{ runner.os }}-buildx-${{ matrix.php-version }}
