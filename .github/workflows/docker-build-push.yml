@@ -63,9 +63,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache-base
-          key: ${{ runner.os }}-buildx-base-${{ matrix.php-version }}-${{ matrix.php-type }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-base-
+          key: ${{ runner.os }}-buildx-base-${{ matrix.php-version }}-${{ matrix.php-type }}-${{ hashFiles('**/Dockerfile') }}
 
       - name: Docker meta
         id: meta
@@ -139,9 +137,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache-composer
-          key: ${{ runner.os }}-buildx-composer-${{ matrix.php-version }}-${{ matrix.php-type }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-composer-
+          key: ${{ runner.os }}-buildx-composer-${{ matrix.php-version }}-${{ matrix.php-type }}-${{ hashFiles('**/Dockerfile') }}
 
       - name: Docker meta
         id: meta
@@ -205,9 +201,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: /tmp/.buildx-cache-build
-          key: ${{ runner.os }}-buildx-build-${{ matrix.php-version }}
-          restore-keys: |
-            ${{ runner.os }}-buildx-build-
+          key: ${{ runner.os }}-buildx-build-${{ matrix.php-version }}-${{ hashFiles('**/Dockerfile') }}
 
       - name: Docker meta
         id: meta
