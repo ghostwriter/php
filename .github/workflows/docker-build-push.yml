@@ -1,12 +1,16 @@
 name: Docker CI/CD
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
   pull_request:
   schedule:
     - cron: "0 * * * *" # Runs every hour, on the hour.
+
+permissions:
+  packages: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
@@ -75,7 +79,7 @@ jobs:
           cache-to: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
@@ -136,7 +140,7 @@ jobs:
           cache-to: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
@@ -188,7 +192,7 @@ jobs:
           cache-to: type=local,dest=/tmp/.buildx-cache-build-latest,scope=${{ matrix.php-version }},mode=max
           file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
@@ -200,6 +204,6 @@ jobs:
           cache-to: type=gha,scope=${{ matrix.php-version }},mode=max
           file: ./${{ matrix.php-version }}/Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          push: ${{ github.event_name != 'pull_request' }}
+          push: ${{ github.repository_owner == github.actor }}
           tags: ghcr.io/${{ github.repository_owner }}/php:latest
           labels: ${{ steps.meta.outputs.labels }}
