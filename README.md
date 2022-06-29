@@ -2,6 +2,27 @@
 
 Development and Production-ready PHP Images for Docker
 
+
+## PHP 8.2
+
+### ![Terminal](icons/terminal.svg) Pull PHP 8.2 image from the command line
+
+``` sh
+docker pull ghcr.io/ghostwriter/php:8.2
+docker pull ghcr.io/ghostwriter/php:8.2-cli
+docker pull ghcr.io/ghostwriter/php:8.2-composer
+docker pull ghcr.io/ghostwriter/php:8.2-fpm
+```
+
+### ![Code](icons/code.svg) Use as base PHP 8.2 image in DockerFile
+
+``` Dockerfile
+FROM ghcr.io/ghostwriter/php:8.2
+FROM ghcr.io/ghostwriter/php:8.2-cli
+FROM ghcr.io/ghostwriter/php:8.2-composer
+FROM ghcr.io/ghostwriter/php:8.2-fpm
+```
+
 ## PHP 8.1
 
 ### ![Terminal](icons/terminal.svg) Pull PHP 8.1 image from the command line
