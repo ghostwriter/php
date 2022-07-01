@@ -82,23 +82,3 @@ FROM ghcr.io/ghostwriter/php:7.4-cli
 FROM ghcr.io/ghostwriter/php:7.4-composer
 FROM ghcr.io/ghostwriter/php:7.4-fpm
 ```
-
-## PHP 5.6
-
-### ![Terminal](icons/terminal.svg) Pull PHP 5.6 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:5.6
-docker pull ghcr.io/ghostwriter/php:5.6-cli
-docker pull ghcr.io/ghostwriter/php:5.6-composer
-docker pull ghcr.io/ghostwriter/php:5.6-fpm
-```
-
-### ![Code](icons/code.svg) Use as base PHP 5.6 image in DockerFile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:5.6
-FROM ghcr.io/ghostwriter/php:5.6-cli
-FROM ghcr.io/ghostwriter/php:5.6-composer
-FROM ghcr.io/ghostwriter/php:5.6-fpm
-```
