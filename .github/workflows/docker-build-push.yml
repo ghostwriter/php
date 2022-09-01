@@ -5,7 +5,6 @@ on:
   push:
     branches:
       - main
-  pull_request:
   schedule:
     - cron: "0 * * * *" # Runs every hour, on the hour.
 
@@ -13,8 +12,8 @@ permissions:
   packages: write
 
 concurrency:
-  group: ${{ github.event_name }}-${{ github.head_ref || github.ref }}
-  cancel-in-progress: ${{ github.event_name != 'schedule' }}
+  group: ${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
 
 env:
   SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
@@ -178,7 +177,6 @@ jobs:
           password: ${{ secrets.GHT }}
           registry: ghcr.io
           username: ${{ github.repository_owner }}
-
 
       - name: Docker meta
         id: meta
