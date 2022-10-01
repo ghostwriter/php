@@ -1,4 +1,4 @@
-FROM php:7.4.31-fpm-buster
+FROM php:7.4.32-fpm-buster
 
 RUN apt-get update && apt-get -y install git libjpeg-dev libmagickwand-dev \
     libmemcached-dev libpng-dev libpq-dev libsqlite3-dev libxml2-dev \
