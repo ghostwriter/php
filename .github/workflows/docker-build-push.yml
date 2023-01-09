@@ -26,7 +26,6 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "7.4"
           - "8.0"
           - "8.1"
           - "8.2"
@@ -84,7 +83,6 @@ jobs:
       fail-fast: false
       matrix:
         php-version:
-          - "7.4"
           - "8.0"
           - "8.1"
           - "8.2"
@@ -144,7 +142,6 @@ jobs:
         php-latest:
           - "8.1"
         php-version:
-          - "7.4"
           - "8.0"
           - "8.1"
           - "8.2"
