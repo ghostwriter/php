@@ -62,23 +62,3 @@ FROM ghcr.io/ghostwriter/php:8.0-cli
 FROM ghcr.io/ghostwriter/php:8.0-composer
 FROM ghcr.io/ghostwriter/php:8.0-fpm
 ```
-
-## PHP 7.4
-
-### ![Terminal](icons/terminal.svg) Pull PHP 7.4 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.4
-docker pull ghcr.io/ghostwriter/php:7.4-cli
-docker pull ghcr.io/ghostwriter/php:7.4-composer
-docker pull ghcr.io/ghostwriter/php:7.4-fpm
-```
-
-### ![Code](icons/code.svg) Use as base PHP 7.4 image in DockerFile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.4
-FROM ghcr.io/ghostwriter/php:7.4-cli
-FROM ghcr.io/ghostwriter/php:7.4-composer
-FROM ghcr.io/ghostwriter/php:7.4-fpm
-```
