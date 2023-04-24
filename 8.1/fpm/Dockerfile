@@ -9,7 +9,7 @@ RUN docker-php-ext-configure gd --with-jpeg && docker-php-ext-install bcmath \
     gd intl opcache pcntl pdo pdo_mysql pdo_pgsql pdo_sqlite soap sockets zip
 
 RUN pecl install apcu-5.1.22 ast-1.0.16 imagick-3.7.0 memcached-3.2.0 \
-    mongodb-1.15.1 uuid-1.2.0 redis-5.3.7 && docker-php-ext-enable ast apcu \
+    mongodb-1.15.2 uuid-1.2.0 redis-5.3.7 && docker-php-ext-enable ast apcu \
     imagick memcached mongodb uuid redis
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
