@@ -172,6 +172,7 @@ jobs:
           tags: type=raw,value=${{ matrix.php-version }}
 
       - name: Build and push PHP ${{ matrix.php-version }}
+        if: success() || failure()
         uses: docker/build-push-action@v4
         with:
           cache-from: type=local,src=/tmp/.buildx-cache-build,scope=${{ matrix.php-version }}
