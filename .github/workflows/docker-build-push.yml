@@ -26,12 +26,20 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version:
+        version:
+          - "5.6"
+          - "7.0"
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
           - "8.0"
           - "8.1"
           - "8.2"
-          - "8.3"
-        php-type:
+          - "8.3-rc"
+        latest:
+          - "8.2"
+        type:
           - cli
           - fpm
     steps:
@@ -65,18 +73,32 @@ jobs:
         with:
           github-token: ${{ secrets.GHT }}
           images: ${{ env.DEFAULT_IMAGE }}
-          tags: type=raw,value=${{ matrix.php-version }}-${{ matrix.php-type }}
+          tags: type=raw,value=${{ matrix.version }}-${{ matrix.type }}
 
-      - name: Build and push PHP ${{ matrix.php-version }}-${{ matrix.php-type }}
+      - name: Build and push PHP ${{ matrix.version }}-${{ matrix.type }}
         uses: docker/build-push-action@v4
         with:
-          cache-from: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }}
-          cache-to: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
-          file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
+          cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.type }}
+          cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.type }},mode=max
+          file: ./Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: PHP_VERSION=${{ matrix.version }}
+
+      - name: Build and push PHP ${{ matrix.version }} as latest
+        if: ${{ matrix.latest == matrix.version && matrix.type == 'cli' }}
+        uses: docker/build-push-action@v4
+        with:
+          cache-from: type=gha,scope=${{ matrix.version }}
+          cache-to: type=gha,scope=${{ matrix.version }},mode=max
+          file: ./Dockerfile
+          platforms: ${{ env.SUPPORTED_PLATFORMS}}
+          push: ${{ github.repository_owner == github.actor }}
+          tags: ghcr.io/${{ github.repository_owner }}/php:latest
+          labels: ${{ steps.meta.outputs.labels }}
+          build-args: PHP_VERSION=${{ matrix.version }}
 
   composer:
     needs: base
@@ -85,12 +107,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version:
+        version:
+          - "5.6"
+          - "7.0"
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
           - "8.0"
           - "8.1"
           - "8.2"
-          - "8.3"
-        php-type:
+          - "8.3-rc"
+        type:
           - composer
     steps:
       - name: Set up QEMU
@@ -123,33 +151,42 @@ jobs:
         with:
           github-token: ${{ secrets.GHT }}
           images: ${{ env.DEFAULT_IMAGE }}
-          tags: type=raw,value=${{ matrix.php-version }}-${{ matrix.php-type }}
+          tags: type=raw,value=${{ matrix.version }}-${{ matrix.type }}
 
-      - name: Build and push PHP ${{ matrix.php-version }}-${{ matrix.php-type }} image
+      - name: Build and push PHP ${{ matrix.version }}-${{ matrix.type }} image
         uses: docker/build-push-action@v4
         with:
-          cache-from: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }}
-          cache-to: type=gha,scope=${{ matrix.php-version }}-${{ matrix.php-type }},mode=max
-          file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
+          cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.type }}
+          cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.type }},mode=max
+          file: ./composer.Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: PHP_VERSION=${{ matrix.version }}
 
-  build:
+  covrage:
     needs: composer
     runs-on: ubuntu-latest
     continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
-        php-latest:
-          - "8.2"
-        php-version:
+        version:
+          - "5.6"
+          - "7.0"
+          - "7.1"
+          - "7.2"
+          - "7.3"
+          - "7.4"
           - "8.0"
           - "8.1"
           - "8.2"
-          - "8.3"
+          - "8.3-rc"
+        covrage:
+          - "blackfire"
+          - "pcov"
+          - "xdebug"
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -171,28 +208,16 @@ jobs:
         with:
           github-token: ${{ secrets.GHT }}
           images: ${{ env.DEFAULT_IMAGE }}
-          tags: type=raw,value=${{ matrix.php-version }}
+          tags: type=raw,value=${{ matrix.version }}
 
-      - name: Build and push PHP ${{ matrix.php-version }}
-        if: success() || failure()
+      - name: Build and push PHP ${{ matrix.version }}
         uses: docker/build-push-action@v4
         with:
-          cache-from: type=local,src=/tmp/.buildx-cache-build,scope=${{ matrix.php-version }}
-          cache-to: type=local,dest=/tmp/.buildx-cache-build-latest,scope=${{ matrix.php-version }},mode=max
-          file: ./${{ matrix.php-version}}/${{ matrix.php-type }}/Dockerfile
+          cache-from: type=local,src=/tmp/.buildx-cache-build,scope=${{ matrix.version }}
+          cache-to: type=local,dest=/tmp/.buildx-cache-build-latest,scope=${{ matrix.version }},mode=max
+          file: ./${{ matrix.covrage }}.Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Build and push PHP ${{ matrix.php-version }} as latest
-        if: ${{ matrix.php-latest == matrix.php-version}}
-        uses: docker/build-push-action@v4
-        with:
-          cache-from: type=gha,scope=${{ matrix.php-version }}
-          cache-to: type=gha,scope=${{ matrix.php-version }},mode=max
-          file: ./${{ matrix.php-version }}/Dockerfile
-          platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          push: ${{ github.repository_owner == github.actor }}
-          tags: ghcr.io/${{ github.repository_owner }}/php:latest
-          labels: ${{ steps.meta.outputs.labels }}
+          build-args: PHP_VERSION=${{ matrix.version }}
