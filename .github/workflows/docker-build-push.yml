@@ -165,7 +165,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: PHP_VERSION=${{ matrix.version }}
 
-  covrage:
+  build:
     needs: composer
     runs-on: ubuntu-latest
     continue-on-error: true
@@ -183,7 +183,7 @@ jobs:
           - "8.1"
           - "8.2"
           - "8.3-rc"
-        covrage:
+        coverage:
           - "blackfire"
           - "pcov"
           - "xdebug"
@@ -215,7 +215,7 @@ jobs:
         with:
           cache-from: type=local,src=/tmp/.buildx-cache-build,scope=${{ matrix.version }}
           cache-to: type=local,dest=/tmp/.buildx-cache-build-latest,scope=${{ matrix.version }},mode=max
-          file: ./${{ matrix.covrage }}.Dockerfile
+          file: ./${{ matrix.coverage }}.Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
