@@ -4,9 +4,9 @@ FROM php:${PHP_VERSION}-cli-alpine
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
-COPY . /tmp/
+COPY install.sh ./install.sh
 
-RUN chmod +x /tmp/install.sh && /tmp/install.sh && rm -fr /tmp/*
+RUN chmod +x ./install.sh && ./install.sh
 
 RUN mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     rm $PHP_INI_DIR/php.ini-development && \
