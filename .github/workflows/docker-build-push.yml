@@ -67,6 +67,7 @@ jobs:
           tags: |
             type=raw,value=${{ matrix.version }}-cli
             type=raw,value=${{ matrix.version }}
+            type=raw,value=latest,enable=${{ matrix.latest == matrix.version }}
 
       - name: Build and push PHP ${{ matrix.version }}
         uses: docker/build-push-action@v4
@@ -77,19 +78,6 @@ jobs:
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          build-args: PHP_VERSION=${{ matrix.version }}
-
-      - name: Build and push PHP ${{ matrix.version }} as latest
-        if: ${{ matrix.latest == matrix.version }}
-        uses: docker/build-push-action@v4
-        with:
-          cache-from: type=gha,scope=${{ matrix.version }}
-          cache-to: type=gha,scope=${{ matrix.version }},mode=max
-          file: ./Dockerfile
-          platforms: ${{ env.SUPPORTED_PLATFORMS}}
-          push: ${{ github.repository_owner == github.actor }}
-          tags: ghcr.io/${{ github.repository_owner }}/php:latest
           labels: ${{ steps.meta.outputs.labels }}
           build-args: PHP_VERSION=${{ matrix.version }}
 
