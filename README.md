@@ -2,7 +2,6 @@
 
 Development and Production-ready PHP Images for Docker
 
-
 ## PHP 8.3-rc
 
 ### ![Terminal](icons/terminal.svg) Pull PHP 8.3-rc image from the command line
@@ -49,19 +48,40 @@ FROM ghcr.io/ghostwriter/php:8.3-rc-xdebug
 ### ![Terminal](icons/terminal.svg) Pull PHP 8.2 image from the command line
 
 ``` sh
+# PHP CLI
 docker pull ghcr.io/ghostwriter/php:8.2
 docker pull ghcr.io/ghostwriter/php:8.2-cli
-docker pull ghcr.io/ghostwriter/php:8.2-composer
+
+# PHP FPM
 docker pull ghcr.io/ghostwriter/php:8.2-fpm
+
+# PHP CLI with Composer
+docker pull ghcr.io/ghostwriter/php:8.2-composer
+
+# PHP CLI with Composer & code coverage
+docker pull ghcr.io/ghostwriter/php:8.2-blackfire
+docker pull ghcr.io/ghostwriter/php:8.2-pcov
+docker pull ghcr.io/ghostwriter/php:8.2-xdebug
+
 ```
 
 ### ![Code](icons/code.svg) Use as base PHP 8.2 image in DockerFile
 
 ``` Dockerfile
+# PHP CLI
 FROM ghcr.io/ghostwriter/php:8.2
 FROM ghcr.io/ghostwriter/php:8.2-cli
-FROM ghcr.io/ghostwriter/php:8.2-composer
+
+# PHP FPM
 FROM ghcr.io/ghostwriter/php:8.2-fpm
+
+# PHP CLI with Composer
+FROM ghcr.io/ghostwriter/php:8.2-composer
+
+# PHP CLI with Composer & code coverage
+FROM ghcr.io/ghostwriter/php:8.2-blackfire
+FROM ghcr.io/ghostwriter/php:8.2-pcov
+FROM ghcr.io/ghostwriter/php:8.2-xdebug
 ```
 
 ## PHP 8.1
@@ -69,19 +89,40 @@ FROM ghcr.io/ghostwriter/php:8.2-fpm
 ### ![Terminal](icons/terminal.svg) Pull PHP 8.1 image from the command line
 
 ``` sh
+# PHP CLI
 docker pull ghcr.io/ghostwriter/php:8.1
 docker pull ghcr.io/ghostwriter/php:8.1-cli
-docker pull ghcr.io/ghostwriter/php:8.1-composer
+
+# PHP FPM
 docker pull ghcr.io/ghostwriter/php:8.1-fpm
+
+# PHP CLI with Composer
+docker pull ghcr.io/ghostwriter/php:8.1-composer
+
+# PHP CLI with Composer & code coverage
+docker pull ghcr.io/ghostwriter/php:8.1-blackfire
+docker pull ghcr.io/ghostwriter/php:8.1-pcov
+docker pull ghcr.io/ghostwriter/php:8.1-xdebug
+
 ```
 
 ### ![Code](icons/code.svg) Use as base PHP 8.1 image in DockerFile
 
 ``` Dockerfile
+# PHP CLI
 FROM ghcr.io/ghostwriter/php:8.1
 FROM ghcr.io/ghostwriter/php:8.1-cli
-FROM ghcr.io/ghostwriter/php:8.1-composer
+
+# PHP FPM
 FROM ghcr.io/ghostwriter/php:8.1-fpm
+
+# PHP CLI with Composer
+FROM ghcr.io/ghostwriter/php:8.1-composer
+
+# PHP CLI with Composer & code coverage
+FROM ghcr.io/ghostwriter/php:8.1-blackfire
+FROM ghcr.io/ghostwriter/php:8.1-pcov
+FROM ghcr.io/ghostwriter/php:8.1-xdebug
 ```
 
 ## PHP 8.0
@@ -89,17 +130,38 @@ FROM ghcr.io/ghostwriter/php:8.1-fpm
 ### ![Terminal](icons/terminal.svg) Pull PHP 8.0 image from the command line
 
 ``` sh
+# PHP CLI
 docker pull ghcr.io/ghostwriter/php:8.0
 docker pull ghcr.io/ghostwriter/php:8.0-cli
-docker pull ghcr.io/ghostwriter/php:8.0-composer
+
+# PHP FPM
 docker pull ghcr.io/ghostwriter/php:8.0-fpm
+
+# PHP CLI with Composer
+docker pull ghcr.io/ghostwriter/php:8.0-composer
+
+# PHP CLI with Composer & code coverage
+docker pull ghcr.io/ghostwriter/php:8.0-blackfire
+docker pull ghcr.io/ghostwriter/php:8.0-pcov
+docker pull ghcr.io/ghostwriter/php:8.0-xdebug
+
 ```
 
 ### ![Code](icons/code.svg) Use as base PHP 8.0 image in DockerFile
 
 ``` Dockerfile
+# PHP CLI
 FROM ghcr.io/ghostwriter/php:8.0
 FROM ghcr.io/ghostwriter/php:8.0-cli
-FROM ghcr.io/ghostwriter/php:8.0-composer
+
+# PHP FPM
 FROM ghcr.io/ghostwriter/php:8.0-fpm
+
+# PHP CLI with Composer
+FROM ghcr.io/ghostwriter/php:8.0-composer
+
+# PHP CLI with Composer & code coverage
+FROM ghcr.io/ghostwriter/php:8.0-blackfire
+FROM ghcr.io/ghostwriter/php:8.0-pcov
+FROM ghcr.io/ghostwriter/php:8.0-xdebug
 ```
