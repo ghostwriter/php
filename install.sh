@@ -1,4 +1,6 @@
-#! bin/sh -e
+#!/bin/sh
+set -o errexit
+set -o nounset
 
 install-php-extensions apcu;
 install-php-extensions bcmath;
