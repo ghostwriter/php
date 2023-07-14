@@ -72,8 +72,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.version }}
         uses: docker/build-push-action@v4
         with:
-          cache-from: type=gha,scope=${{ matrix.version }}
-          cache-to: type=gha,scope=${{ matrix.version }},mode=max
+          cache-from: type=gha,scope=${{ matrix.version }}-cli
+          cache-to: type=gha,scope=${{ matrix.version }}-cli,mode=max
           file: ./Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.repository_owner == github.actor }}
