@@ -1,6 +1,6 @@
 ARG PHP_VERSION=8.3-rc
 
-FROM php:{$PHP_VERSION}-fpm-alpine
+FROM php:${PHP_VERSION}-fpm-alpine
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
