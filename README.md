@@ -17,6 +17,10 @@ docker pull ghcr.io/ghostwriter/php:8.3-rc-fpm
 # PHP CLI with Composer
 docker pull ghcr.io/ghostwriter/php:8.3-rc-composer
 
+# PHP CLI with Composer && Database
+docker pull ghcr.io/ghostwriter/php:8.3-rc-mysql
+docker pull ghcr.io/ghostwriter/php:8.3-rc-pgsql
+
 # PHP CLI with Composer & Swoole
 docker pull ghcr.io/ghostwriter/php:8.3-rc-swoole
 
@@ -38,6 +42,10 @@ FROM ghcr.io/ghostwriter/php:8.3-rc-fpm
 
 # PHP CLI with Composer
 FROM ghcr.io/ghostwriter/php:8.3-rc-composer
+
+# PHP CLI with Composer && Database
+FROM ghcr.io/ghostwriter/php:8.3-rc-mysql
+FROM ghcr.io/ghostwriter/php:8.3-rc-pgsql
 
 # PHP CLI with Composer & Swoole
 FROM ghcr.io/ghostwriter/php:8.3-rc-swoole
@@ -63,6 +71,10 @@ docker pull ghcr.io/ghostwriter/php:8.2-fpm
 # PHP CLI with Composer
 docker pull ghcr.io/ghostwriter/php:8.2-composer
 
+# PHP CLI with Composer && Database
+docker pull ghcr.io/ghostwriter/php:8.2-mysql
+docker pull ghcr.io/ghostwriter/php:8.2-pgsql
+
 # PHP CLI with Composer & Swoole
 docker pull ghcr.io/ghostwriter/php:8.2-swoole
 
@@ -84,6 +96,10 @@ FROM ghcr.io/ghostwriter/php:8.2-fpm
 
 # PHP CLI with Composer
 FROM ghcr.io/ghostwriter/php:8.2-composer
+
+# PHP CLI with Composer && Database
+FROM ghcr.io/ghostwriter/php:8.2-mysql
+FROM ghcr.io/ghostwriter/php:8.2-pgsql
 
 # PHP CLI with Composer & Swoole
 FROM ghcr.io/ghostwriter/php:8.2-swoole
@@ -109,6 +125,10 @@ docker pull ghcr.io/ghostwriter/php:8.1-fpm
 # PHP CLI with Composer
 docker pull ghcr.io/ghostwriter/php:8.1-composer
 
+# PHP CLI with Composer && Database
+docker pull ghcr.io/ghostwriter/php:8.1-mysql
+docker pull ghcr.io/ghostwriter/php:8.1-pgsql
+
 # PHP CLI with Composer & Swoole
 docker pull ghcr.io/ghostwriter/php:8.1-swoole
 
@@ -130,6 +150,10 @@ FROM ghcr.io/ghostwriter/php:8.1-fpm
 
 # PHP CLI with Composer
 FROM ghcr.io/ghostwriter/php:8.1-composer
+
+# PHP CLI with Composer && Database
+FROM ghcr.io/ghostwriter/php:8.1-mysql
+FROM ghcr.io/ghostwriter/php:8.1-pgsql
 
 # PHP CLI with Composer & Swoole
 FROM ghcr.io/ghostwriter/php:8.1-swoole
@@ -155,6 +179,10 @@ docker pull ghcr.io/ghostwriter/php:8.0-fpm
 # PHP CLI with Composer
 docker pull ghcr.io/ghostwriter/php:8.0-composer
 
+# PHP CLI with Composer && Database
+docker pull ghcr.io/ghostwriter/php:8.0-mysql
+docker pull ghcr.io/ghostwriter/php:8.0-pgsql
+
 # PHP CLI with Composer & Swoole
 docker pull ghcr.io/ghostwriter/php:8.0-swoole
 
@@ -176,6 +204,10 @@ FROM ghcr.io/ghostwriter/php:8.0-fpm
 
 # PHP CLI with Composer
 FROM ghcr.io/ghostwriter/php:8.0-composer
+
+# PHP CLI with Composer && Database
+FROM ghcr.io/ghostwriter/php:8.0-mysql
+FROM ghcr.io/ghostwriter/php:8.0-pgsql
 
 # PHP CLI with Composer & Swoole
 FROM ghcr.io/ghostwriter/php:8.0-swoole
