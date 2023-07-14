@@ -1,21 +1,22 @@
 <?php
 
 $versions = [
+    '7.4',
     '8.0',
     '8.1',
     '8.2',
     '8.3-rc',
 ];
+
 arsort($versions);
 
 $dev = '8.3-rc';
 $latest = '8.2';
 
 $types = [
-    '',
     'cli',
-    'composer',
     'fpm',
+    'composer',
 ];
 
 $extentions = [
@@ -33,89 +34,156 @@ $extentions = [
     ],
 ];
 
-$header = <<<EOT
+function teminalTemplate(string $phpVersion): string
+{
+    return sprintf(
+        '#### ![Terminal](icons/terminal.svg) Pull PHP %s image from the command line',
+        $phpVersion
+    ) . PHP_EOL;
+}
+
+function codeTemplate(string $phpVersion): string
+{
+    return sprintf(
+        '#### ![Code](icons/code.svg) Use PHP %s image in Dockerfile',
+        $phpVersion
+    ) . PHP_EOL;
+}
+
+function versionTemplate(string $version, array $versions, array $types, array $extentions): string
+{
+    $body = sprintf(
+        '## PHP %s',
+        $version
+    ) . PHP_EOL;
+
+
+    $body .= PHP_EOL . teminalTemplate($version);
+    $body .= PHP_EOL . versionTemplateTerminal($version);
+    $body .= PHP_EOL . codeTemplate($version);
+    $body .= PHP_EOL . versionTemplateCode($version);
+
+    foreach ($types as $type) {
+        $body .= PHP_EOL . versionWithTemplate($version, $type);
+
+        $body .= PHP_EOL . teminalTemplate($version);
+        $body .= PHP_EOL . versionWithTemplateTerminal($version, $type);
+
+        if ($type === 'composer') {
+            foreach ($extentions as $kind => $types) {
+                foreach ($types as $type) {
+                    $body .= PHP_EOL . versionWithTemplateTerminal($version, $type);
+                }
+            }
+
+            $body .= PHP_EOL . codeTemplate($version);
+
+            foreach ($extentions as $kind => $types) {
+                foreach ($types as $type) {
+                    $body .= PHP_EOL . versionWithTemplateCode($version, $type);
+                }
+            }
+        } else {
+            $body .= PHP_EOL . codeTemplate($version);
+        }
+
+
+        $body .= PHP_EOL . versionWithTemplateCode($version, $type);
+    }
+
+    return $body;
+}
+
+
+function versionWithTemplate(string $phpVersion, string $type): string
+{
+    return sprintf(
+        '## PHP %s : %s',
+        $phpVersion,
+        strtoupper($type)
+    ) . PHP_EOL;
+}
+
+
+function versionWithTemplateTerminal(string $phpVersion, string $type): string
+{
+    return sprintf(
+        <<<EOT
+``` sh
+docker pull ghcr.io/ghostwriter/php:%s-%s
+```
+EOT,
+        $phpVersion,
+        $type,
+        $phpVersion,
+        $type
+    ) . PHP_EOL;
+}
+
+function versionWithTemplateCode(string $phpVersion, string $type): string
+{
+    return sprintf(
+        <<<EOT
+``` Dockerfile
+FROM ghcr.io/ghostwriter/php:%s-%s
+```
+EOT,
+        $phpVersion,
+        $type,
+        $phpVersion,
+        $type
+    ) . PHP_EOL;
+}
+
+
+function versionTemplateTerminal(string $phpVersion): string
+{
+    return sprintf(
+        <<<EOT
+``` sh
+docker pull ghcr.io/ghostwriter/php:%s
+```
+EOT,
+        $phpVersion,
+        $phpVersion,
+    ) . PHP_EOL;
+}
+
+function versionTemplateCode(string $phpVersion): string
+{
+    return sprintf(
+        <<<EOT
+``` Dockerfile
+FROM ghcr.io/ghostwriter/php:%s
+```
+EOT,
+        $phpVersion,
+        $phpVersion,
+    ) . PHP_EOL;
+}
+
+function printREADME(array $versions, array $types, array $extentions): string
+{
+    $header = <<<EOT
 # PHP for Docker [![Docker CI/CD](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml)
 
 Development and Production-ready PHP Images for Docker
+
+> **Supported versions: 7.4 - 8.3-rc**
 EOT;
 
-$templateBody = <<<EOT
-## PHP {PHP_VERSION}
+    $body = PHP_EOL;
 
-### ![Terminal](icons/terminal.svg) Pull PHP {PHP_VERSION} image from the command line
+    foreach ($versions as $version) {
+        $body .= PHP_EOL . versionTemplate($version, $versions, $types, $extentions);
+    }
 
-``` sh
-# PHP CLI
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-cli
-
-# PHP FPM
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-fpm
-
-# PHP CLI with composer
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-composer
-
-# PHP CLI with composer & mysql
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-mysql
-
-# PHP CLI with composer & pgsql
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-pgsql
-
-# PHP CLI with composer & swoole
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-swoole
-
-# PHP CLI with composer & blackfire
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-blackfire
-
-# PHP CLI with composer & pcov
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-pcov
-
-# PHP CLI with composer & xdebug
-docker pull ghcr.io/ghostwriter/php:{PHP_VERSION}-xdebug
-```
-
-### ![Code](icons/code.svg) Use as base PHP {PHP_VERSION} image in DockerFile
-
-``` Dockerfile
-# PHP CLI
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-cli
-
-# PHP FPM
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-fpm
-
-# PHP CLI with composer
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-composer
-
-# PHP CLI with composer & mysql
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-mysql
-
-# PHP CLI with composer & pgsql
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-pgsql
-
-# PHP CLI with composer & swoole
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-swoole
-
-# PHP CLI with composer & blackfire
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-blackfire
-
-# PHP CLI with composer & pcov
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-pcov
-
-# PHP CLI with composer & xdebug
-FROM ghcr.io/ghostwriter/php:{PHP_VERSION}-xdebug
-```
-EOT;
-
-$body = PHP_EOL;
-
-foreach ($versions as $version) {
-    $body .= PHP_EOL.str_replace('{PHP_VERSION}', $version, $templateBody);
+    return sprintf('%s%s' . PHP_EOL, $header, $body);
 }
 
-$template = sprintf('%s%s'.PHP_EOL, $header, $body);
+
+$template = printREADME($versions, $types, $extentions);
 
 file_put_contents('README.md', $template);
 
 die($template);
-
