@@ -159,6 +159,7 @@ jobs:
           - fpm
           - blackfire
           - pcov
+          - swoole
           - xdebug
     steps:
       - name: Set up QEMU
