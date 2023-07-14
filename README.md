@@ -17,11 +17,13 @@ docker pull ghcr.io/ghostwriter/php:8.3-rc-fpm
 # PHP CLI with Composer
 docker pull ghcr.io/ghostwriter/php:8.3-rc-composer
 
+# PHP CLI with Composer & Swoole
+docker pull ghcr.io/ghostwriter/php:8.3-rc-swoole
+
 # PHP CLI with Composer & code coverage
 docker pull ghcr.io/ghostwriter/php:8.3-rc-blackfire
 docker pull ghcr.io/ghostwriter/php:8.3-rc-pcov
 docker pull ghcr.io/ghostwriter/php:8.3-rc-xdebug
-
 ```
 
 ### ![Code](icons/code.svg) Use as base PHP 8.3-rc image in DockerFile
@@ -36,6 +38,9 @@ FROM ghcr.io/ghostwriter/php:8.3-rc-fpm
 
 # PHP CLI with Composer
 FROM ghcr.io/ghostwriter/php:8.3-rc-composer
+
+# PHP CLI with Composer & Swoole
+FROM ghcr.io/ghostwriter/php:8.3-rc-swoole
 
 # PHP CLI with Composer & code coverage
 FROM ghcr.io/ghostwriter/php:8.3-rc-blackfire
@@ -58,11 +63,13 @@ docker pull ghcr.io/ghostwriter/php:8.2-fpm
 # PHP CLI with Composer
 docker pull ghcr.io/ghostwriter/php:8.2-composer
 
+# PHP CLI with Composer & Swoole
+docker pull ghcr.io/ghostwriter/php:8.2-swoole
+
 # PHP CLI with Composer & code coverage
 docker pull ghcr.io/ghostwriter/php:8.2-blackfire
 docker pull ghcr.io/ghostwriter/php:8.2-pcov
 docker pull ghcr.io/ghostwriter/php:8.2-xdebug
-
 ```
 
 ### ![Code](icons/code.svg) Use as base PHP 8.2 image in DockerFile
@@ -77,6 +84,9 @@ FROM ghcr.io/ghostwriter/php:8.2-fpm
 
 # PHP CLI with Composer
 FROM ghcr.io/ghostwriter/php:8.2-composer
+
+# PHP CLI with Composer & Swoole
+FROM ghcr.io/ghostwriter/php:8.2-swoole
 
 # PHP CLI with Composer & code coverage
 FROM ghcr.io/ghostwriter/php:8.2-blackfire
@@ -99,11 +109,13 @@ docker pull ghcr.io/ghostwriter/php:8.1-fpm
 # PHP CLI with Composer
 docker pull ghcr.io/ghostwriter/php:8.1-composer
 
+# PHP CLI with Composer & Swoole
+docker pull ghcr.io/ghostwriter/php:8.1-swoole
+
 # PHP CLI with Composer & code coverage
 docker pull ghcr.io/ghostwriter/php:8.1-blackfire
 docker pull ghcr.io/ghostwriter/php:8.1-pcov
 docker pull ghcr.io/ghostwriter/php:8.1-xdebug
-
 ```
 
 ### ![Code](icons/code.svg) Use as base PHP 8.1 image in DockerFile
@@ -118,6 +130,9 @@ FROM ghcr.io/ghostwriter/php:8.1-fpm
 
 # PHP CLI with Composer
 FROM ghcr.io/ghostwriter/php:8.1-composer
+
+# PHP CLI with Composer & Swoole
+FROM ghcr.io/ghostwriter/php:8.1-swoole
 
 # PHP CLI with Composer & code coverage
 FROM ghcr.io/ghostwriter/php:8.1-blackfire
@@ -140,11 +155,13 @@ docker pull ghcr.io/ghostwriter/php:8.0-fpm
 # PHP CLI with Composer
 docker pull ghcr.io/ghostwriter/php:8.0-composer
 
+# PHP CLI with Composer & Swoole
+docker pull ghcr.io/ghostwriter/php:8.0-swoole
+
 # PHP CLI with Composer & code coverage
 docker pull ghcr.io/ghostwriter/php:8.0-blackfire
 docker pull ghcr.io/ghostwriter/php:8.0-pcov
 docker pull ghcr.io/ghostwriter/php:8.0-xdebug
-
 ```
 
 ### ![Code](icons/code.svg) Use as base PHP 8.0 image in DockerFile
@@ -159,6 +176,9 @@ FROM ghcr.io/ghostwriter/php:8.0-fpm
 
 # PHP CLI with Composer
 FROM ghcr.io/ghostwriter/php:8.0-composer
+
+# PHP CLI with Composer & Swoole
+FROM ghcr.io/ghostwriter/php:8.0-swoole
 
 # PHP CLI with Composer & code coverage
 FROM ghcr.io/ghostwriter/php:8.0-blackfire
