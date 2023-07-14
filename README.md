@@ -25,7 +25,6 @@ docker pull ghcr.io/ghostwriter/php:8.3-rc-pgsql
 docker pull ghcr.io/ghostwriter/php:8.3-rc-swoole
 
 # PHP CLI with Composer & code coverage
-docker pull ghcr.io/ghostwriter/php:8.3-rc-blackfire
 docker pull ghcr.io/ghostwriter/php:8.3-rc-pcov
 docker pull ghcr.io/ghostwriter/php:8.3-rc-xdebug
 ```
@@ -51,7 +50,6 @@ FROM ghcr.io/ghostwriter/php:8.3-rc-pgsql
 FROM ghcr.io/ghostwriter/php:8.3-rc-swoole
 
 # PHP CLI with Composer & code coverage
-FROM ghcr.io/ghostwriter/php:8.3-rc-blackfire
 FROM ghcr.io/ghostwriter/php:8.3-rc-pcov
 FROM ghcr.io/ghostwriter/php:8.3-rc-xdebug
 ```
@@ -79,7 +77,6 @@ docker pull ghcr.io/ghostwriter/php:8.2-pgsql
 docker pull ghcr.io/ghostwriter/php:8.2-swoole
 
 # PHP CLI with Composer & code coverage
-docker pull ghcr.io/ghostwriter/php:8.2-blackfire
 docker pull ghcr.io/ghostwriter/php:8.2-pcov
 docker pull ghcr.io/ghostwriter/php:8.2-xdebug
 ```
@@ -105,7 +102,6 @@ FROM ghcr.io/ghostwriter/php:8.2-pgsql
 FROM ghcr.io/ghostwriter/php:8.2-swoole
 
 # PHP CLI with Composer & code coverage
-FROM ghcr.io/ghostwriter/php:8.2-blackfire
 FROM ghcr.io/ghostwriter/php:8.2-pcov
 FROM ghcr.io/ghostwriter/php:8.2-xdebug
 ```
@@ -133,7 +129,6 @@ docker pull ghcr.io/ghostwriter/php:8.1-pgsql
 docker pull ghcr.io/ghostwriter/php:8.1-swoole
 
 # PHP CLI with Composer & code coverage
-docker pull ghcr.io/ghostwriter/php:8.1-blackfire
 docker pull ghcr.io/ghostwriter/php:8.1-pcov
 docker pull ghcr.io/ghostwriter/php:8.1-xdebug
 ```
@@ -159,7 +154,6 @@ FROM ghcr.io/ghostwriter/php:8.1-pgsql
 FROM ghcr.io/ghostwriter/php:8.1-swoole
 
 # PHP CLI with Composer & code coverage
-FROM ghcr.io/ghostwriter/php:8.1-blackfire
 FROM ghcr.io/ghostwriter/php:8.1-pcov
 FROM ghcr.io/ghostwriter/php:8.1-xdebug
 ```
@@ -187,7 +181,6 @@ docker pull ghcr.io/ghostwriter/php:8.0-pgsql
 docker pull ghcr.io/ghostwriter/php:8.0-swoole
 
 # PHP CLI with Composer & code coverage
-docker pull ghcr.io/ghostwriter/php:8.0-blackfire
 docker pull ghcr.io/ghostwriter/php:8.0-pcov
 docker pull ghcr.io/ghostwriter/php:8.0-xdebug
 ```
@@ -213,7 +206,6 @@ FROM ghcr.io/ghostwriter/php:8.0-pgsql
 FROM ghcr.io/ghostwriter/php:8.0-swoole
 
 # PHP CLI with Composer & code coverage
-FROM ghcr.io/ghostwriter/php:8.0-blackfire
 FROM ghcr.io/ghostwriter/php:8.0-pcov
 FROM ghcr.io/ghostwriter/php:8.0-xdebug
 ```
