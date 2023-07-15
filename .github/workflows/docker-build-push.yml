@@ -272,8 +272,9 @@ jobs:
       fail-fast: false
     steps:
       - uses: actions/delete-package-versions@v4
-        with: 
-          package-name: 'ghostwriter/php'
+        with:
+          owner: ${{ github.repository_owner }}
+          package-name: ${{ env.DEFAULT_IMAGE }}
           package-type: 'container'
           min-versions-to-keep: 25
           delete-only-untagged-versions: 'true'
