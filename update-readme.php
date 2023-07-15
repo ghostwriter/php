@@ -77,7 +77,6 @@ function versionTemplate(string $version, array $versions, array $types, array $
             }
 
             $body .= PHP_EOL . codeTemplate($version);
-
             foreach ($extentions as $kind => $types) {
                 foreach ($types as $type) {
                     $body .= PHP_EOL . versionWithTemplateCode($version, $type);
@@ -164,21 +163,21 @@ EOT,
 
 function printREADME(array $versions, array $types, array $extentions): string
 {
-    $header = <<<EOT
+    $body = <<<EOT
 # PHP for Docker [![Docker CI/CD](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml)
 
 Development and Production-ready PHP Images for Docker
 
-> **Supported versions: 7.4 - 8.3-rc**
+> **Supported versions:
 EOT;
 
-    $body = PHP_EOL;
+    $body .= ' '.implode(', ', $versions).'**'.PHP_EOL;
 
     foreach ($versions as $version) {
         $body .= PHP_EOL . versionTemplate($version, $versions, $types, $extentions);
     }
 
-    return sprintf('%s%s' . PHP_EOL, $header, $body);
+    return sprintf('%s' . PHP_EOL, $body);
 }
 
 
