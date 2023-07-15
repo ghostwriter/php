@@ -2,7 +2,7 @@
 
 Development and Production-ready PHP Images for Docker
 
-> **Supported versions: 7.4 - 8.3-rc**
+> **Supported versions: 8.3-rc, 8.2, 8.1, 8.0, 7.4**
 
 ## PHP 8.3-rc
 
