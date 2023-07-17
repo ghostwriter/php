@@ -21,7 +21,7 @@ $types = [
 
 $extentions = [
     'database' => [
-        'mysql',
+        // 'mysql',
         'pgsql',
     ],
     'code-coverage' => [
@@ -180,9 +180,7 @@ EOT;
     return sprintf('%s' . PHP_EOL, $body);
 }
 
+file_put_contents('README.md', printREADME($versions, $types, $extentions));
 
-$template = printREADME($versions, $types, $extentions);
-
-file_put_contents('README.md', $template);
-
-die($template);
+print 'README.md updated' . PHP_EOL;
+exit(0);
