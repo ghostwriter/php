@@ -213,7 +213,6 @@ jobs:
           - "8.3-rc"
         type:
           # - blackfire
-          - mysql
           - pcov
           - pgsql
           - swoole
