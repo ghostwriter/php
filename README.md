@@ -55,10 +55,6 @@ docker pull ghcr.io/ghostwriter/php:8.3-rc-composer
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-mysql
-```
-
-``` sh
 docker pull ghcr.io/ghostwriter/php:8.3-rc-pgsql
 ```
 
@@ -79,10 +75,6 @@ docker pull ghcr.io/ghostwriter/php:8.3-rc-swoole
 ```
 
 #### ![Code](icons/code.svg) Use PHP 8.3-rc image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-mysql
-```
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:8.3-rc-pgsql
@@ -159,10 +151,6 @@ docker pull ghcr.io/ghostwriter/php:8.2-composer
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.2-mysql
-```
-
-``` sh
 docker pull ghcr.io/ghostwriter/php:8.2-pgsql
 ```
 
@@ -183,10 +171,6 @@ docker pull ghcr.io/ghostwriter/php:8.2-swoole
 ```
 
 #### ![Code](icons/code.svg) Use PHP 8.2 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.2-mysql
-```
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:8.2-pgsql
@@ -263,10 +247,6 @@ docker pull ghcr.io/ghostwriter/php:8.1-composer
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.1-mysql
-```
-
-``` sh
 docker pull ghcr.io/ghostwriter/php:8.1-pgsql
 ```
 
@@ -287,10 +267,6 @@ docker pull ghcr.io/ghostwriter/php:8.1-swoole
 ```
 
 #### ![Code](icons/code.svg) Use PHP 8.1 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.1-mysql
-```
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:8.1-pgsql
@@ -367,10 +343,6 @@ docker pull ghcr.io/ghostwriter/php:8.0-composer
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.0-mysql
-```
-
-``` sh
 docker pull ghcr.io/ghostwriter/php:8.0-pgsql
 ```
 
@@ -391,10 +363,6 @@ docker pull ghcr.io/ghostwriter/php:8.0-swoole
 ```
 
 #### ![Code](icons/code.svg) Use PHP 8.0 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.0-mysql
-```
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:8.0-pgsql
@@ -471,10 +439,6 @@ docker pull ghcr.io/ghostwriter/php:7.4-composer
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:7.4-mysql
-```
-
-``` sh
 docker pull ghcr.io/ghostwriter/php:7.4-pgsql
 ```
 
@@ -495,10 +459,6 @@ docker pull ghcr.io/ghostwriter/php:7.4-swoole
 ```
 
 #### ![Code](icons/code.svg) Use PHP 7.4 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.4-mysql
-```
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:7.4-pgsql
