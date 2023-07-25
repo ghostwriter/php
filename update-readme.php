@@ -168,6 +168,8 @@ function printREADME(array $versions, array $types, array $extentions): string
 
 Development and Production-ready PHP Images for Docker
 
+**Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
+
 > **Supported versions:
 EOT;
 
