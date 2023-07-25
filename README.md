@@ -4,6 +4,8 @@ Development and Production-ready PHP Images for Docker
 
 > **Supported versions: 8.3-rc, 8.2, 8.1, 8.0, 7.4**
 
+**Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
+
 ## PHP 8.3-rc
 
 #### ![Terminal](icons/terminal.svg) Pull PHP 8.3-rc image from the command line
