@@ -27,6 +27,8 @@ jobs:
       fail-fast: false
       matrix:
         version:
+          - "7.2"
+          - "7.3"
           - "7.4"
           - "8.0"
           - "8.1"
@@ -88,6 +90,8 @@ jobs:
       fail-fast: false
       matrix:
         version:
+          - "7.2"
+          - "7.3"
           - "7.4"
           - "8.0"
           - "8.1"
@@ -146,6 +150,8 @@ jobs:
       fail-fast: false
       matrix:
         version:
+          - "7.2"
+          - "7.3"
           - "7.4"
           - "8.0"
           - "8.1"
@@ -206,6 +212,8 @@ jobs:
       fail-fast: false
       matrix:
         version:
+          - "7.2"
+          - "7.3"
           - "7.4"
           - "8.0"
           - "8.1"
@@ -263,17 +271,3 @@ jobs:
           build-args: |
             PHP_VERSION=${{ matrix.version }}
             PHP_EXTENSION=${{ matrix.type }}
-
-  cleanup:
-    runs-on: ubuntu-latest
-    continue-on-error: true
-    strategy:
-      fail-fast: false
-    steps:
-      - uses: actions/delete-package-versions@v4
-        with:
-          owner: ${{ github.repository_owner }}
-          package-name: ${{ github.event.repository.name }}
-          package-type: 'container'
-          min-versions-to-keep: 25
-          delete-only-untagged-versions: 'true'
