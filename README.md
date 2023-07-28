@@ -4,7 +4,7 @@ Development and Production-ready PHP Images for Docker
 
 **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
 
-> **Supported versions: 8.3-rc, 8.2, 8.1, 8.0, 7.4, 7.3, 7.2**
+> **Supported versions: 8.3-rc, 8.2, 8.1, 8.0, 7.4, 7.3**
 
 ## PHP 8.3-rc
 
@@ -580,101 +580,5 @@ FROM ghcr.io/ghostwriter/php:7.3-swoole
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:7.3-swoole
-```
-
-## PHP 7.2
-
-#### ![Terminal](icons/terminal.svg) Pull PHP 7.2 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2
-```
-
-#### ![Code](icons/code.svg) Use PHP 7.2 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2
-```
-
-## PHP 7.2 : CLI
-
-#### ![Terminal](icons/terminal.svg) Pull PHP 7.2 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2-cli
-```
-
-#### ![Code](icons/code.svg) Use PHP 7.2 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2-cli
-```
-
-## PHP 7.2 : FPM
-
-#### ![Terminal](icons/terminal.svg) Pull PHP 7.2 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2-fpm
-```
-
-#### ![Code](icons/code.svg) Use PHP 7.2 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2-fpm
-```
-
-## PHP 7.2 : COMPOSER
-
-#### ![Terminal](icons/terminal.svg) Pull PHP 7.2 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2-composer
-```
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2-pgsql
-```
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2-blackfire
-```
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2-pcov
-```
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2-xdebug
-```
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.2-swoole
-```
-
-#### ![Code](icons/code.svg) Use PHP 7.2 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2-pgsql
-```
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2-blackfire
-```
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2-pcov
-```
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2-xdebug
-```
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2-swoole
-```
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.2-swoole
 ```
 
