@@ -27,7 +27,6 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - "7.2"
           - "7.3"
           - "7.4"
           - "8.0"
@@ -90,7 +89,6 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - "7.2"
           - "7.3"
           - "7.4"
           - "8.0"
@@ -150,7 +148,6 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - "7.2"
           - "7.3"
           - "7.4"
           - "8.0"
@@ -212,7 +209,6 @@ jobs:
       fail-fast: false
       matrix:
         version:
-          - "7.2"
           - "7.3"
           - "7.4"
           - "8.0"
