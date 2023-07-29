@@ -7,12 +7,12 @@ COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr
 RUN ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone \
     && install-php-extensions apcu bcmath bz2 curl dom gd gmp igbinary imap intl ldap mbstring memcached mongodb msgpack opcache pcntl pdo_mysql pdo_pgsql pdo_sqlite pdo readline redis simplexml soap sockets sqlite3 tidy uuid xml xmlwriter xsl zip;
 
-COPY install.sh ./
+# PHP 8.3 not supported yet
+RUN if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; then \
+    install-php-extensions imagick; \
+    fi;
 
-RUN ./install.sh
-
-RUN apk add --no-cache --virtual .build-deps curl git github-cli \
-    && apk del --purge .build-deps \
+RUN apk add --no-cache --virtual curl git github-cli \
     && rm -rf /var/cache/apk/* \
     && rm -rf /var/tmp/* \
     && rm -rf /tmp/*;
