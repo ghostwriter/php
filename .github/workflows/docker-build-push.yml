@@ -6,7 +6,7 @@ on:
     branches:
       - main
   schedule:
-    - cron: "0 * * * *" # Runs every hour, on the hour.
+    - cron: "* */4 * * *" # Runs every 4 hours.
 
 permissions:
   packages: write
