@@ -12,7 +12,7 @@ RUN if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; t
     install-php-extensions imagick; \
     fi;
 
-RUN apk add --no-cache --virtual curl git github-cli \
+RUN apk add --no-cache --virtual curl git github-cli openrc \
     && rm -rf /var/cache/apk/* \
     && rm -rf /var/tmp/* \
     && rm -rf /tmp/*;
