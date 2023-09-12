@@ -72,7 +72,7 @@ jobs:
             type=raw,value=latest,enable=${{ matrix.latest == matrix.version }}
 
       - name: Build and push PHP ${{ matrix.version }}
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-cli
           cache-to: type=gha,scope=${{ matrix.version }}-cli,mode=max
@@ -129,7 +129,7 @@ jobs:
           tags: type=raw,value=${{ matrix.version }}-fpm
 
       - name: Build and push PHP ${{ matrix.version }}
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-fpm
           cache-to: type=gha,scope=${{ matrix.version }}-fpm,mode=max
@@ -190,7 +190,7 @@ jobs:
           tags: type=raw,value=${{ matrix.version }}-${{ matrix.type }}
 
       - name: Build and push PHP ${{ matrix.version }}-${{ matrix.type }} image
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.type }}
           cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.type }},mode=max
@@ -255,7 +255,7 @@ jobs:
           tags: type=raw,value=${{ matrix.version }}-${{ matrix.type }}
 
       - name: Build and push PHP ${{ matrix.version }}-${{ matrix.type }}
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v5
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.type }}
           cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.type }},mode=max
