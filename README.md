@@ -4,102 +4,102 @@ Development and Production-ready PHP Images for Docker
 
 **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
 
-> **Supported versions: 8.3-rc, 8.2, 8.1, 8.0, 7.4, 7.3**
+> **Supported versions: 8.3, 8.2, 8.1, 8.0, 7.4, 7.3**
 
-## PHP 8.3-rc
+## PHP 8.3
 
-#### ![Terminal](icons/terminal.svg) Pull PHP 8.3-rc image from the command line
+#### ![Terminal](icons/terminal.svg) Pull PHP 8.3 image from the command line
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc
+docker pull ghcr.io/ghostwriter/php:8.3
 ```
 
-#### ![Code](icons/code.svg) Use PHP 8.3-rc image in Dockerfile
+#### ![Code](icons/code.svg) Use PHP 8.3 image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc
+FROM ghcr.io/ghostwriter/php:8.3
 ```
 
-## PHP 8.3-rc : CLI
+## PHP 8.3 : CLI
 
-#### ![Terminal](icons/terminal.svg) Pull PHP 8.3-rc image from the command line
+#### ![Terminal](icons/terminal.svg) Pull PHP 8.3 image from the command line
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-cli
+docker pull ghcr.io/ghostwriter/php:8.3-cli
 ```
 
-#### ![Code](icons/code.svg) Use PHP 8.3-rc image in Dockerfile
+#### ![Code](icons/code.svg) Use PHP 8.3 image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-cli
+FROM ghcr.io/ghostwriter/php:8.3-cli
 ```
 
-## PHP 8.3-rc : FPM
+## PHP 8.3 : FPM
 
-#### ![Terminal](icons/terminal.svg) Pull PHP 8.3-rc image from the command line
+#### ![Terminal](icons/terminal.svg) Pull PHP 8.3 image from the command line
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-fpm
+docker pull ghcr.io/ghostwriter/php:8.3-fpm
 ```
 
-#### ![Code](icons/code.svg) Use PHP 8.3-rc image in Dockerfile
+#### ![Code](icons/code.svg) Use PHP 8.3 image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-fpm
+FROM ghcr.io/ghostwriter/php:8.3-fpm
 ```
 
-## PHP 8.3-rc : COMPOSER
+## PHP 8.3 : COMPOSER
 
-#### ![Terminal](icons/terminal.svg) Pull PHP 8.3-rc image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-composer
-```
+#### ![Terminal](icons/terminal.svg) Pull PHP 8.3 image from the command line
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-pgsql
+docker pull ghcr.io/ghostwriter/php:8.3-composer
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-blackfire
+docker pull ghcr.io/ghostwriter/php:8.3-pgsql
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-pcov
+docker pull ghcr.io/ghostwriter/php:8.3-blackfire
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-xdebug
+docker pull ghcr.io/ghostwriter/php:8.3-pcov
 ```
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-rc-swoole
+docker pull ghcr.io/ghostwriter/php:8.3-xdebug
 ```
 
-#### ![Code](icons/code.svg) Use PHP 8.3-rc image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-pgsql
+``` sh
+docker pull ghcr.io/ghostwriter/php:8.3-swoole
 ```
 
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-blackfire
-```
+#### ![Code](icons/code.svg) Use PHP 8.3 image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-pcov
+FROM ghcr.io/ghostwriter/php:8.3-pgsql
 ```
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-xdebug
+FROM ghcr.io/ghostwriter/php:8.3-blackfire
 ```
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-swoole
+FROM ghcr.io/ghostwriter/php:8.3-pcov
 ```
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-rc-swoole
+FROM ghcr.io/ghostwriter/php:8.3-xdebug
+```
+
+``` Dockerfile
+FROM ghcr.io/ghostwriter/php:8.3-swoole
+```
+
+``` Dockerfile
+FROM ghcr.io/ghostwriter/php:8.3-swoole
 ```
 
 ## PHP 8.2
