@@ -6,13 +6,13 @@ $versions = [
     '8.0',
     '8.1',
     '8.2',
-    '8.3-rc',
+    '8.3',
 ];
 
 arsort($versions);
 
-$dev = '8.3-rc';
-$latest = '8.2';
+$dev = '8.3';
+$latest = '8.3';
 
 $types = [
     'cli',
