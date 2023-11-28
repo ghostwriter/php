@@ -219,7 +219,7 @@ jobs:
           # - blackfire
           - pcov
           - pgsql
-          - swoole
+          # - swoole
           - xdebug
     steps:
       - name: Set up QEMU
