@@ -31,7 +31,7 @@ $extentions = [
         'xdebug',
     ],
     'extention' => [
-        'swoole',
+        // 'swoole',
     ],
 ];
 
