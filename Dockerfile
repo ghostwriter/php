@@ -14,7 +14,7 @@ RUN set -ex && \
     rm -rf /var/tmp/* && \
     rm -rf /tmp/* && \
     apk del --no-cache ${PHPIZE_DEPS} ${BUILD_DEPENDS} && \
-    git --version && php --version && composer --version && gh --version && gpg --version
+    git --version && php --version && gh --version && gpg --version
 
 # PHP 8.3 not supported yet
 RUN if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; then \

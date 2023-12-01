@@ -7,3 +7,5 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 ENV PATH="$(composer config --global home)/vendor/bin:$PATH"
+
+RUN composer --version
