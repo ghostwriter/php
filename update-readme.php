@@ -20,7 +20,7 @@ $types = [
     'composer',
 ];
 
-$extentions = [
+$extensions = [
     'database' => [
         // 'mysql',
         'pgsql',
@@ -38,7 +38,7 @@ $extentions = [
 function teminalTemplate(string $phpVersion): string
 {
     return sprintf(
-        '#### ![Terminal](icons/terminal.svg) Pull PHP %s image from the command line',
+        '### ![Terminal](icons/terminal.svg) Pull & Run PHP %s image from the command line',
         $phpVersion
     ) . PHP_EOL;
 }
@@ -46,12 +46,12 @@ function teminalTemplate(string $phpVersion): string
 function codeTemplate(string $phpVersion): string
 {
     return sprintf(
-        '#### ![Code](icons/code.svg) Use PHP %s image in Dockerfile',
+        '### ![Code](icons/code.svg) Use PHP %s image in Dockerfile',
         $phpVersion
     ) . PHP_EOL;
 }
 
-function versionTemplate(string $version, array $versions, array $types, array $extentions): string
+function versionTemplate(string $version, array $versions, array $types, array $extensions): string
 {
     $body = sprintf(
         '## PHP %s',
@@ -71,24 +71,22 @@ function versionTemplate(string $version, array $versions, array $types, array $
         $body .= PHP_EOL . versionWithTemplateTerminal($version, $type);
 
         if ($type === 'composer') {
-            foreach ($extentions as $kind => $types) {
+            foreach ($extensions as $types) {
                 foreach ($types as $type) {
+                    $body .= PHP_EOL . versionWithTemplate($version, $type);
+                    $body .= PHP_EOL . teminalTemplate($version);
                     $body .= PHP_EOL . versionWithTemplateTerminal($version, $type);
-                }
-            }
-
-            $body .= PHP_EOL . codeTemplate($version);
-            foreach ($extentions as $kind => $types) {
-                foreach ($types as $type) {
+                    $body .= PHP_EOL . codeTemplate($version);
                     $body .= PHP_EOL . versionWithTemplateCode($version, $type);
                 }
             }
-        } else {
-            $body .= PHP_EOL . codeTemplate($version);
+
+            continue;
         }
-
-
+        //  else {
+        $body .= PHP_EOL . codeTemplate($version);
         $body .= PHP_EOL . versionWithTemplateCode($version, $type);
+        // }
     }
 
     return $body;
@@ -112,11 +110,15 @@ function versionWithTemplateTerminal(string $phpVersion, string $type): string
 ``` sh
 docker pull ghcr.io/ghostwriter/php:%s-%s
 ```
+
+``` sh
+docker run -it --rm -v \$PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s-%s vendor/bin/phpunit
+```
 EOT,
         $phpVersion,
         $type,
         $phpVersion,
-        $type
+        $type,
     ) . PHP_EOL;
 }
 
@@ -143,7 +145,13 @@ function versionTemplateTerminal(string $phpVersion): string
 ``` sh
 docker pull ghcr.io/ghostwriter/php:%s
 ```
+
+``` sh
+docker run -it --rm -v \$PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s vendor/bin/phpunit
+```
 EOT,
+        $phpVersion,
+        $phpVersion,
         $phpVersion,
         $phpVersion,
     ) . PHP_EOL;
@@ -162,7 +170,7 @@ EOT,
     ) . PHP_EOL;
 }
 
-function printREADME(array $versions, array $types, array $extentions): string
+function printREADME(array $versions, array $types, array $extensions): string
 {
     $body = <<<EOT
 # PHP for Docker [![Docker CI/CD](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml)
@@ -177,13 +185,13 @@ EOT;
     $body .= ' '.implode(', ', $versions).'**'.PHP_EOL;
 
     foreach ($versions as $version) {
-        $body .= PHP_EOL . versionTemplate($version, $versions, $types, $extentions);
+        $body .= PHP_EOL . versionTemplate($version, $versions, $types, $extensions);
     }
 
     return sprintf('%s' . PHP_EOL, $body);
 }
 
-file_put_contents('README.md', printREADME($versions, $types, $extentions));
+file_put_contents('README.md', printREADME($versions, $types, $extensions));
 
 print 'README.md updated' . PHP_EOL;
 exit(0);
