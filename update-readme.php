@@ -22,7 +22,7 @@ $types = [
 
 $extensions = [
     'database' => [
-        // 'mysql',
+        'mysql',
         'pgsql',
     ],
     'code-coverage' => [
@@ -30,12 +30,12 @@ $extensions = [
         'pcov',
         'xdebug',
     ],
-    'extention' => [
+    'extension' => [
         // 'swoole',
     ],
 ];
 
-function teminalTemplate(string $phpVersion): string
+function terminalTemplate(string $phpVersion): string
 {
     return sprintf(
         '### ![Terminal](icons/terminal.svg) Pull & Run PHP %s image from the command line',
@@ -59,7 +59,7 @@ function versionTemplate(string $version, array $versions, array $types, array $
     ) . PHP_EOL;
 
 
-    $body .= PHP_EOL . teminalTemplate($version);
+    $body .= PHP_EOL . terminalTemplate($version);
     $body .= PHP_EOL . versionTemplateTerminal($version);
     $body .= PHP_EOL . codeTemplate($version);
     $body .= PHP_EOL . versionTemplateCode($version);
@@ -67,14 +67,14 @@ function versionTemplate(string $version, array $versions, array $types, array $
     foreach ($types as $type) {
         $body .= PHP_EOL . versionWithTemplate($version, $type);
 
-        $body .= PHP_EOL . teminalTemplate($version);
+        $body .= PHP_EOL . terminalTemplate($version);
         $body .= PHP_EOL . versionWithTemplateTerminal($version, $type);
 
         if ($type === 'composer') {
             foreach ($extensions as $types) {
                 foreach ($types as $type) {
                     $body .= PHP_EOL . versionWithTemplate($version, $type);
-                    $body .= PHP_EOL . teminalTemplate($version);
+                    $body .= PHP_EOL . terminalTemplate($version);
                     $body .= PHP_EOL . versionWithTemplateTerminal($version, $type);
                     $body .= PHP_EOL . codeTemplate($version);
                     $body .= PHP_EOL . versionWithTemplateCode($version, $type);
@@ -83,10 +83,9 @@ function versionTemplate(string $version, array $versions, array $types, array $
 
             continue;
         }
-        //  else {
+
         $body .= PHP_EOL . codeTemplate($version);
         $body .= PHP_EOL . versionWithTemplateCode($version, $type);
-        // }
     }
 
     return $body;
@@ -105,31 +104,39 @@ function versionWithTemplate(string $phpVersion, string $type): string
 
 function versionWithTemplateTerminal(string $phpVersion, string $type): string
 {
-    return sprintf(
-        <<<EOT
-``` sh
-docker pull ghcr.io/ghostwriter/php:%s-%s
-```
+    return match ($type) {
+        default =>  sprintf(<<<EOT
+            ``` sh
+            docker pull ghcr.io/ghostwriter/php:%s-%s
+            ```
 
-``` sh
-docker run -it --rm -v \$PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s-%s vendor/bin/phpunit
-```
-EOT,
-        $phpVersion,
-        $type,
-        $phpVersion,
-        $type,
-    ) . PHP_EOL;
+            ``` sh
+            docker run -it --rm -v \$PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s-%s vendor/bin/phpunit
+            ```
+            EOT,
+            $phpVersion,
+            $type,
+            $phpVersion,
+            $type,
+        ) . PHP_EOL,
+        'fpm' => sprintf(<<<EOT
+            ``` sh
+            docker pull ghcr.io/ghostwriter/php:%s-%s
+            ```
+            EOT,
+            $phpVersion,
+            $type,
+        ) . PHP_EOL
+    };
 }
 
 function versionWithTemplateCode(string $phpVersion, string $type): string
 {
-    return sprintf(
-        <<<EOT
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:%s-%s
-```
-EOT,
+    return sprintf(<<<EOT
+        ``` Dockerfile
+        FROM ghcr.io/ghostwriter/php:%s-%s
+        ```
+        EOT,
         $phpVersion,
         $type,
         $phpVersion,
@@ -140,16 +147,15 @@ EOT,
 
 function versionTemplateTerminal(string $phpVersion): string
 {
-    return sprintf(
-        <<<EOT
-``` sh
-docker pull ghcr.io/ghostwriter/php:%s
-```
+    return sprintf(<<<EOT
+        ``` sh
+        docker pull ghcr.io/ghostwriter/php:%s
+        ```
 
-``` sh
-docker run -it --rm -v \$PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s vendor/bin/phpunit
-```
-EOT,
+        ``` sh
+        docker run -it --rm -v \$PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s vendor/bin/phpunit
+        ```
+        EOT,
         $phpVersion,
         $phpVersion,
         $phpVersion,
@@ -182,7 +188,7 @@ Development and Production-ready PHP Images for Docker
 > **Supported versions:
 EOT;
 
-    $body .= ' '.implode(', ', $versions).'**'.PHP_EOL;
+    $body .= ' ' . implode(', ', $versions) . '**' . PHP_EOL;
 
     foreach ($versions as $version) {
         $body .= PHP_EOL . versionTemplate($version, $versions, $types, $extensions);
