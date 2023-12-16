@@ -216,7 +216,7 @@ jobs:
           - "8.2"
           - "8.3"
         type:
-          # - blackfire
+          - blackfire
           - pcov
           - pgsql
           # - swoole
