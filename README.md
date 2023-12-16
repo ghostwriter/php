@@ -50,10 +50,6 @@ FROM ghcr.io/ghostwriter/php:8.3-cli
 docker pull ghcr.io/ghostwriter/php:8.3-fpm
 ```
 
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-fpm vendor/bin/phpunit
-```
-
 ### ![Code](icons/code.svg) Use PHP 8.3 image in Dockerfile
 
 ``` Dockerfile
@@ -204,10 +200,6 @@ FROM ghcr.io/ghostwriter/php:8.2-cli
 
 ``` sh
 docker pull ghcr.io/ghostwriter/php:8.2-fpm
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-fpm vendor/bin/phpunit
 ```
 
 ### ![Code](icons/code.svg) Use PHP 8.2 image in Dockerfile
@@ -362,10 +354,6 @@ FROM ghcr.io/ghostwriter/php:8.1-cli
 docker pull ghcr.io/ghostwriter/php:8.1-fpm
 ```
 
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-fpm vendor/bin/phpunit
-```
-
 ### ![Code](icons/code.svg) Use PHP 8.1 image in Dockerfile
 
 ``` Dockerfile
@@ -516,10 +504,6 @@ FROM ghcr.io/ghostwriter/php:8.0-cli
 
 ``` sh
 docker pull ghcr.io/ghostwriter/php:8.0-fpm
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-fpm vendor/bin/phpunit
 ```
 
 ### ![Code](icons/code.svg) Use PHP 8.0 image in Dockerfile
@@ -674,10 +658,6 @@ FROM ghcr.io/ghostwriter/php:7.4-cli
 docker pull ghcr.io/ghostwriter/php:7.4-fpm
 ```
 
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-fpm vendor/bin/phpunit
-```
-
 ### ![Code](icons/code.svg) Use PHP 7.4 image in Dockerfile
 
 ``` Dockerfile
@@ -828,10 +808,6 @@ FROM ghcr.io/ghostwriter/php:7.3-cli
 
 ``` sh
 docker pull ghcr.io/ghostwriter/php:7.3-fpm
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-fpm vendor/bin/phpunit
 ```
 
 ### ![Code](icons/code.svg) Use PHP 7.3 image in Dockerfile
