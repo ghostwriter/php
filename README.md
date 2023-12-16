@@ -68,24 +68,6 @@ docker pull ghcr.io/ghostwriter/php:8.3-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-composer vendor/bin/phpunit
 ```
 
-## PHP 8.3 : MYSQL
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.3 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-mysql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-mysql vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.3 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-mysql
-```
-
 ## PHP 8.3 : PGSQL
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.3 image from the command line
@@ -104,24 +86,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-pgs
 FROM ghcr.io/ghostwriter/php:8.3-pgsql
 ```
 
-## PHP 8.3 : BLACKFIRE
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.3 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-blackfire
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-blackfire vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.3 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-blackfire
-```
-
 ## PHP 8.3 : PCOV
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.3 image from the command line
@@ -138,24 +102,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-pco
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:8.3-pcov
-```
-
-## PHP 8.3 : XDEBUG
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.3 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-xdebug
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-xdebug vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.3 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-xdebug
 ```
 
 ## PHP 8.2
@@ -220,24 +166,6 @@ docker pull ghcr.io/ghostwriter/php:8.2-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-composer vendor/bin/phpunit
 ```
 
-## PHP 8.2 : MYSQL
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.2 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.2-mysql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-mysql vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.2 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.2-mysql
-```
-
 ## PHP 8.2 : PGSQL
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.2 image from the command line
@@ -256,24 +184,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-pgs
 FROM ghcr.io/ghostwriter/php:8.2-pgsql
 ```
 
-## PHP 8.2 : BLACKFIRE
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.2 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.2-blackfire
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-blackfire vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.2 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.2-blackfire
-```
-
 ## PHP 8.2 : PCOV
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.2 image from the command line
@@ -290,24 +200,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-pco
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:8.2-pcov
-```
-
-## PHP 8.2 : XDEBUG
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.2 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.2-xdebug
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-xdebug vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.2 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.2-xdebug
 ```
 
 ## PHP 8.1
@@ -372,24 +264,6 @@ docker pull ghcr.io/ghostwriter/php:8.1-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-composer vendor/bin/phpunit
 ```
 
-## PHP 8.1 : MYSQL
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.1 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.1-mysql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-mysql vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.1 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.1-mysql
-```
-
 ## PHP 8.1 : PGSQL
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.1 image from the command line
@@ -408,24 +282,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-pgs
 FROM ghcr.io/ghostwriter/php:8.1-pgsql
 ```
 
-## PHP 8.1 : BLACKFIRE
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.1 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.1-blackfire
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-blackfire vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.1 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.1-blackfire
-```
-
 ## PHP 8.1 : PCOV
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.1 image from the command line
@@ -442,24 +298,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-pco
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:8.1-pcov
-```
-
-## PHP 8.1 : XDEBUG
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.1 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.1-xdebug
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-xdebug vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.1 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.1-xdebug
 ```
 
 ## PHP 8.0
@@ -524,24 +362,6 @@ docker pull ghcr.io/ghostwriter/php:8.0-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-composer vendor/bin/phpunit
 ```
 
-## PHP 8.0 : MYSQL
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.0 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.0-mysql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-mysql vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.0 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.0-mysql
-```
-
 ## PHP 8.0 : PGSQL
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.0 image from the command line
@@ -560,24 +380,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-pgs
 FROM ghcr.io/ghostwriter/php:8.0-pgsql
 ```
 
-## PHP 8.0 : BLACKFIRE
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.0 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.0-blackfire
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-blackfire vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.0 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.0-blackfire
-```
-
 ## PHP 8.0 : PCOV
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.0 image from the command line
@@ -594,24 +396,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-pco
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:8.0-pcov
-```
-
-## PHP 8.0 : XDEBUG
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 8.0 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.0-xdebug
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-xdebug vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 8.0 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.0-xdebug
 ```
 
 ## PHP 7.4
@@ -676,24 +460,6 @@ docker pull ghcr.io/ghostwriter/php:7.4-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-composer vendor/bin/phpunit
 ```
 
-## PHP 7.4 : MYSQL
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.4 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.4-mysql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-mysql vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 7.4 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.4-mysql
-```
-
 ## PHP 7.4 : PGSQL
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.4 image from the command line
@@ -712,24 +478,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-pgs
 FROM ghcr.io/ghostwriter/php:7.4-pgsql
 ```
 
-## PHP 7.4 : BLACKFIRE
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.4 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.4-blackfire
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-blackfire vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 7.4 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.4-blackfire
-```
-
 ## PHP 7.4 : PCOV
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.4 image from the command line
@@ -746,24 +494,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-pco
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:7.4-pcov
-```
-
-## PHP 7.4 : XDEBUG
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.4 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.4-xdebug
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-xdebug vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 7.4 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.4-xdebug
 ```
 
 ## PHP 7.3
@@ -828,24 +558,6 @@ docker pull ghcr.io/ghostwriter/php:7.3-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-composer vendor/bin/phpunit
 ```
 
-## PHP 7.3 : MYSQL
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.3 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.3-mysql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-mysql vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 7.3 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.3-mysql
-```
-
 ## PHP 7.3 : PGSQL
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.3 image from the command line
@@ -864,24 +576,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-pgs
 FROM ghcr.io/ghostwriter/php:7.3-pgsql
 ```
 
-## PHP 7.3 : BLACKFIRE
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.3 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.3-blackfire
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-blackfire vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 7.3 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.3-blackfire
-```
-
 ## PHP 7.3 : PCOV
 
 ### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.3 image from the command line
@@ -898,23 +592,5 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-pco
 
 ``` Dockerfile
 FROM ghcr.io/ghostwriter/php:7.3-pcov
-```
-
-## PHP 7.3 : XDEBUG
-
-### ![Terminal](icons/terminal.svg) Pull & Run PHP 7.3 image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.3-xdebug
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-xdebug vendor/bin/phpunit
-```
-
-### ![Code](icons/code.svg) Use PHP 7.3 image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.3-xdebug
 ```
 
