@@ -216,12 +216,8 @@ jobs:
           - "8.2"
           - "8.3"
         type:
-          - blackfire
-          - mysql
           - pcov
           - pgsql
-          # - swoole
-          - xdebug
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
