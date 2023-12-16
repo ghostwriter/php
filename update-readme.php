@@ -22,13 +22,10 @@ $types = [
 
 $extensions = [
     'database' => [
-        'mysql',
         'pgsql',
     ],
     'code-coverage' => [
-        'blackfire',
         'pcov',
-        'xdebug',
     ],
     'extension' => [
         // 'swoole',
