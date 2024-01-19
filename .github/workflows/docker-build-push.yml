@@ -33,6 +33,7 @@ jobs:
           - "8.1"
           - "8.2"
           - "8.3"
+          - "8.4"
         latest:
           - "8.3"
     steps:
@@ -95,6 +96,7 @@ jobs:
           - "8.1"
           - "8.2"
           - "8.3"
+          - "8.4"
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -154,6 +156,7 @@ jobs:
           - "8.1"
           - "8.2"
           - "8.3"
+          - "8.4"
         type:
           - composer
     steps:
@@ -215,6 +218,7 @@ jobs:
           - "8.1"
           - "8.2"
           - "8.3"
+          - "8.4"
         type:
           - pcov
           - pgsql
