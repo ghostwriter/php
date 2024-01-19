@@ -7,11 +7,12 @@ $versions = [
     '8.1',
     '8.2',
     '8.3',
+    '8.4',
 ];
 
 arsort($versions);
 
-$dev = '8.3';
+$dev = '8.4';
 $latest = '8.3';
 
 $types = [
@@ -35,16 +36,32 @@ $extensions = [
 function terminalTemplate(string $phpVersion): string
 {
     return sprintf(
-        '### ![Terminal](icons/terminal.svg) Pull & Run PHP %s image from the command line',
+        '### ![Terminal](icons/terminal.svg) Pull & Run `PHP %s` image from the command line',
         $phpVersion
+    ) . PHP_EOL;
+}
+function terminalTemplateWithType(string $phpVersion, string $type): string
+{
+    return sprintf(
+        '### ![Terminal](icons/terminal.svg) Pull & Run `PHP %s` %s image from the command line',
+        $phpVersion,
+        $type
     ) . PHP_EOL;
 }
 
 function codeTemplate(string $phpVersion): string
 {
     return sprintf(
-        '### ![Code](icons/code.svg) Use PHP %s image in Dockerfile',
+        '### ![Code](icons/code.svg) Use `PHP %s` image in Dockerfile',
         $phpVersion
+    ) . PHP_EOL;
+}
+function codeTemplateWithType(string $phpVersion, string $type): string
+{
+    return sprintf(
+        '### ![Code](icons/code.svg) Use `PHP %s` %s image in Dockerfile',
+        $phpVersion,
+        $type
     ) . PHP_EOL;
 }
 
@@ -64,16 +81,16 @@ function versionTemplate(string $version, array $versions, array $types, array $
     foreach ($types as $type) {
         $body .= PHP_EOL . versionWithTemplate($version, $type);
 
-        $body .= PHP_EOL . terminalTemplate($version);
+        $body .= PHP_EOL . terminalTemplateWithType($version, $type);
         $body .= PHP_EOL . versionWithTemplateTerminal($version, $type);
 
         if ($type === 'composer') {
             foreach ($extensions as $types) {
                 foreach ($types as $type) {
                     $body .= PHP_EOL . versionWithTemplate($version, $type);
-                    $body .= PHP_EOL . terminalTemplate($version);
+                    $body .= PHP_EOL . terminalTemplateWithType($version, $type);
                     $body .= PHP_EOL . versionWithTemplateTerminal($version, $type);
-                    $body .= PHP_EOL . codeTemplate($version);
+                    $body .= PHP_EOL . codeTemplateWithType($version, $type);
                     $body .= PHP_EOL . versionWithTemplateCode($version, $type);
                 }
             }
@@ -81,7 +98,7 @@ function versionTemplate(string $version, array $versions, array $types, array $
             continue;
         }
 
-        $body .= PHP_EOL . codeTemplate($version);
+        $body .= PHP_EOL . codeTemplateWithType($version, $type);
         $body .= PHP_EOL . versionWithTemplateCode($version, $type);
     }
 
@@ -191,7 +208,7 @@ EOT;
         $body .= PHP_EOL . versionTemplate($version, $versions, $types, $extensions);
     }
 
-    return sprintf('%s' . PHP_EOL, $body);
+    return sprintf('%s', $body);
 }
 
 file_put_contents('README.md', printREADME($versions, $types, $extensions));
