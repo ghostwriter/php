@@ -1,12 +1,15 @@
 #!/bin/sh
 
+# This script will delete all caches in GitHub Actions
+
 echo "Fetching list of cache keys"
-cacheKeys=$(gh actions-cache list --limit 100 --order asc --sort last-used | cut -f 1)
+cacheKeys=$(gh cache list --limit 10000 --order asc --sort size_in_bytes | cut -f 1)
 
 echo "Deleting caches"
 for cacheKey in $cacheKeys
 do
-    gh actions-cache delete $cacheKey --confirm
+    echo "Deleting cache: $cacheKey"
+    gh cache delete $cacheKey
 done
 
 echo "Done"
