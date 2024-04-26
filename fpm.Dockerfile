@@ -9,7 +9,7 @@ RUN set -ex && \
     apk update && \
     apk upgrade && \
     apk add --update --no-cache ca-certificates curl git github-cli openrc && \
-    install-php-extensions apcu bcmath bz2 curl dom gd gnupg gmp igbinary imap intl ldap mbstring memcached mongodb msgpack opcache pcntl pdo_mysql pdo_pgsql pdo_sqlite pdo readline redis simplexml soap sockets sqlite3 tidy uuid xml xmlwriter xsl zip && \
+    install-php-extensions apcu bcmath bz2 curl dom ftp gd gnupg gmp igbinary imap intl ldap mbstring memcached mongodb msgpack opcache pcntl pdo_mysql pdo_pgsql pdo_sqlite pdo readline redis simplexml soap sockets sqlite3 tidy uuid xml xmlwriter xsl zip && \
     rm -rf /var/cache/apk/* && \
     rm -rf /var/tmp/* && \
     rm -rf /tmp/* && \
