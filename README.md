@@ -4,104 +4,104 @@ Development and Production-ready PHP Images for Docker
 
 **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
 
-> **Supported versions: 8.4, 8.3, 8.2, 8.1, 8.0, 7.4, 7.3**
+> **Supported versions: 8.4-rc, 8.3, 8.2, 8.1, 8.0, 7.4, 7.3**
 
-## PHP 8.4
+## PHP 8.4-rc
 
-### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4` image from the command line
+### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4-rc` image from the command line
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.4
+docker pull ghcr.io/ghostwriter/php:8.4-rc
 ```
 
 ``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4 vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-rc vendor/bin/phpunit
 ```
 
-### ![Code](icons/code.svg) Use `PHP 8.4` image in Dockerfile
+### ![Code](icons/code.svg) Use `PHP 8.4-rc` image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.4
+FROM ghcr.io/ghostwriter/php:8.4-rc
 ```
 
-## PHP 8.4 : CLI
+## PHP 8.4-rc : CLI
 
-### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4` cli image from the command line
+### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4-rc` cli image from the command line
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.4-cli
+docker pull ghcr.io/ghostwriter/php:8.4-rc-cli
 ```
 
 ``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-cli vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-rc-cli vendor/bin/phpunit
 ```
 
-### ![Code](icons/code.svg) Use `PHP 8.4` cli image in Dockerfile
+### ![Code](icons/code.svg) Use `PHP 8.4-rc` cli image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.4-cli
+FROM ghcr.io/ghostwriter/php:8.4-rc-cli
 ```
 
-## PHP 8.4 : FPM
+## PHP 8.4-rc : FPM
 
-### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4` fpm image from the command line
+### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4-rc` fpm image from the command line
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.4-fpm
+docker pull ghcr.io/ghostwriter/php:8.4-rc-fpm
 ```
 
-### ![Code](icons/code.svg) Use `PHP 8.4` fpm image in Dockerfile
+### ![Code](icons/code.svg) Use `PHP 8.4-rc` fpm image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.4-fpm
+FROM ghcr.io/ghostwriter/php:8.4-rc-fpm
 ```
 
-## PHP 8.4 : COMPOSER
+## PHP 8.4-rc : COMPOSER
 
-### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4` composer image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.4-composer
-```
+### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4-rc` composer image from the command line
 
 ``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-composer vendor/bin/phpunit
-```
-
-## PHP 8.4 : PGSQL
-
-### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4` pgsql image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.4-pgsql
+docker pull ghcr.io/ghostwriter/php:8.4-rc-composer
 ```
 
 ``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-pgsql vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-rc-composer vendor/bin/phpunit
 ```
 
-### ![Code](icons/code.svg) Use `PHP 8.4` pgsql image in Dockerfile
+## PHP 8.4-rc : PGSQL
+
+### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4-rc` pgsql image from the command line
+
+``` sh
+docker pull ghcr.io/ghostwriter/php:8.4-rc-pgsql
+```
+
+``` sh
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-rc-pgsql vendor/bin/phpunit
+```
+
+### ![Code](icons/code.svg) Use `PHP 8.4-rc` pgsql image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.4-pgsql
+FROM ghcr.io/ghostwriter/php:8.4-rc-pgsql
 ```
 
-## PHP 8.4 : PCOV
+## PHP 8.4-rc : PCOV
 
-### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4` pcov image from the command line
+### ![Terminal](icons/terminal.svg) Pull & Run `PHP 8.4-rc` pcov image from the command line
 
 ``` sh
-docker pull ghcr.io/ghostwriter/php:8.4-pcov
+docker pull ghcr.io/ghostwriter/php:8.4-rc-pcov
 ```
 
 ``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-pcov vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-rc-pcov vendor/bin/phpunit
 ```
 
-### ![Code](icons/code.svg) Use `PHP 8.4` pcov image in Dockerfile
+### ![Code](icons/code.svg) Use `PHP 8.4-rc` pcov image in Dockerfile
 
 ``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.4-pcov
+FROM ghcr.io/ghostwriter/php:8.4-rc-pcov
 ```
 
 ## PHP 8.3
