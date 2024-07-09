@@ -7,12 +7,12 @@ $versions = [
     '8.1',
     '8.2',
     '8.3',
-    '8.4',
+    '8.4-rc',
 ];
 
 arsort($versions);
 
-$dev = '8.4';
+$dev = '8.4-rc';
 $latest = '8.3';
 
 $types = [
