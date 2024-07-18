@@ -10,11 +10,11 @@ RUN set -ex && \
     apk upgrade && \
     apk add --update --no-cache ca-certificates curl git github-cli jq make openrc patch; \
     if [ $(php -r "echo version_compare(PHP_VERSION, '8.3.999', '>');") = 1 ]; then \
-    sed -i 's/--with-openssl-dir=\/usr/--with-ftp-ssl/' /usr/local/bin/install-php-extensions; \
+      sed -i 's/--with-openssl-dir=\/usr/--with-ftp-ssl/' /usr/local/bin/install-php-extensions; \
     fi; \
-    install-php-extensions apcu bcmath bz2 curl dom ftp gd gmp gnupg igbinary imap intl ldap libxml mbstring memcached mongodb msgpack odbc opcache pcntl pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pdo_sqlsrv readline simplexml soap sockets sqlite3 sqlsrv tidy uuid valkey xml xmlwriter xsl zip && \
+    install-php-extensions apcu bcmath bz2 curl dom ftp gd gmp gnupg igbinary imap intl ldap libxml mbstring memcached mongodb msgpack odbc opcache pcntl pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pdo_sqlsrv readline simplexml soap sockets sqlite3 sqlsrv tidy uuid valkey valkey-cli xml xmlwriter xsl zip && \
     if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; then \
-        install-php-extensions imagick; \
+      install-php-extensions imagick; \
     fi; \
     apk del --purge --no-cache ${PHPIZE_DEPS} && \
     rm -vrf /tmp/* && \
