@@ -1,4 +1,4 @@
-ARG PHP_VERSION=8.3
+ARG PHP_VERSION=8.4
 
 FROM ghcr.io/ghostwriter/php:${PHP_VERSION}-cli
 
