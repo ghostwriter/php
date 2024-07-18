@@ -8,7 +8,7 @@ RUN set -ex && \
     ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone && \
     apk update && \
     apk upgrade && \
-    apk add --update --no-cache ca-certificates curl git github-cli make openrc patch; \
+    apk add --update --no-cache ca-certificates curl git github-cli jq make openrc patch; \
     if [ $(php -r "echo version_compare(PHP_VERSION, '8.3.999', '>');") = 1 ]; then \
     sed -i 's/--with-openssl-dir=\/usr/--with-ftp-ssl/' /usr/local/bin/install-php-extensions; \
     fi; \
