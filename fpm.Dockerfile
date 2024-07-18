@@ -12,7 +12,7 @@ RUN set -ex && \
     if [ $(php -r "echo version_compare(PHP_VERSION, '8.3.999', '>');") = 1 ]; then \
     sed -i 's/--with-openssl-dir=\/usr/--with-ftp-ssl/' /usr/local/bin/install-php-extensions; \
     fi; \
-    install-php-extensions apcu bcmath bz2 curl dom ftp gd gmp gnupg igbinary imap intl ldap libxml mbstring memcached mongodb msgpack odbc opcache pcntl pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pdo_sqlsrv readline redis simplexml soap sockets sqlite3 sqlsrv tidy uuid xml xmlwriter xsl zip && \
+    install-php-extensions apcu bcmath bz2 curl dom ftp gd gmp gnupg igbinary imap intl ldap libxml mbstring memcached mongodb msgpack odbc opcache pcntl pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pdo_sqlsrv readline simplexml soap sockets sqlite3 sqlsrv tidy uuid valkey xml xmlwriter xsl zip && \
     if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; then \
         install-php-extensions imagick; \
     fi; \
@@ -28,11 +28,8 @@ RUN set -ex && \
     echo 'post_max_size=128M'; \
     } > /usr/local/etc/php/conf.d/memory-limit.ini && \
     sed -i 's/www-data/root/g' /usr/local/etc/php-fpm.d/www.conf && \
-    curl --version && \
     gh --version && \
     git --version && \
-    make --version && \
-    patch --version && \
     php --version;
 
 CMD ["php-fpm", "-R"]
