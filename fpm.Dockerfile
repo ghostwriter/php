@@ -1,6 +1,6 @@
 ARG PHP_VERSION=8.4
 
-FROM php:${PHP_VERSION}-fpm-alpine
+FROM php:${PHP_VERSION}-fpm-alpine AS base
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
@@ -24,8 +24,10 @@ RUN set -ex && \
     echo 'upload_max_filesize=128M'; \
     echo 'post_max_size=128M'; \
     } > /usr/local/etc/php/conf.d/memory-limit.ini && \
-    sed -i 's/www-data/root/g' /usr/local/etc/php-fpm.d/www.conf && \
-    gh --version && \
+    sed -i 's/www-data/root/g' /usr/local/etc/php-fpm.d/www.conf;
+
+FROM base
+RUN gh --version && \
     git --version && \
     php --version;
 
