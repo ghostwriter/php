@@ -9,7 +9,7 @@ RUN set -euxo pipefail && \
     apk update && \
     apk upgrade && \
     apk add --no-cache ca-certificates curl git github-cli jq make openrc patch && \
-    install-php-extensions apcu bcmath bz2 curl dom ftp gd gmp gnupg igbinary imap intl ldap libxml mbstring memcached mongodb msgpack odbc opcache pcntl pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pdo_sqlsrv readline simplexml soap sockets sqlite3 sqlsrv tidy uuid valkey xml xmlwriter xsl zip && \
+    install-php-extensions apcu bcmath bz2 curl dom ftp gd gmp gnupg igbinary imap intl ldap libxml mbstring memcached mongodb msgpack odbc opcache pcntl pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pdo_sqlsrv readline simplexml soap sockets sqlite3 sqlsrv tidy uuid xml xmlwriter xsl zip && \
     if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; then \
       install-php-extensions imagick; \
     fi && \
