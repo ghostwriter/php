@@ -13,7 +13,6 @@ RUN set -euxo pipefail && \
     if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; then \
       install-php-extensions imagick; \
     fi && \
-    apk cache clean && \
     apk del --no-network --purge --no-cache $PHPIZE_DEPS && \
     rm -vrf /tmp/* && \
     rm -vrf /var/cache/apk/* && \
