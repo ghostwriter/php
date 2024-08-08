@@ -1,21 +1,23 @@
 ARG PHP_VERSION=8.4
 
-FROM php:${PHP_VERSION}-cli-alpine AS base
+FROM --platform=$BUILDPLATFORM php:${PHP_VERSION}-cli-alpine
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
-RUN set -ex && \
+RUN set -euxo pipefail && \
     ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone && \
     apk update && \
     apk upgrade && \
-    apk add --update --no-cache ca-certificates curl git github-cli jq make openrc patch; \
+    apk add --no-cache ca-certificates curl git github-cli jq make openrc patch && \
     install-php-extensions apcu bcmath bz2 curl dom ftp gd gmp gnupg igbinary imap intl ldap libxml mbstring memcached mongodb msgpack odbc opcache pcntl pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pdo_sqlsrv readline simplexml soap sockets sqlite3 sqlsrv tidy uuid valkey valkey-cli xml xmlwriter xsl zip && \
     if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; then \
       install-php-extensions imagick; \
-    fi; \
-    apk del --purge --no-cache $PHPIZE_DEPS $BUILD_DEPENDS && \
+    fi && \
+    apk cache clean && \
+    apk del --no-network --purge --no-cache $PHPIZE_DEPS && \
     rm -vrf /tmp/* && \
     rm -vrf /var/cache/apk/* && \
+    rm -vrf /var/lib/apt/lists/* && \
     rm -vrf /var/tmp/* && \
     rm $PHP_INI_DIR/php.ini-development && \
     mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
@@ -23,9 +25,7 @@ RUN set -ex && \
     echo 'memory_limit=2048M'; \
     echo 'upload_max_filesize=128M'; \
     echo 'post_max_size=128M'; \
-    } > /usr/local/etc/php/conf.d/memory-limit.ini;
-
-FROM base
-RUN gh --version && \
+    } > /usr/local/etc/php/conf.d/memory-limit.ini && \
+    gh --version && \
     git --version && \
     php --version;
