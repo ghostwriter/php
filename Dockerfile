@@ -2,6 +2,10 @@ ARG PHP_VERSION=8.4
 
 FROM --platform=$BUILDPLATFORM php:${PHP_VERSION}-cli-alpine
 
+WORKDIR /srv/workspace
+
+COPY extensions.php extensions.php
+
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
 RUN set -euxo pipefail && \
@@ -9,10 +13,7 @@ RUN set -euxo pipefail && \
     apk update && \
     apk upgrade && \
     apk add --no-cache ca-certificates curl git github-cli jq make openrc patch && \
-    install-php-extensions apcu bcmath bz2 curl dom ftp gd gmp gnupg igbinary imap intl ldap libxml mbstring memcached mongodb msgpack odbc opcache pcntl pdo pdo_mysql pdo_odbc pdo_pgsql pdo_sqlite pdo_sqlsrv readline simplexml soap sockets sqlite3 sqlsrv tidy uuid xml xmlwriter xsl zip && \
-    if [ $(php -r "echo version_compare(PHP_VERSION, '8.2.999', '<');") = 1 ]; then \
-      install-php-extensions imagick; \
-    fi && \
+    install-php-extensions $(php extensions.php) && \
     apk del --no-network --purge --no-cache $PHPIZE_DEPS && \
     rm -vrf /tmp/* && \
     rm -vrf /var/cache/apk/* && \
