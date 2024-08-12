@@ -68,24 +68,6 @@ docker pull ghcr.io/ghostwriter/php:8.4-rc-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-rc-composer vendor/bin/phpunit
 ```
 
-## PHP 8.4-rc : PGSQL
-
-### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.4-rc` pgsql image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.4-rc-pgsql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-rc-pgsql vendor/bin/phpunit
-```
-
-### ![Code](resource/icons/code.svg) Use `PHP 8.4-rc` pgsql image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.4-rc-pgsql
-```
-
 ## PHP 8.4-rc : PCOV
 
 ### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.4-rc` pcov image from the command line
@@ -164,24 +146,6 @@ docker pull ghcr.io/ghostwriter/php:8.3-composer
 
 ``` sh
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-composer vendor/bin/phpunit
-```
-
-## PHP 8.3 : PGSQL
-
-### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.3` pgsql image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.3-pgsql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-pgsql vendor/bin/phpunit
-```
-
-### ![Code](resource/icons/code.svg) Use `PHP 8.3` pgsql image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3-pgsql
 ```
 
 ## PHP 8.3 : PCOV
@@ -264,24 +228,6 @@ docker pull ghcr.io/ghostwriter/php:8.2-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-composer vendor/bin/phpunit
 ```
 
-## PHP 8.2 : PGSQL
-
-### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.2` pgsql image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.2-pgsql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-pgsql vendor/bin/phpunit
-```
-
-### ![Code](resource/icons/code.svg) Use `PHP 8.2` pgsql image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.2-pgsql
-```
-
 ## PHP 8.2 : PCOV
 
 ### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.2` pcov image from the command line
@@ -360,24 +306,6 @@ docker pull ghcr.io/ghostwriter/php:8.1-composer
 
 ``` sh
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-composer vendor/bin/phpunit
-```
-
-## PHP 8.1 : PGSQL
-
-### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.1` pgsql image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.1-pgsql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-pgsql vendor/bin/phpunit
-```
-
-### ![Code](resource/icons/code.svg) Use `PHP 8.1` pgsql image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.1-pgsql
 ```
 
 ## PHP 8.1 : PCOV
@@ -460,24 +388,6 @@ docker pull ghcr.io/ghostwriter/php:8.0-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-composer vendor/bin/phpunit
 ```
 
-## PHP 8.0 : PGSQL
-
-### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.0` pgsql image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:8.0-pgsql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.0-pgsql vendor/bin/phpunit
-```
-
-### ![Code](resource/icons/code.svg) Use `PHP 8.0` pgsql image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:8.0-pgsql
-```
-
 ## PHP 8.0 : PCOV
 
 ### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.0` pcov image from the command line
@@ -558,24 +468,6 @@ docker pull ghcr.io/ghostwriter/php:7.4-composer
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-composer vendor/bin/phpunit
 ```
 
-## PHP 7.4 : PGSQL
-
-### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 7.4` pgsql image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.4-pgsql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.4-pgsql vendor/bin/phpunit
-```
-
-### ![Code](resource/icons/code.svg) Use `PHP 7.4` pgsql image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.4-pgsql
-```
-
 ## PHP 7.4 : PCOV
 
 ### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 7.4` pcov image from the command line
@@ -654,24 +546,6 @@ docker pull ghcr.io/ghostwriter/php:7.3-composer
 
 ``` sh
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-composer vendor/bin/phpunit
-```
-
-## PHP 7.3 : PGSQL
-
-### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 7.3` pgsql image from the command line
-
-``` sh
-docker pull ghcr.io/ghostwriter/php:7.3-pgsql
-```
-
-``` sh
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:7.3-pgsql vendor/bin/phpunit
-```
-
-### ![Code](resource/icons/code.svg) Use `PHP 7.3` pgsql image in Dockerfile
-
-``` Dockerfile
-FROM ghcr.io/ghostwriter/php:7.3-pgsql
 ```
 
 ## PHP 7.3 : PCOV
