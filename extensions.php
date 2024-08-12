@@ -15,11 +15,14 @@ $extensions = [
 
 $excludeExtensions = [
     '8.3' => ['imagick'],
-    '8.4' => ['imagick', 'imap', 'pcov']
+    '8.4' => ['imagick', 'imap', 'pcov'],
 ];
 
 $requiredExtensions = array_diff($extensions, $excludeExtensions[$phpVersion] ?? []);
 
-$missingExtensions = array_filter($requiredExtensions, static fn(string $extension) => ! extension_loaded($extension));
+$missingExtensions = array_filter(
+    $requiredExtensions,
+    static fn (string $extension): bool => ! extension_loaded($extension)
+);
 
 echo implode(' ', $missingExtensions);
