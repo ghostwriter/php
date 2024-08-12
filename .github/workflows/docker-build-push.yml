@@ -220,7 +220,6 @@ jobs:
           - "8.3"
           - "8.4-rc"
         type:
-          - pcov
           - pgsql
     steps:
       - name: Set up QEMU
