@@ -22,7 +22,9 @@ $requiredExtensions = array_diff($extensions, $excludeExtensions[$phpVersion] ??
 
 $missingExtensions = array_filter(
     $requiredExtensions,
-    static fn (string $extension): bool => ! extension_loaded($extension)
+    static function (string $extension): bool {
+        return !extension_loaded($extension);
+    }
 );
 
 echo implode(' ', $missingExtensions);
