@@ -20,6 +20,18 @@ env:
   DEFAULT_IMAGE: "ghcr.io/${{ github.repository_owner }}/php"
 
 jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/delete-package-versions@v5
+        with: 
+          package-name: 'php'
+          package-type: 'container'
+          min-versions-to-keep: 30
+          delete-only-untagged-versions: 'true'
   cli:
     runs-on: ubuntu-latest
     continue-on-error: true
