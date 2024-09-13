@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$versions = ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4-rc'];
+$versions = ['8.0', '8.1', '8.2', '8.3', '8.4-rc'];
 
 \arsort($versions);
 
@@ -120,7 +120,22 @@ function printREADME(array $versions, array $variants, array $extensions): strin
         **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
         EOT;
 
-    $body[] = \PHP_EOL . '> **Supported versions: [`' . \implode('`, `', $versions) . '`]**' . \PHP_EOL;
+    $body[] = \sprintf(
+        '%s> **Supported versions: %s**%s',
+        \PHP_EOL,
+        \implode(
+            ', ',
+            \array_map(
+                static fn (string $version): string => \sprintf(
+                    '[`%s`](#-use-php-%s-image-in-dockerfile)',
+                    $version,
+                    \str_replace('.', '', \mb_strtolower($version))
+                ),
+                $versions
+            )
+        ),
+        \PHP_EOL
+    );
 
     foreach ($versions as $version) {
         $body[] = \versionTemplate($version, $variants, $extensions) . \PHP_EOL;
