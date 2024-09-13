@@ -32,4 +32,4 @@ if ($gitHubOutput === false) {
 
 \fwrite(\STDOUT, $matrix);
 
-\file_put_contents($gitHubOutput, \sprintf('matrix=%s' . \PHP_EOL, $matrix), \FILE_APPEND);
+\file_put_contents($gitHubOutput, $matrix, \FILE_APPEND);
