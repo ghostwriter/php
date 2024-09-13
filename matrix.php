@@ -26,7 +26,7 @@ $matrix = \sprintf('matrix=%s' . \PHP_EOL, \json_encode(
 
 $gitHubOutput = \getenv('GITHUB_OUTPUT');
 
-if ($gitHubOutput !== false) {
+if ($gitHubOutput === false) {
     $gitHubOutput = \tempnam(\sys_get_temp_dir(), 'GITHUB_OUTPUT');
 
     \file_put_contents($gitHubOutput, \sprintf('matrix=%s' . \PHP_EOL, $matrix), \FILE_APPEND);
