@@ -5,8 +5,8 @@ declare(strict_types=1);
 $sapi = \mb_strtolower(\PHP_SAPI);
 
 $phpVariant = match (true) {
+    \defined('ZEND_THREAD_SAFE') && \ZEND_THREAD_SAFE => 'zts',
     \str_contains($sapi, 'fpm') => 'fpm',
-    \str_contains($sapi, 'zts') => 'zts',
     \str_contains($sapi, 'cli') => 'cli',
     default => throw new \RuntimeException('Unknown PHP SAPI: ' . $sapi),
 };
