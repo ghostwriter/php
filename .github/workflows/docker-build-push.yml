@@ -195,7 +195,7 @@ jobs:
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}
           cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }},mode=max
-          file: ./${{ matrix.variant }}.Dockerfile
+          file: ${{ matrix.variant }}.Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS}}
           push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
