@@ -4,9 +4,10 @@ on:
   workflow_dispatch:
   push:
     branches:
+      - "v*"
       - main
   schedule:
-    - cron: "* */4 * * *" # Runs every 4 hours.
+    - cron: "0 * * * *" # Runs hourly updates for the latest PHP versions and images
 
 permissions:
   packages: write
@@ -17,7 +18,7 @@ concurrency:
 
 env:
   SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
-  DEFAULT_IMAGE: "ghcr.io/${{ github.repository_owner }}/php"
+  DEFAULT_IMAGE: "ghcr.io/ghostwriter/php"
 
 jobs:
   cli:
@@ -137,24 +138,26 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: PHP_VERSION=${{ matrix.version }}
+  matrix:
+    name: Generate job matrix
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
+    container:
+      image: php:8.3-cli-alpine
+    steps:
+      - uses: actions/checkout@v4
+      - name: Determine CI Jobs
+        id: matrix
+        run: php matrix.php
+
   production:
+    needs: [matrix]
     runs-on: ubuntu-latest
     continue-on-error: true
     strategy:
       fail-fast: false
-      matrix:
-        latest:
-          - "8.3"
-        variant:
-          - cli
-          - fpm
-          - zts
-        version:
-          - "8.0"
-          - "8.1"
-          - "8.2"
-          - "8.3"
-          - "8.4-rc"
+      matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -208,13 +211,7 @@ jobs:
     continue-on-error: true
     strategy:
       fail-fast: false
-      matrix:
-        version:
-          - "8.0"
-          - "8.1"
-          - "8.2"
-          - "8.3"
-          - "8.4-rc"
+      matrix: ${{ fromJSON(needs.matrix.outputs.matrix)}}
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
