@@ -1,0 +1,29 @@
+name: cleanup
+
+on:
+  schedule:
+    - cron: "0 * * * *" # Runs hourly.
+
+permissions:
+  packages: write
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    strategy:
+      fail-fast: false
+      matrix:
+        type:
+          - 'docker'
+          - 'container'
+        name:
+          - 'php'
+    steps:
+      - uses: actions/delete-package-versions@v5
+        with:
+          delete-only-untagged-versions: 'true'
+          min-versions-to-keep: 15
+          package-name: ${{ matrix.name }}
+          package-type: ${{ matrix.type }}
+          token: ${{ secrets.GHT }}
