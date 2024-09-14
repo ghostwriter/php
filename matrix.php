@@ -14,22 +14,22 @@ function matrix(array $versions, array $variants, string $latest, string $dev): 
 {
     $include = [];
 
-//    foreach ($versions as $version) {
-//        foreach ($variants as $variant) {
-//            $include[] = [
-//                'version' => $version,
-//                'variant' => $variant,
-//            ];
-//        }
-//    }
+    foreach ($versions as $version) {
+        foreach ($variants as $variant) {
+            $include[] = [
+                'version' => $version,
+                'variant' => $variant,
+            ];
+        }
+    }
 
-    return [[
+    return [
         'dev' => $dev,
         'latest' => $latest,
-//        'include' => \array_values($include),
-        'version' => \array_values($versions),
-        'variant' => \array_values($variants),
-    ]];
+        'include' => \array_values($include),
+//        'version' => \array_values($versions),
+//        'variant' => \array_values($variants),
+    ];
 }
 
 echo \json_encode(\matrix($versions, $variants, $latest, $dev), \JSON_THROW_ON_ERROR);
