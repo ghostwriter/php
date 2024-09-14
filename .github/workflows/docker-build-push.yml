@@ -149,7 +149,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Determine CI Jobs
         id: matrix
-        run: php matrix.php
+        run: echo "::set-output name=matrix::$(php matrix.php)"
 
   production:
     needs: [matrix]
