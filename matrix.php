@@ -30,6 +30,4 @@ if ($gitHubOutput === false) {
     $gitHubOutput = \tempnam(\sys_get_temp_dir(), 'GITHUB_OUTPUT');
 }
 
-\fwrite(\STDOUT, $matrix);
-
 \file_put_contents($gitHubOutput, $matrix, \FILE_APPEND);
