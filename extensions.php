@@ -33,7 +33,7 @@ $excludeExtensions['8.4'][] = 'pcov';
 
 $requiredExtensions = \array_diff($extensions, array_keys($excludeExtensions[$phpVersion]));
 
-$missingExtensions = \array_filter($requiredExtensions, static function (string $extension): bool {
+$missingExtensions = \array_filter($requiredExtensions, static function ($extension) {
     return !\extension_loaded($extension);
 });
 
