@@ -1,8 +1,6 @@
 <?php
 
-declare(strict_types=1);
-
-$versions = ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4-rc'];
+$versions = ['5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4-rc'];
 
 \arsort($versions);
 
@@ -11,4 +9,4 @@ echo \json_encode([
     'latest' => ['8.3'],
     'version' => \array_values($versions),
     'variant' => \array_values(['cli', 'fpm', 'zts']),
-], \JSON_THROW_ON_ERROR);
+]);
