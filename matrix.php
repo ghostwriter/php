@@ -20,4 +20,4 @@ function matrix(array $versions, array $variants, string $latest, string $dev): 
     ];
 }
 
-echo \json_encode(\matrix($versions, $variants, $latest, $dev), \JSON_THROW_ON_ERROR | \JSON_PRETTY_PRINT);
+echo \json_encode(\matrix($versions, $variants, $latest, $dev), \JSON_THROW_ON_ERROR);
