@@ -12,12 +12,24 @@ $variants = ['cli', 'fpm', 'zts'];
 
 function matrix(array $versions, array $variants, string $latest, string $dev): array
 {
-    return [
+    $include = [];
+
+//    foreach ($versions as $version) {
+//        foreach ($variants as $variant) {
+//            $include[] = [
+//                'version' => $version,
+//                'variant' => $variant,
+//            ];
+//        }
+//    }
+
+    return [[
         'dev' => $dev,
         'latest' => $latest,
-        'variant' => \array_values($variants),
+//        'include' => \array_values($include),
         'version' => \array_values($versions),
-    ];
+        'variant' => \array_values($variants),
+    ]];
 }
 
 echo \json_encode(\matrix($versions, $variants, $latest, $dev), \JSON_THROW_ON_ERROR);
