@@ -22,31 +22,19 @@ $extensions = [
     'uuid', 'xml', 'xmlwriter', 'xsl', 'zip',
 ];
 
-$excludeExtensions = [
-    '7.3' => [
-        '*' => [],
-        'cli' => [],
-        'fpm' => [],
-        'zst' => [],
-    ],
-    '8.3' => [
-        '*' => ['imagick'],
-    ],
-    '8.4' => [
-        '*' => ['imagick', 'imap', 'pcov'],
-    ],
-];
+$variants = ['cli', 'fpm', 'zts'];
+$versions = ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4-rc'];
 
-$requiredExtensions = \array_diff(
-    $extensions,
-    $excludeExtensions[$phpVersion]['*'] ?? [],
-    $excludeExtensions[$phpVersion][$phpVariant] ?? []
-);
+$excludeExtensions =  \array_fill_keys($versions,[]);
+$excludeExtensions['8.4-rc'][] = 'imagick';
+$excludeExtensions['8.4-rc'][] = 'imap';
+$excludeExtensions['8.4-rc'][] = 'pcov';
 
-$missingExtensions = \array_filter(
-    $requiredExtensions,
-    static fn (string $extension): bool => ! \extension_loaded($extension)
-);
+$requiredExtensions = \array_diff($extensions, array_keys($excludeExtensions[$phpVersion]));
+
+$missingExtensions = \array_filter($requiredExtensions, static function (string $extension): bool {
+    return !\extension_loaded($extension);
+});
 
 if ($missingExtensions === []) {
     // All required extensions are loaded
