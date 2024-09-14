@@ -17,6 +17,8 @@ function matrix(array $versions, array $variants, string $latest, string $dev): 
     foreach ($versions as $version) {
         foreach ($variants as $variant) {
             $include[] = [
+                'dev' => $dev,
+                'latest' => $latest,
                 'version' => $version,
                 'variant' => $variant,
             ];
@@ -24,8 +26,6 @@ function matrix(array $versions, array $variants, string $latest, string $dev): 
     }
 
     return [
-        'dev' => $dev,
-        'latest' => $latest,
         'include' => \array_values($include),
 //        'version' => \array_values($versions),
 //        'variant' => \array_values($variants),
