@@ -14,21 +14,21 @@ function matrix(array $versions, array $variants, string $latest, string $dev): 
 {
     $include = [];
 
-    foreach ($versions as $version) {
-        foreach ($variants as $variant) {
-            $include[] = [
-                'dev' => $dev,
-                'latest' => $latest,
-                'version' => $version,
-                'variant' => $variant,
-            ];
-        }
-    }
+//    foreach ($versions as $version) {
+//        foreach ($variants as $variant) {
+//            $include[] = [
+//                'version' => $version,
+//                'variant' => $variant,
+//            ];
+//        }
+//    }
 
     return [
+        'dev' => [$dev],
+        'latest' => [$latest],
         'include' => \array_values($include),
-//        'version' => \array_values($versions),
-//        'variant' => \array_values($variants),
+        'version' => \array_values($versions),
+        'variant' => \array_values($variants),
     ];
 }
 
