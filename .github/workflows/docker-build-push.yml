@@ -139,7 +139,6 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: PHP_VERSION=${{ matrix.version }}
   matrix:
-    name: Generate job matrix
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
@@ -147,8 +146,7 @@ jobs:
       image: php:8.3-cli-alpine
     steps:
       - uses: actions/checkout@v4
-      - name: Determine CI Jobs
-        id: matrix
+      - id: matrix
         run: echo "matrix=$(php matrix.php)" >> $GITHUB_OUTPUT
 
   production:
