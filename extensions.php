@@ -1,15 +1,16 @@
 <?php
 
-declare(strict_types=1);
-
 $sapi = \mb_strtolower(\PHP_SAPI);
 
-$phpVariant = match (true) {
-    \defined('ZEND_THREAD_SAFE') && \ZEND_THREAD_SAFE => 'zts',
-    \str_contains($sapi, 'fpm') => 'fpm',
-    \str_contains($sapi, 'cli') => 'cli',
-    default => throw new \RuntimeException('Unknown PHP SAPI: ' . $sapi),
-};
+$phpVariant = 'cli';
+
+if (\strpos($sapi, 'fpm') !== false) {
+    $phpVariant = 'fpm';
+}
+
+if (\defined('ZEND_THREAD_SAFE') && \ZEND_THREAD_SAFE) {
+    $phpVariant = 'zts';
+}
 
 $phpVersion = \PHP_MAJOR_VERSION . '.' . \PHP_MINOR_VERSION;
 
