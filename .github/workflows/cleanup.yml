@@ -16,7 +16,7 @@ jobs:
       fail-fast: false
       matrix:
         type:
-          - 'docker'
+          # - 'docker'
           - 'container'
         name:
           - 'php'
