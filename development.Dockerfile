@@ -1,4 +1,5 @@
 ARG PHP_VERSION=8.4
+ARG COVERAGE_EXTENSION=pcov
 
 FROM ghcr.io/ghostwriter/php:${PHP_VERSION}-cli
 
@@ -8,4 +9,14 @@ COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 
 ENV PATH="$(composer config --global home)/vendor/bin:$PATH"
 
-RUN composer --version
+RUN set -euxo pipefail && \
+    apk update && \
+    apk upgrade && \
+    install-php-extensions ${COVERAGE_EXTENSION} && \
+    apk del --no-network --purge --no-cache $PHPIZE_DEPS && \
+    rm -vrf /tmp/* && \
+    rm -vrf /var/cache/apk/* && \
+    rm -vrf /var/lib/apt/lists/* && \
+    rm -vrf /var/tmp/* && \
+    php --version && \
+    composer --version;
