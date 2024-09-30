@@ -87,7 +87,7 @@ jobs:
           build-args: PHP_VERSION=${{ matrix.version }}
 
   development:
-    needs: production
+    needs: [matrix, production]
     runs-on: ubuntu-latest
     continue-on-error: true
     strategy:
