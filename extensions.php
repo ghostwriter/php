@@ -2,6 +2,16 @@
 
 $sapi = \mb_strtolower(\PHP_SAPI);
 
+$debug = \getenv('RUNNER_DEBUG') !== false;
+$env = \getenv('GITHUB_CONTEXT');
+if ($debug && $env !== false) {
+    $context = \json_decode($env, true);
+
+    var_dump($context);
+
+    exit(1);
+}
+
 $phpVariant = 'cli';
 
 if (\strpos($sapi, 'fpm') !== false) {
@@ -32,7 +42,7 @@ $excludeExtensions['8.4'][] = 'imagick';
 $excludeExtensions['8.4'][] = 'imap';
 $excludeExtensions['8.4'][] = 'pcov';
 
-$requiredExtensions = \array_diff($extensions, array_keys($excludeExtensions[$phpVersion]));
+$requiredExtensions = \array_diff($extensions, array_values($excludeExtensions[$phpVersion]));
 
 $missingExtensions = \array_filter($requiredExtensions, static function ($extension) {
     return !\extension_loaded($extension);
