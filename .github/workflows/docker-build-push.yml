@@ -76,8 +76,6 @@ jobs:
 
       - name: Build and push PHP ${{ matrix.version }}
         uses: docker/build-push-action@v6
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}
           cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }},mode=max
@@ -130,8 +128,6 @@ jobs:
 
       - name: Build and push PHP ${{ matrix.version }} image
         uses: docker/build-push-action@v6
-        env:
-          GITHUB_CONTEXT: ${{ toJson(github) }}
         with:
           cache-from: type=gha,scope=${{ matrix.version }}
           cache-to: type=gha,scope=${{ matrix.version }},mode=max
