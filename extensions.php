@@ -2,38 +2,6 @@
 
 $sapi = \mb_strtolower(\PHP_SAPI);
 
-$debug = \getenv('RUNNER_DEBUG') !== false;
-if ($debug) {
-    $eventPath = \getenv('GITHUB_EVENT_PATH');
-
-    if ($eventPath === false) {
-        echo 'GITHUB_EVENT_PATH not found';
-        exit(1);
-    }
-
-    $event = \json_decode(\file_get_contents($eventPath), true);
-
-    if ($event === null) {
-        echo 'Failed to parse GITHUB_EVENT_PATH';
-        exit(1);
-    }
-
-    $environment = \json_decode(\getenv(), true);
-
-    if ($environment === null) {
-        echo 'Failed to parse environment';
-        exit(1);
-    }
-
-    var_dump([
-        'environment' => $environment,
-        'event' => $event,
-        'workspace' => \getenv('GITHUB_WORKSPACE'),
-    ]);
-
-    exit(1);
-}
-
 $phpVariant = 'cli';
 
 if (\strpos($sapi, 'fpm') !== false) {
@@ -56,9 +24,11 @@ $extensions = [
 ];
 
 $variants = ['cli', 'fpm', 'zts'];
+
 $versions = ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4'];
 
-$excludeExtensions =  \array_fill_keys($versions,[]);
+$excludeExtensions = \array_fill_keys($versions,[]);
+
 $excludeExtensions['8.4'][] = 'apcu';
 $excludeExtensions['8.4'][] = 'imagick';
 $excludeExtensions['8.4'][] = 'imap';
