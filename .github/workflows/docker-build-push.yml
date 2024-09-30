@@ -136,6 +136,4 @@ jobs:
           push: ${{ github.repository_owner == github.actor }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          build-args: |
-            PHP_VERSION=${{ matrix.version }}
-            COVERAGE_EXTENSION=${{ matrix.coverage}}
+          build-args: PHP_VERSION=${{ matrix.version }}
