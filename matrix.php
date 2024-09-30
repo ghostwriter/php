@@ -9,6 +9,7 @@ $result = \json_encode([
     'latest' => ['8.3'],
     'version' => \array_values($versions),
     'variant' => ['cli', 'fpm', 'zts'],
+    'coverage' => ['pcov', 'xdebug'],
 ]);
 
 if ($result === false) {
