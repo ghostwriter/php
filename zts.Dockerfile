@@ -19,6 +19,7 @@ RUN set -euxo pipefail && \
     rm -vrf /var/cache/apk/* && \
     rm -vrf /var/lib/apt/lists/* && \
     rm -vrf /var/tmp/* && \
+    rm -vrf extensions.php && \
     rm $PHP_INI_DIR/php.ini-development && \
     mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     sed 's/short_open_tag=On/short_open_tag=Off/' $PHP_INI_DIR/php.ini && { \
