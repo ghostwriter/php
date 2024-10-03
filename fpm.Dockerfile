@@ -27,6 +27,7 @@ RUN set -euxo pipefail && \
     echo 'post_max_size=128M'; \
     } > /usr/local/etc/php/conf.d/memory-limit.ini && \
     sed -i 's/www-data/root/g' /usr/local/etc/php-fpm.d/www.conf && \
+    rm -vrf extensions.php && \
     gh --version && \
     git --version && \
     php --version;
