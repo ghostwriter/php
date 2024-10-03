@@ -18,5 +18,6 @@ RUN set -euxo pipefail && \
     rm -vrf /var/cache/apk/* && \
     rm -vrf /var/lib/apt/lists/* && \
     rm -vrf /var/tmp/* && \
+    rm -vrf coverage.php && \
     php --version && \
     composer --version;
