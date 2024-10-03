@@ -26,6 +26,7 @@ RUN set -euxo pipefail && \
     echo 'upload_max_filesize=128M'; \
     echo 'post_max_size=128M'; \
     } > /usr/local/etc/php/conf.d/memory-limit.ini && \
+    rm -vrf extensions.php && \
     gh --version && \
     git --version && \
     php --version;
