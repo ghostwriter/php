@@ -19,6 +19,7 @@ RUN set -euxo pipefail && \
     rm -vrf /var/cache/apk/* && \
     rm -vrf /var/lib/apt/lists/* && \
     rm -vrf /var/tmp/* && \
+    rm -vrf extensions.php && \
     rm $PHP_INI_DIR/php.ini-development && \
     mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     sed 's/short_open_tag=On/short_open_tag=Off/' $PHP_INI_DIR/php.ini && { \
@@ -27,7 +28,6 @@ RUN set -euxo pipefail && \
     echo 'post_max_size=128M'; \
     } > /usr/local/etc/php/conf.d/memory-limit.ini && \
     sed -i 's/www-data/root/g' /usr/local/etc/php-fpm.d/www.conf && \
-    rm -vrf extensions.php && \
     gh --version && \
     git --version && \
     php --version;
