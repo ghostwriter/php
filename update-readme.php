@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-$versions = ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', 'master'];
+$versions = ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4'];
 
 \arsort($versions);
 
-$dev = 'master';
+$dev = '8.5';
 $latest = '8.4';
 $variants = ['cli', 'fpm', 'zts'];
 $extensions = [

@@ -4,7 +4,7 @@ Development and Production-ready PHP Images for Docker
 
 **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
 
-> **Supported versions: [`8.4`](#-use-php-84-rc-image-in-dockerfile), [`8.3`](#-use-php-83-image-in-dockerfile), [`8.2`](#-use-php-82-image-in-dockerfile), [`8.1`](#-use-php-81-image-in-dockerfile), [`8.0`](#-use-php-80-image-in-dockerfile), [`7.4`](#-use-php-74-image-in-dockerfile), [`7.3`](#-use-php-73-image-in-dockerfile)**
+> **Supported versions: [`8.4`](#-use-php-84-image-in-dockerfile), [`8.3`](#-use-php-83-image-in-dockerfile), [`8.2`](#-use-php-82-image-in-dockerfile), [`8.1`](#-use-php-81-image-in-dockerfile), [`8.0`](#-use-php-80-image-in-dockerfile), [`7.4`](#-use-php-74-image-in-dockerfile), [`7.3`](#-use-php-73-image-in-dockerfile)**
 
 ### PHP 8.4
 
