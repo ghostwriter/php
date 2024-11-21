@@ -2,20 +2,18 @@
 
 declare(strict_types=1);
 
-$versions = ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4-rc'];
+$versions = ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5-rc'];
 
 \arsort($versions);
 
-$dev = '8.4-rc';
-$latest = '8.3';
-
+$dev = '8.5-rc';
+$latest = '8.4';
 $variants = ['cli', 'fpm', 'zts'];
-
 $extensions = [
-    //    'database' => ['pgsql'],
+    //    'database' => ['mysql','pgsql'],
     'code-coverage' => ['pcov'],
     'extension' => [
-        //    'swoole',
+        //    'openswoole',
         //    'roadrunner',
         //    'frankenphp'
     ],
