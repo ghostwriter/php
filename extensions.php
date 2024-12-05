@@ -29,10 +29,8 @@ $versions = ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1
 
 $excludeExtensions = \array_fill_keys($versions,[]);
 
-$excludeExtensions['8.4'][] = 'apcu';
 $excludeExtensions['8.4'][] = 'imagick';
 $excludeExtensions['8.4'][] = 'imap';
-$excludeExtensions['8.4'][] = 'pcov';
 
 $requiredExtensions = \array_diff($extensions, array_values($excludeExtensions[$phpVersion]));
 
