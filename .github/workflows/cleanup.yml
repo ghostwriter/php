@@ -27,4 +27,4 @@ jobs:
           min-versions-to-keep: 15
           package-name: ${{ matrix.name }}
           package-type: ${{ matrix.type }}
-          token: ${{ secrets.GHT }}
+          # token: ${{ secrets.GHT }}
