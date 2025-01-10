@@ -1,3 +1,5 @@
 <?php
 
-echo 'pcov';
+declare(strict_types=1);
+
+echo 'xdebug';
