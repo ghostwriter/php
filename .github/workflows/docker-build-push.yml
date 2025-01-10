@@ -93,7 +93,9 @@ jobs:
     continue-on-error: true
     strategy:
       fail-fast: false
-      matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
+      matrix:
+        version: ${{ fromJSON(needs.matrix.outputs.matrix.version) }}
+        variant: [cli]
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
