@@ -32,22 +32,22 @@ FROM ghcr.io/ghostwriter/php:8.4-zts
 **CLI with code coverage**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.4
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4 vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4 php -v
 ```
 **CLI**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.4-cli
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-cli vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-cli php -v
 ```
 **FPM**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.4-fpm
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-fpm vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-fpm php -v
 ```
 **ZTS**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.4-zts
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-zts vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-zts php -v
 ```
 
 
@@ -77,22 +77,22 @@ FROM ghcr.io/ghostwriter/php:8.3-zts
 **CLI with code coverage**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.3
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3 vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3 php -v
 ```
 **CLI**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.3-cli
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-cli vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-cli php -v
 ```
 **FPM**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.3-fpm
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-fpm vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-fpm php -v
 ```
 **ZTS**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.3-zts
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-zts vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-zts php -v
 ```
 
 
@@ -122,22 +122,22 @@ FROM ghcr.io/ghostwriter/php:8.2-zts
 **CLI with code coverage**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.2
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2 vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2 php -v
 ```
 **CLI**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.2-cli
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-cli vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-cli php -v
 ```
 **FPM**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.2-fpm
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-fpm vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-fpm php -v
 ```
 **ZTS**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.2-zts
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-zts vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-zts php -v
 ```
 
 
@@ -167,21 +167,21 @@ FROM ghcr.io/ghostwriter/php:8.1-zts
 **CLI with code coverage**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.1
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1 vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1 php -v
 ```
 **CLI**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.1-cli
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-cli vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-cli php -v
 ```
 **FPM**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.1-fpm
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-fpm vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-fpm php -v
 ```
 **ZTS**
 ```sh
 docker pull ghcr.io/ghostwriter/php:8.1-zts
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-zts vendor/bin/phpunit
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-zts php -v
 ```
 
