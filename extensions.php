@@ -8,7 +8,7 @@ $missingExtensions = \array_filter(
         'gd', 'gmp', 'gnupg', 'igbinary', 'imap', 'intl', 'ldap', 'libxml',
         'mbstring', 'memcached', 'mongodb', 'msgpack', 'odbc', 'opcache', 'pcntl',
         'pdo', 'pdo_mysql', 'pdo_odbc', 'pdo_pgsql', 'pdo_sqlite',
-        'readline', 'simplexml', 'soap', 'sockets', 'sqlite3', 'sqlsrv', \tidy::class,
+        'readline', 'simplexml', 'soap', 'sockets', 'sqlite3', 'sqlsrv', 'tidy',
         'xml', 'xmlwriter', 'xsl', 'zip',
     ],
     static fn ($extension) => ! \extension_loaded($extension)
