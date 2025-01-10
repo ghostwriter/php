@@ -11,7 +11,7 @@ Development and Production-ready PHP Images for Docker
 #### ![Code](resource/icons/code.svg) Use `PHP 8.4` image in Dockerfile
 
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.4 # 8.4-cli with additional development tools
+FROM ghcr.io/ghostwriter/php:8.4 # 8.4-cli with code coverage
 ```
 ```Dockerfile
 FROM ghcr.io/ghostwriter/php:8.4-cli
@@ -56,7 +56,7 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-zts
 #### ![Code](resource/icons/code.svg) Use `PHP 8.3` image in Dockerfile
 
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3 # 8.3-cli with additional development tools
+FROM ghcr.io/ghostwriter/php:8.3 # 8.3-cli with code coverage
 ```
 ```Dockerfile
 FROM ghcr.io/ghostwriter/php:8.3-cli
@@ -101,7 +101,7 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-zts
 #### ![Code](resource/icons/code.svg) Use `PHP 8.2` image in Dockerfile
 
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.2 # 8.2-cli with additional development tools
+FROM ghcr.io/ghostwriter/php:8.2 # 8.2-cli with code coverage
 ```
 ```Dockerfile
 FROM ghcr.io/ghostwriter/php:8.2-cli
@@ -146,7 +146,7 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-zts
 #### ![Code](resource/icons/code.svg) Use `PHP 8.1` image in Dockerfile
 
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.1 # 8.1-cli with additional development tools
+FROM ghcr.io/ghostwriter/php:8.1 # 8.1-cli with code coverage
 ```
 ```Dockerfile
 FROM ghcr.io/ghostwriter/php:8.1-cli
