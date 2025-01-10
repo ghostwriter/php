@@ -36,17 +36,20 @@ function versionTemplate(string $version, array $variants, array $extensions): s
 {
     $body = $code = $sh = [];
 
+    $code[] = '**CLI with code coverage**';
     $code[] = \dockerFile($version);
-    $sh[] = \dockerPull($version);
-    $sh[] = \dockerRun($version);
+
+    $sh[] = '**CLI with code coverage**';
+    $sh[] = \dockerPullAndRun($version);
 
     foreach ($variants as $variant) {
+        $code[] = \sprintf('**%s**', \strtoupper($variant));
         $code[] = \dockerFile($version, $variant);
-        $sh[] = \dockerPull($version, $variant);
-        $sh[] = \dockerRun($version, $variant);
+        $sh[] = \sprintf('**%s**', \strtoupper($variant));
+        $sh[] = \dockerPullAndRun($version, $variant);
     }
 
-    $body[] = \sprintf('### PHP %s', $version) . \PHP_EOL;
+    $body[] = \sprintf('## PHP %s', $version) . \PHP_EOL;
 
     $body[] = \codeTemplate($version);
     $body[] = \implode(\PHP_EOL, $code) . \PHP_EOL;
@@ -106,6 +109,22 @@ function dockerPull(string $phpVersion, ?string $variant = null): string
         ,
         $phpVersion,
         $variant ? '-' . $variant : '',
+    );
+}
+function dockerPullAndRun(string $phpVersion, ?string $variant = null): string
+{
+    $variant = $variant ? '-' . $variant : '';
+    return \sprintf(
+        <<<'EOD'
+            ```sh
+            docker pull ghcr.io/ghostwriter/php:%s%s
+            docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s%s vendor/bin/phpunit
+            ```
+            EOD,
+        $phpVersion,
+        $variant,
+        $phpVersion,
+        $variant,
     );
 }
 function printREADME(array $versions, array $variants, array $extensions): string
