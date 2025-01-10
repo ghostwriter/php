@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-$versions = ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4'];
+$versions = ['8.1', '8.2', '8.3', '8.4'];
 
 \arsort($versions);
 
@@ -58,13 +58,13 @@ function versionTemplate(string $version, array $variants, array $extensions): s
 }
 function dockerFile(string $phpVersion, ?string $variant = null): string
 {
-    if ($variant === null) {
+    if (null === $variant) {
         return \sprintf(
-            <<<EOT
+            <<<'EOD'
                 ```Dockerfile
                 FROM ghcr.io/ghostwriter/php:%s # %s-cli with additional development tools
                 ```
-                EOT
+                EOD
             ,
             $phpVersion,
             $phpVersion,
@@ -72,11 +72,11 @@ function dockerFile(string $phpVersion, ?string $variant = null): string
     }
 
     return \sprintf(
-        <<<EOT
+        <<<'EOD'
             ```Dockerfile
             FROM ghcr.io/ghostwriter/php:%s-%s
             ```
-            EOT
+            EOD
         ,
         $phpVersion,
         $variant,
@@ -85,11 +85,11 @@ function dockerFile(string $phpVersion, ?string $variant = null): string
 function dockerRun(string $phpVersion, ?string $variant = null): string
 {
     return \sprintf(
-        <<<EOT
+        <<<'EOD'
             ```sh
-            docker run -it --rm -v \$PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s%s vendor/bin/phpunit
+            docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s%s vendor/bin/phpunit
             ```
-            EOT
+            EOD
         ,
         $phpVersion,
         $variant ? '-' . $variant : '',
@@ -98,11 +98,11 @@ function dockerRun(string $phpVersion, ?string $variant = null): string
 function dockerPull(string $phpVersion, ?string $variant = null): string
 {
     return \sprintf(
-        <<<EOT
+        <<<'EOD'
             ```sh
             docker pull ghcr.io/ghostwriter/php:%s%s
             ```
-            EOT
+            EOD
         ,
         $phpVersion,
         $variant ? '-' . $variant : '',
@@ -110,13 +110,13 @@ function dockerPull(string $phpVersion, ?string $variant = null): string
 }
 function printREADME(array $versions, array $variants, array $extensions): string
 {
-    $body[] = <<<EOT
+    $body[] = <<<'EOD'
         # PHP for Docker [![Docker CI/CD](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml)
 
         Development and Production-ready PHP Images for Docker
 
         **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
-        EOT;
+        EOD;
 
     $body[] = \sprintf(
         '%s> **Supported versions: %s**%s',
@@ -144,9 +144,9 @@ function printREADME(array $versions, array $variants, array $extensions): strin
 
 $readme = \printREADME($versions, $variants, $extensions);
 
-//die($readme);
+// die($readme);
 
 \file_put_contents('README.md', $readme);
 
-print 'README.md updated' . \PHP_EOL;
+echo 'README.md updated' . \PHP_EOL;
 exit(0);
