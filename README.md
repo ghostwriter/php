@@ -12,7 +12,7 @@ Development and Production-ready PHP Images for Docker
 
 **CLI with code coverage**
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.4 # 8.4-cli with code coverage
+FROM ghcr.io/ghostwriter/php:8.4
 ```
 **CLI**
 ```Dockerfile
@@ -57,7 +57,7 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-zts
 
 **CLI with code coverage**
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.3 # 8.3-cli with code coverage
+FROM ghcr.io/ghostwriter/php:8.3
 ```
 **CLI**
 ```Dockerfile
@@ -102,7 +102,7 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-zts
 
 **CLI with code coverage**
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.2 # 8.2-cli with code coverage
+FROM ghcr.io/ghostwriter/php:8.2
 ```
 **CLI**
 ```Dockerfile
@@ -147,7 +147,7 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-zts
 
 **CLI with code coverage**
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.1 # 8.1-cli with code coverage
+FROM ghcr.io/ghostwriter/php:8.1
 ```
 **CLI**
 ```Dockerfile
