@@ -45,6 +45,7 @@ function versionTemplate(string $version, array $variants, array $extensions): s
     foreach ($variants as $variant) {
         $code[] = \sprintf('**%s**', \strtoupper($variant));
         $code[] = \dockerFile($version, $variant);
+
         $sh[] = \sprintf('**%s**', \strtoupper($variant));
         $sh[] = \dockerPullAndRun($version, $variant);
     }
@@ -55,9 +56,9 @@ function versionTemplate(string $version, array $variants, array $extensions): s
     $body[] = \implode(\PHP_EOL, $code) . \PHP_EOL;
 
     $body[] = \terminalTemplate($version);
-    $body[] = \implode(\PHP_EOL, $sh) . \PHP_EOL;
+    $body[] = \implode(\PHP_EOL, $sh);
 
-    return \implode(\PHP_EOL, $body);
+    return \implode(\PHP_EOL, $body) . \PHP_EOL;
 }
 function dockerFile(string $phpVersion, ?string $variant = null): string
 {
@@ -65,7 +66,7 @@ function dockerFile(string $phpVersion, ?string $variant = null): string
         return \sprintf(
             <<<'EOD'
                 ```Dockerfile
-                FROM ghcr.io/ghostwriter/php:%s # %s-cli with code coverage
+                FROM ghcr.io/ghostwriter/php:%s
                 ```
                 EOD
             ,
