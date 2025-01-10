@@ -58,7 +58,7 @@ function versionTemplate(string $version, array $variants, array $extensions): s
     $body[] = \terminalTemplate($version);
     $body[] = \implode(\PHP_EOL, $sh);
 
-    return \implode(\PHP_EOL, $body) . \PHP_EOL;
+    return \implode(\PHP_EOL, $body);
 }
 function dockerFile(string $phpVersion, ?string $variant = null): string
 {
