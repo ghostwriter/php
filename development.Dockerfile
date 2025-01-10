@@ -1,10 +1,6 @@
 ARG PHP_VERSION=8.4
 
-FROM --platform=$BUILDPLATFORM php:${PHP_VERSION}-cli-alpine
-
-ENV COMPOSER_ALLOW_SUPERUSER=1
-
-ENV PATH="$(composer config --global home)/vendor/bin:$PATH"
+FROM --platform=$BUILDPLATFORM ghcr.io/ghostwriter/php:${PHP_VERSION}-cli
 
 WORKDIR /srv/workspace
 
