@@ -88,14 +88,15 @@ jobs:
           build-args: PHP_VERSION=${{ matrix.version }}
 
   coverage:
-    needs: [matrix, extensions]
+    needs: [matrix]
     runs-on: ubuntu-latest
     continue-on-error: true
     strategy:
       fail-fast: false
       matrix:
-        version: ${{ fromJSON(needs.matrix.outputs.matrix.version) }}
-        variant: [cli]
+        include:
+          - version: ${{ fromJSON(needs.matrix.outputs.matrix.version) }}
+            variant: [cli]
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
