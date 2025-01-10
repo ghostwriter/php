@@ -50,7 +50,6 @@ docker pull ghcr.io/ghostwriter/php:8.4-zts
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.4-zts php -v
 ```
 
-
 ## PHP 8.3
 
 #### ![Code](resource/icons/code.svg) Use `PHP 8.3` image in Dockerfile
@@ -94,7 +93,6 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-fpm
 docker pull ghcr.io/ghostwriter/php:8.3-zts
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.3-zts php -v
 ```
-
 
 ## PHP 8.2
 
@@ -140,7 +138,6 @@ docker pull ghcr.io/ghostwriter/php:8.2-zts
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.2-zts php -v
 ```
 
-
 ## PHP 8.1
 
 #### ![Code](resource/icons/code.svg) Use `PHP 8.1` image in Dockerfile
@@ -184,4 +181,3 @@ docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-fpm
 docker pull ghcr.io/ghostwriter/php:8.1-zts
 docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.1-zts php -v
 ```
-
