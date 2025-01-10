@@ -85,32 +85,6 @@ function dockerFile(string $phpVersion, ?string $variant = null): string
         $variant,
     );
 }
-function dockerRun(string $phpVersion, ?string $variant = null): string
-{
-    return \sprintf(
-        <<<'EOD'
-            ```sh
-            docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s%s vendor/bin/phpunit
-            ```
-            EOD
-        ,
-        $phpVersion,
-        $variant ? '-' . $variant : '',
-    );
-}
-function dockerPull(string $phpVersion, ?string $variant = null): string
-{
-    return \sprintf(
-        <<<'EOD'
-            ```sh
-            docker pull ghcr.io/ghostwriter/php:%s%s
-            ```
-            EOD
-        ,
-        $phpVersion,
-        $variant ? '-' . $variant : '',
-    );
-}
 function dockerPullAndRun(string $phpVersion, ?string $variant = null): string
 {
     $variant = $variant ? '-' . $variant : '';
@@ -118,7 +92,7 @@ function dockerPullAndRun(string $phpVersion, ?string $variant = null): string
         <<<'EOD'
             ```sh
             docker pull ghcr.io/ghostwriter/php:%s%s
-            docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s%s vendor/bin/phpunit
+            docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s%s php -v
             ```
             EOD,
         $phpVersion,
