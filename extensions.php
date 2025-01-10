@@ -1,44 +1,20 @@
 <?php
 
-$sapi = \mb_strtolower(\PHP_SAPI);
+declare(strict_types=1);
 
-$phpVariant = 'cli';
+$missingExtensions = \array_filter(
+    [
+        'apcu', 'bcmath', 'bz2', 'curl', 'dom', 'ftp',
+        'gd', 'gmp', 'gnupg', 'igbinary', 'imap', 'intl', 'ldap', 'libxml',
+        'mbstring', 'memcached', 'mongodb', 'msgpack', 'odbc', 'opcache', 'pcntl',
+        'pdo', 'pdo_mysql', 'pdo_odbc', 'pdo_pgsql', 'pdo_sqlite',
+        'readline', 'simplexml', 'soap', 'sockets', 'sqlite3', 'sqlsrv', \tidy::class,
+        'xml', 'xmlwriter', 'xsl', 'zip',
+    ],
+    static fn ($extension) => ! \extension_loaded($extension)
+);
 
-if (\strpos($sapi, 'fpm') !== false) {
-    $phpVariant = 'fpm';
-}
-
-if (\defined('ZEND_THREAD_SAFE') && \ZEND_THREAD_SAFE) {
-    $phpVariant = 'zts';
-}
-
-$phpVersion = \PHP_MAJOR_VERSION . '.' . \PHP_MINOR_VERSION;
-
-$extensions = [
-    'apcu', 'bcmath', 'bz2', 'curl', 'dom', 'ftp',
-    'gd', 'gmp', 'gnupg', 'igbinary', 'imap', 'intl', 'ldap', 'libxml',
-    'mbstring', 'memcached', 'mongodb', 'msgpack', 'odbc', 'opcache', 'pcntl',
-    'pdo', 'pdo_mysql', 'pdo_odbc', 'pdo_pgsql', 'pdo_sqlite', 'pdo_sqlsrv',
-    'readline', 'simplexml', 'soap', 'sockets', 'sqlite3', 'sqlsrv', 'tidy',
-    'uuid', 'xml', 'xmlwriter', 'xsl', 'zip',
-];
-
-$variants = ['cli', 'fpm', 'zts'];
-
-$versions = ['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4'];
-
-$excludeExtensions = \array_fill_keys($versions,[]);
-
-$excludeExtensions['8.4'][] = 'imagick';
-$excludeExtensions['8.4'][] = 'imap';
-
-$requiredExtensions = \array_diff($extensions, array_values($excludeExtensions[$phpVersion]));
-
-$missingExtensions = \array_filter($requiredExtensions, static function ($extension) {
-    return !\extension_loaded($extension);
-});
-
-if ($missingExtensions === []) {
+if ([] === $missingExtensions) {
     // All required extensions are loaded
     $missingExtensions = ['mbstring'];
 }
