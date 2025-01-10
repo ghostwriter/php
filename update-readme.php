@@ -62,7 +62,7 @@ function dockerFile(string $phpVersion, ?string $variant = null): string
         return \sprintf(
             <<<'EOD'
                 ```Dockerfile
-                FROM ghcr.io/ghostwriter/php:%s # %s-cli with additional development tools
+                FROM ghcr.io/ghostwriter/php:%s # %s-cli with code coverage
                 ```
                 EOD
             ,
