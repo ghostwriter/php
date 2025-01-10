@@ -91,7 +91,6 @@ jobs:
     needs: [matrix, extensions]
     runs-on: ubuntu-latest
     continue-on-error: true
-    if: ${{ matrix.variant == 'cli' }}
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
@@ -129,6 +128,7 @@ jobs:
           tags: type=raw,value=${{ matrix.version }}
 
       - name: Build and push PHP ${{ matrix.version }} image with Code Coverage
+        if: ${{ matrix.variant == 'cli' }}
         uses: docker/build-push-action@v6
         with:
           cache-from: type=gha,scope=${{ matrix.version }}
