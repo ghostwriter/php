@@ -26,7 +26,7 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     container:
-      image: php:8.4-cli-alpine
+      image: ghcr.io/ghostwriter/php:8.4-cli
     steps:
       - uses: actions/checkout@v4
       - id: matrix
