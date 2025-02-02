@@ -24,7 +24,7 @@ jobs:
       - uses: actions/delete-package-versions@v5
         with:
           delete-only-untagged-versions: 'true'
-          min-versions-to-keep: 15
+          min-versions-to-keep: 50
           package-name: ${{ matrix.name }}
           package-type: ${{ matrix.type }}
           # token: ${{ secrets.GHT }}
