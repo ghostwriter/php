@@ -14,7 +14,7 @@ RUN set -euxo pipefail && \
     ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone && \
     apk update && \
     apk upgrade && \
-    apk add --no-cache bash ca-certificate curl git github-cli jq make openrc patch sudo && \
+    apk add --no-cache bash ca-certificates curl git github-cli jq make openrc patch sudo && \
     install-php-extensions $(php coverage.php) && \
     apk del --no-network --purge --no-cache $PHPIZE_DEPS && \
     rm -vrf /tmp/* && \
