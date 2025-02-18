@@ -28,6 +28,7 @@ jobs:
           delete-ghost-images: true
           delete-partial-images: true
           delete-untagged: true
+          log-level: debug
       #- uses: actions/delete-package-versions@v5
       #  with:
       #    ignore-versions: '^\d+\.\d+(?:-(?:zts|cli|fpm))?$'
