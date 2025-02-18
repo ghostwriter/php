@@ -12,8 +12,8 @@ try {
         'latest' => ['8.4'],
         'version' => \array_values($versions),
         'variant' => ['cli', 'fpm', 'zts'],
-    ], JSON_THROW_ON_ERROR);
-} catch (Throwable $e) {
+    ], \JSON_THROW_ON_ERROR);
+} catch (\Throwable $e) {
     echo 'Error encoding JSON';
     exit(1);
 }
