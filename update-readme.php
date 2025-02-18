@@ -43,10 +43,10 @@ function versionTemplate(string $version, array $variants, array $extensions): s
     $sh[] = \dockerPullAndRun($version);
 
     foreach ($variants as $variant) {
-        $code[] = \sprintf('**%s**', \strtoupper($variant));
+        $code[] = \sprintf('**%s**', \mb_strtoupper($variant));
         $code[] = \dockerFile($version, $variant);
 
-        $sh[] = \sprintf('**%s**', \strtoupper($variant));
+        $sh[] = \sprintf('**%s**', \mb_strtoupper($variant));
         $sh[] = \dockerPullAndRun($version, $variant);
     }
 
@@ -89,13 +89,15 @@ function dockerFile(string $phpVersion, ?string $variant = null): string
 function dockerPullAndRun(string $phpVersion, ?string $variant = null): string
 {
     $variant = $variant ? '-' . $variant : '';
+
     return \sprintf(
         <<<'EOD'
             ```sh
             docker pull ghcr.io/ghostwriter/php:%s%s
             docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s%s php -v
             ```
-            EOD,
+            EOD
+        ,
         $phpVersion,
         $variant,
         $phpVersion,
@@ -109,7 +111,7 @@ function printREADME(array $versions, array $variants, array $extensions): strin
 
         Development and Production-ready PHP Images for Docker
 
-        **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer) tool, which made all of this possible!**
+        **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer), which made all of this possible!**
         EOD;
 
     $body[] = \sprintf(
@@ -137,8 +139,6 @@ function printREADME(array $versions, array $variants, array $extensions): strin
 }
 
 $readme = \printREADME($versions, $variants, $extensions);
-
-// die($readme);
 
 \file_put_contents('README.md', $readme);
 
