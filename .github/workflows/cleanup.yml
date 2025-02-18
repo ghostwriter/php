@@ -24,6 +24,7 @@ jobs:
       - uses: actions/delete-package-versions@v5
         with:
           delete-only-untagged-versions: 'true'
+          ignore-versions: '^\d+\.\d+(?:-(?:zts|cli|fpm))?$'
           min-versions-to-keep: 0
           package-name: ${{ matrix.name }}
           package-type: ${{ matrix.type }}
