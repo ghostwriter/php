@@ -4,6 +4,8 @@ FROM --platform=$BUILDPLATFORM ghcr.io/ghostwriter/php:${PHP_VERSION}-cli
 
 WORKDIR /srv/workspace
 
+ENV XDEBUG_MODE=coverage
+
 COPY script/coverage.php coverage.php
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
