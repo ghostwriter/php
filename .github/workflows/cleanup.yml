@@ -15,16 +15,23 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        type:
-          # - 'docker'
-          - 'container'
+        #type:
+        #  - 'container'
         name:
           - 'php'
     steps:
-      - uses: actions/delete-package-versions@v5
+      - uses: dataaxiom/ghcr-cleanup-action@v1
         with:
-          ignore-versions: '^\d+\.\d+(?:-(?:zts|cli|fpm))?$'
-          min-versions-to-keep: 50
-          package-name: ${{ matrix.name }}
-          package-type: ${{ matrix.type }}
-          # token: ${{ secrets.GHT }}
+          owner: ${{ github.repository_owner }}
+          repository: ${{ matrix.name }}
+          package: ${{ matrix.name }}
+          delete-ghost-images: true
+          delete-partial-images: true
+          delete-untagged: true
+      #- uses: actions/delete-package-versions@v5
+      #  with:
+      #    ignore-versions: '^\d+\.\d+(?:-(?:zts|cli|fpm))?$'
+      #    min-versions-to-keep: 100
+      #    package-name: ${{ matrix.name }}
+      #    package-type: ${{ matrix.type }}
+      #    token: ${{ secrets.GHT }}
