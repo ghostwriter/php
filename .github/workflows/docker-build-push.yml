@@ -30,7 +30,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - id: matrix
-        run: echo "matrix=$(php matrix.php)" >> $GITHUB_OUTPUT
+        run: echo "matrix=$(php script/matrix.php)" >> $GITHUB_OUTPUT
 
   extensions:
     needs: [matrix]
