@@ -22,13 +22,14 @@ jobs:
     steps:
       - uses: dataaxiom/ghcr-cleanup-action@v1
         with:
-          owner: ${{ github.repository_owner }}
-          repository: ${{ matrix.name }}
-          package: ${{ matrix.name }}
           delete-ghost-images: true
           delete-partial-images: true
           delete-untagged: true
           log-level: debug
+          owner: ${{ github.repository_owner }}
+          package: ${{ matrix.name }}
+          repository: ${{ matrix.name }}
+          validate: true
       #- uses: actions/delete-package-versions@v5
       #  with:
       #    ignore-versions: '^\d+\.\d+(?:-(?:zts|cli|fpm))?$'
