@@ -4,7 +4,7 @@ FROM --platform=$BUILDPLATFORM php:${PHP_VERSION}-fpm-alpine
 
 WORKDIR /srv/workspace
 
-COPY extensions.php extensions.php
+COPY script/extensions.php extensions.php
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
