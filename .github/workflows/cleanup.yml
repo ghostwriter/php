@@ -23,9 +23,8 @@ jobs:
     steps:
       - uses: actions/delete-package-versions@v5
         with:
-          delete-only-untagged-versions: 'true'
           ignore-versions: '^\d+\.\d+(?:-(?:zts|cli|fpm))?$'
-          min-versions-to-keep: 0
+          min-versions-to-keep: 50
           package-name: ${{ matrix.name }}
           package-type: ${{ matrix.type }}
           # token: ${{ secrets.GHT }}
