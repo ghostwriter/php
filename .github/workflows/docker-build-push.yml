@@ -68,9 +68,7 @@ jobs:
         with:
           github-token: ${{ secrets.GHT }}
           images: ${{ env.DEFAULT_IMAGE }}
-          tags: |
-            type=raw,value=${{ matrix.version }}-${{ matrix.variant }}
-            type=raw,value=latest,enable=${{ matrix.latest == matrix.version && matrix.variant == 'cli' }}
+          tags: type=raw,value=${{ matrix.version }}-${{ matrix.variant }}
 
       - name: Build and push PHP ${{ matrix.version }} image
         uses: docker/build-push-action@v6
