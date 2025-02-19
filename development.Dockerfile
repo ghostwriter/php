@@ -22,9 +22,7 @@ RUN set -euxo pipefail && \
     rm -vrf /tmp/* && \
     rm -vrf /var/cache/apk/* && \
     rm -vrf /var/lib/apt/lists/* && \
-    rm -vrf /var/tmp/* && { \
-    echo 'xdebug.mode=develop,trace'; \
-    } > /usr/local/etc/php/conf.d/xdebug.ini && \
+    rm -vrf /var/tmp/* && \
     rm -vrf coverage.php && \
     gh --version && \
     git --version && \
