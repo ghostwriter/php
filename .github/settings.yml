@@ -3,7 +3,6 @@
   "description": "[WIP] Development and Production-ready PHP Alpine Images for Docker with Multi-Architecture support"
   "homepage": "https://github.com/ghostwriter/php"
   "topics": "composer, docker, ghostwriter, php, php-cli, php-fpm, php-zts, xdebug"
-  "private": false
   "has_issues": true
   "has_projects": false
   "has_wiki": false
