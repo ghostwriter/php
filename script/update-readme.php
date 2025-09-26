@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-$versions = ['8.1', '8.2', '8.3', '8.4'];
+$versions = ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5-rc'];
 
 \arsort($versions);
 
-$dev = '8.5';
+$dev = '8.5-rc';
 $latest = '8.4';
 $variants = ['cli', 'fpm', 'zts'];
 $extensions = [
@@ -111,7 +111,7 @@ function printREADME(array $versions, array $variants, array $extensions): strin
 
         Development and Production-ready PHP Images for Docker
 
-        **Special thanks to [@mlocati](https://github.com/mlocati) for creating the fantastic [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer), which made all of this possible!**
+        **Special thanks to [@mlocati](https://github.com/mlocati) for creating this fantastic tool [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer), which made all of this possible!**
         EOD;
 
     $body[] = \sprintf(
@@ -131,7 +131,11 @@ function printREADME(array $versions, array $variants, array $extensions): strin
         \PHP_EOL
     );
 
+    $count = 4;
     foreach ($versions as $version) {
+        if (0 === --$count) {
+            break;
+        }
         $body[] = \versionTemplate($version, $variants, $extensions) . \PHP_EOL;
     }
 
@@ -140,7 +144,7 @@ function printREADME(array $versions, array $variants, array $extensions): strin
 
 $readme = \printREADME($versions, $variants, $extensions);
 
-\file_put_contents(dirname(__DIR__) . 'README.md', $readme);
+\file_put_contents(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'README.md', $readme);
 
 echo 'README.md updated' . \PHP_EOL;
 exit(0);
