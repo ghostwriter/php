@@ -3,7 +3,7 @@ name: cleanup
 on:
   workflow_dispatch:
   schedule:
-    - cron: "*/5 * * * *" # Runs At every 5th minute.
+    - cron: "*/30 * * * *" # Runs At every 30th minute.
 
 permissions:
   packages: write
