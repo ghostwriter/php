@@ -74,8 +74,8 @@ jobs:
         uses: docker/build-push-action@v6
         continue-on-error: ${{ matrix.version == matrix.dev }}
         with:
-          # cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}
-          # cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }},mode=max
+          cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}
+          cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }},mode=max
           file: ${{ matrix.variant }}.Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS }}
           push: ${{ github.repository_owner == github.actor }}
@@ -125,8 +125,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.version }} image with Code Coverage
         uses: docker/build-push-action@v6
         with:
-          # cache-from: type=gha,scope=${{ matrix.version }}
-          # cache-to: type=gha,scope=${{ matrix.version }},mode=max
+          cache-from: type=gha,scope=${{ matrix.version }}
+          cache-to: type=gha,scope=${{ matrix.version }},mode=max
           file: development.Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS }}
           push: ${{ github.repository_owner == github.actor }}
