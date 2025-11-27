@@ -4,50 +4,50 @@ Development and Production-ready PHP Images for Docker
 
 **Special thanks to [@mlocati](https://github.com/mlocati) for creating this fantastic tool [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer), which made all of this possible!**
 
-> **Supported versions: [`8.5-rc`](#-use-php-85-rc-image-in-dockerfile), [`8.4`](#-use-php-84-image-in-dockerfile), [`8.3`](#-use-php-83-image-in-dockerfile), [`8.2`](#-use-php-82-image-in-dockerfile), [`8.1`](#-use-php-81-image-in-dockerfile), [`8.0`](#-use-php-80-image-in-dockerfile), [`7.4`](#-use-php-74-image-in-dockerfile)**
+> **Supported versions: [`8.5`](#-use-php-85-image-in-dockerfile), [`8.4`](#-use-php-84-image-in-dockerfile), [`8.3`](#-use-php-83-image-in-dockerfile), [`8.2`](#-use-php-82-image-in-dockerfile), [`8.1`](#-use-php-81-image-in-dockerfile), [`8.0`](#-use-php-80-image-in-dockerfile), [`7.4`](#-use-php-74-image-in-dockerfile)**
 
-## PHP 8.5-rc
+## PHP 8.5
 
-#### ![Code](resource/icons/code.svg) Use `PHP 8.5-rc` image in Dockerfile
+#### ![Code](resource/icons/code.svg) Use `PHP 8.5` image in Dockerfile
 
 **CLI with code coverage**
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.5-rc
+FROM ghcr.io/ghostwriter/php:8.5
 ```
 **CLI**
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.5-rc-cli
+FROM ghcr.io/ghostwriter/php:8.5-cli
 ```
 **FPM**
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.5-rc-fpm
+FROM ghcr.io/ghostwriter/php:8.5-fpm
 ```
 **ZTS**
 ```Dockerfile
-FROM ghcr.io/ghostwriter/php:8.5-rc-zts
+FROM ghcr.io/ghostwriter/php:8.5-zts
 ```
 
-#### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.5-rc` image from the command line
+#### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP 8.5` image from the command line
 
 **CLI with code coverage**
 ```sh
-docker pull ghcr.io/ghostwriter/php:8.5-rc
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.5-rc php -v
+docker pull ghcr.io/ghostwriter/php:8.5
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.5 php -v
 ```
 **CLI**
 ```sh
-docker pull ghcr.io/ghostwriter/php:8.5-rc-cli
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.5-rc-cli php -v
+docker pull ghcr.io/ghostwriter/php:8.5-cli
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.5-cli php -v
 ```
 **FPM**
 ```sh
-docker pull ghcr.io/ghostwriter/php:8.5-rc-fpm
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.5-rc-fpm php -v
+docker pull ghcr.io/ghostwriter/php:8.5-fpm
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.5-fpm php -v
 ```
 **ZTS**
 ```sh
-docker pull ghcr.io/ghostwriter/php:8.5-rc-zts
-docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.5-rc-zts php -v
+docker pull ghcr.io/ghostwriter/php:8.5-zts
+docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:8.5-zts php -v
 ```
 
 ## PHP 8.4
