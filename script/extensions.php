@@ -84,7 +84,7 @@ if (array_key_exists('XDEBUG_MODE', $_ENV) && $_ENV['XDEBUG_MODE'] !== 'off') {
     $missingExtensions[] =  'xdebug';
 }
 
-echo \implode(' && \\' . \PHP_EOL, array_map(
+echo \implode(' && ' . \PHP_EOL, array_map(
     static function ( $missingExtension) {return sprintf('install-php-extensions %s', $missingExtension);},
     $missingExtensions
 ));
