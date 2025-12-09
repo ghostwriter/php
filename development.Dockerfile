@@ -1,6 +1,7 @@
 ARG PHP_VERSION=8.4
+ARG PHP_VARIANT=cli
 
-FROM --platform=$BUILDPLATFORM ghcr.io/ghostwriter/php:${PHP_VERSION}-cli
+FROM --platform=$BUILDPLATFORM ghcr.io/ghostwriter/php:${PHP_VERSION}-${PHP_VARIANT}
 
 WORKDIR /srv/workspace
 

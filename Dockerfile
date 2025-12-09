@@ -1,6 +1,7 @@
 ARG PHP_VERSION=8.4
+ARG PHP_VARIANT=cli
 
-FROM --platform=$BUILDPLATFORM php:${PHP_VERSION}-cli-alpine
+FROM --platform=$BUILDPLATFORM php:${PHP_VERSION}-${PHP_VARIANT}-alpine
 
 WORKDIR /srv/workspace
 
