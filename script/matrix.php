@@ -5,7 +5,7 @@ declare(strict_types=1);
 //$dev = '8.6-dev';
 $dev = '8.5';
 
-$versions = \array_unique(['5.4', '5.5', '5.6', '7.0', '7.1', '7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', $dev]);
+$versions = \array_unique(['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', $dev]);
 
 \usort($versions, function (string $left,string $right): int {
     return \version_compare($right, $left);
