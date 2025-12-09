@@ -47,11 +47,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
-      - name: Set up Buildx
-        uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
 
       - name: Docker meta
         id: meta
@@ -91,11 +88,8 @@ jobs:
           registry: ghcr.io
           username: ${{ github.repository_owner }}
 
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-
-      - name: Set up Buildx
-        uses: docker/setup-buildx-action@v3
+      - uses: docker/setup-qemu-action@v3
+      - uses: docker/setup-buildx-action@v3
 
       - name: Docker meta
         id: meta
@@ -108,8 +102,8 @@ jobs:
       - name: Build and push PHP ${{ matrix.version }} image with Code Coverage
         uses: docker/build-push-action@v6
         with:
-          cache-from: type=gha,scope=${{ matrix.version }}
-          cache-to: type=gha,scope=${{ matrix.version }},mode=max
+          cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}-dev
+          cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}-dev,mode=max
           file: development.Dockerfile
           platforms: ${{ env.SUPPORTED_PLATFORMS }}
           push: ${{ github.repository_owner == github.actor }}

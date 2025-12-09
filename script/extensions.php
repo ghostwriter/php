@@ -81,4 +81,9 @@ if ([] === $missingExtensions) {
     $missingExtensions = ['mbstring'];
 }
 
+if (array_key_exists('XDEBUG_MODE', $_ENV) && $_ENV['XDEBUG_MODE'] !== 'off') {
+//    $missingExtensions[] =  'xdebug/xdebug@3.5.0';
+    $missingExtensions[] =  'xdebug';
+}
+
 echo \implode(' ', $missingExtensions);
