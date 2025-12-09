@@ -27,13 +27,6 @@ RUN set -euxo pipefail && \
     rm -vrf /var/lib/apt/lists/* && \
     rm -vrf /var/tmp/* && \
     rm -vrf script/* && \
-    rm $PHP_INI_DIR/php.ini-production && \
-    mv $PHP_INI_DIR/php.ini-development $PHP_INI_DIR/php.ini && \
-    sed 's/short_open_tag=On/short_open_tag=Off/' $PHP_INI_DIR/php.ini && { \
-    echo 'memory_limit=2048M'; \
-    echo 'upload_max_filesize=128M'; \
-    echo 'post_max_size=128M'; \
-    } > /usr/local/etc/php/conf.d/memory-limit.ini && \
     composer --version && \
     gh --version && \
     git --version && \
