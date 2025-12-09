@@ -8,7 +8,7 @@ WORKDIR /srv/workspace
 ENV XDEBUG_MODE=coverage
 
 COPY script/tools.php script/tools.php
-COPY script/coverage.php coverage.php
+COPY script/coverage.php script/coverage.php
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
