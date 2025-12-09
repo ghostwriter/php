@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 echo \implode(' ', [
     'bash',
     'ca-certificates',

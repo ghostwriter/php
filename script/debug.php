@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 if (\getenv('RUNNER_DEBUG') !== false) {
     $eventPath = \getenv('GITHUB_EVENT_PATH');
 

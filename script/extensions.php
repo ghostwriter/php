@@ -1,7 +1,5 @@
 <?php
 
-declare(strict_types=1);
-
 $missingExtensions = \array_filter([
         'apcu',
         'bcmath',
@@ -73,7 +71,7 @@ $missingExtensions = \array_filter([
         'zip',
         'zlib',
     ],
-    static fn ($extension) => ! \extension_loaded($extension)
+    static function ($extension) { return !\extension_loaded($extension); }
 );
 
 if ([] === $missingExtensions) {
@@ -86,4 +84,7 @@ if (array_key_exists('XDEBUG_MODE', $_ENV) && $_ENV['XDEBUG_MODE'] !== 'off') {
     $missingExtensions[] =  'xdebug';
 }
 
-echo \implode(' ', $missingExtensions);
+echo \implode(' && \\' . \PHP_EOL, array_map(
+    static function ( $missingExtension) {return sprintf('install-php-extensions %s', $missingExtension);},
+    $missingExtensions
+));
