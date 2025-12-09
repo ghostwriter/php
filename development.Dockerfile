@@ -17,7 +17,9 @@ RUN set -euxo pipefail && \
     ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone && \
     apk update && \
     apk upgrade && \
-    $(php script/extensions.php | sh) && \
+    php script/extensions.php | sh;
+
+RUN set -euxo pipefail && \
     apk del --no-network --purge --no-cache $PHPIZE_DEPS && \
     apk add --no-cache $(php script/tools.php) && \
     rm -vrf /tmp/* && \
