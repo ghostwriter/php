@@ -29,7 +29,6 @@ $missingExtensions = \array_filter([
         'ldap',
         'libxml',
         'mbstring',
-        'memcache',
         'memcached',
         'msgpack',
         'mysqli',
