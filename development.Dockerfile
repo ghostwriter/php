@@ -12,8 +12,6 @@ COPY script/tools.php script/tools.php
 
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/install-php-extensions
-COPY --from=oven/bun:alpine /usr/local/bin/bun /usr/local/bin/bun
-COPY --from=oven/bun:alpine /usr/local/bin/bunx /usr/local/bin/bunx
 
 RUN set -euxo pipefail && \
     ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone && \
@@ -29,7 +27,6 @@ RUN set -euxo pipefail && \
     rm -vrf /var/lib/apt/lists/* && \
     rm -vrf /var/tmp/* && \
     rm -vrf script/* && \
-    bun --version && \
     composer --version && \
     gh --version && \
     git --version && \
