@@ -1,11 +1,9 @@
 ARG PHP_VERSION=8.5
-ARG PHP_VARIANT=cli
 
-FROM --platform=$BUILDPLATFORM php:${PHP_VERSION}-${PHP_VARIANT}-alpine
-
+FROM --platform=$BUILDPLATFORM dunglas/frankenphp:php${PHP_VERSION}-alpine
 WORKDIR /srv/workspace
 
-ENV XDEBUG_MODE=off
+ENV XDEBUG_MODE=coverage
 
 COPY script/extensions.php script/extensions.php
 COPY script/tools.php script/tools.php
@@ -29,13 +27,6 @@ RUN set -euxo pipefail && \
     rm -vrf /var/lib/apt/lists/* && \
     rm -vrf /var/tmp/* && \
     rm -vrf script/* && \
-    rm $PHP_INI_DIR/php.ini-development && \
-    mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
-    sed 's/short_open_tag=On/short_open_tag=Off/' $PHP_INI_DIR/php.ini && { \
-    echo 'memory_limit=2048M'; \
-    echo 'upload_max_filesize=128M'; \
-    echo 'post_max_size=128M'; \
-    } > /usr/local/etc/php/conf.d/memory-limit.ini && \
     bun --version && \
     composer --version && \
     gh --version && \
