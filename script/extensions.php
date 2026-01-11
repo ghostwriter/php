@@ -66,6 +66,7 @@ $missingExtensions = \array_filter([
         'xmlreader',
         'xmlwriter',
         'xsl',
+        'xdebug',
         'yaml',
         'zip',
         'zlib',
@@ -78,10 +79,10 @@ if ([] === $missingExtensions) {
     $missingExtensions = ['mbstring'];
 }
 
-if (array_key_exists('XDEBUG_MODE', $_ENV) && $_ENV['XDEBUG_MODE'] !== 'off') {
+//if (array_key_exists('XDEBUG_MODE', $_ENV) && $_ENV['XDEBUG_MODE'] !== 'off') {
 //    $missingExtensions[] =  'xdebug/xdebug@3.5.0';
-    $missingExtensions[] =  'xdebug';
-}
+//    $missingExtensions[] =  'xdebug';
+//}
 
 echo trim(\implode(\PHP_EOL, array_map(
     static function ( $missingExtension) {return sprintf('install-php-extensions %s;', $missingExtension);},
