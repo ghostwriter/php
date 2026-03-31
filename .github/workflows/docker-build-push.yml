@@ -17,7 +17,7 @@ concurrency:
   cancel-in-progress: ${{ github.event_name != 'schedule' }}
 
 env:
-  SUPPORTED_PLATFORMS: "linux/amd64,linux/arm64,linux/arm/v7"
+  SUPPORTED_PLATFORMS: "linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64/v8,linux/386,linux/ppc64le,linux/riscv64,linux/s390x"
   DEFAULT_IMAGE: "ghcr.io/ghostwriter/php"
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     container:
-      image: php:8.4-cli-alpine
+      image: php:8.5-cli-alpine
     steps:
       - uses: actions/checkout@v6
       - id: matrix
