@@ -59,7 +59,7 @@ jobs:
           tags: type=raw,value=${{ matrix.version }}-${{ matrix.variant }}
 
       - name: Build and push PHP ${{ matrix.version }} image
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         continue-on-error: ${{ matrix.version == matrix.dev }}
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}
@@ -100,7 +100,7 @@ jobs:
           tags: type=raw,value=${{ matrix.version }}
 
       - name: Build and push PHP ${{ matrix.version }} image with Code Coverage
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}-dev
           cache-to: type=gha,scope=${{ matrix.version }}-${{ matrix.variant }}-dev,mode=max
@@ -140,7 +140,7 @@ jobs:
           tags: type=raw,value=${{ matrix.version }}-frankenphp
 
       - name: Build and push PHP ${{ matrix.version }} image with Code Coverage
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           cache-from: type=gha,scope=${{ matrix.version }}-frankenphp
           cache-to: type=gha,scope=${{ matrix.version }}-frankenphp,mode=max
