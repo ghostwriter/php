@@ -2,8 +2,8 @@
 
 defined('JSON_THROW_ON_ERROR') || define('JSON_THROW_ON_ERROR', 4194304);
 
-//$dev = '8.6-dev';
-$dev = '8.5';
+$dev = '8.6-dev';
+// $dev = '8.6';
 
 $versions = array_unique(['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', $dev]);
 
