@@ -28,7 +28,7 @@ jobs:
     container:
       image: php:8.5-cli-alpine
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1 # v7.0.1
       - id: matrix
         run: echo "matrix=$(php script/matrix.php)" >> $GITHUB_OUTPUT
 
