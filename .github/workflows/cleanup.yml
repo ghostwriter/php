@@ -20,7 +20,7 @@ jobs:
         name:
           - 'php'
     steps:
-      - uses: dataaxiom/ghcr-cleanup-action@v1
+      - uses: dataaxiom/ghcr-cleanup-action@v1.2.2 # v1.2.2
         with:
           delete-ghost-images: true
           delete-partial-images: true
