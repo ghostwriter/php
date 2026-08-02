@@ -30,7 +30,7 @@ jobs:
           package: ${{ matrix.name }}
           repository: ${{ matrix.name }}
           validate: true
-      #- uses: actions/delete-package-versions@v5
+      #- uses: actions/delete-package-versions@v5.0.0 # v5.0.0
       #  with:
       #    ignore-versions: '^\d+\.\d+(?:-(?:zts|cli|fpm))?$'
       #    min-versions-to-keep: 100
