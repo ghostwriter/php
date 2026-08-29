@@ -42,6 +42,13 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
     steps:
+      - name: Cache Docker layers
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # 6.1.0
+        with:
+          path: ${{ runner.temp }}/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-buildx-
+
       - name: Login to GitHub Packages Docker Registry
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # 4.6.0
         with:
@@ -59,13 +66,6 @@ jobs:
           github-token: ${{ secrets.GHT }}
           images: ${{ env.DOCKER_IMAGE }}
           tags: type=raw,value=${{ matrix.version }}-${{ matrix.variant }}
-
-      - name: Cache Docker layers
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # 6.1.0
-        with:
-          path: ${{ runner.temp }}/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-buildx-
 
       - name: Build and push PHP ${{ matrix.version }} image
         uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # 7.3.0
@@ -100,6 +100,13 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
     steps:
+      - name: Cache Docker layers
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # 6.1.0
+        with:
+          path: ${{ runner.temp }}/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-buildx-
+
       - name: Login to GitHub Packages Docker Registry
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # 4.6.0
         with:
@@ -117,13 +124,6 @@ jobs:
           github-token: ${{ secrets.GHT }}
           images: ${{ env.DOCKER_IMAGE }}
           tags: type=raw,value=${{ matrix.version }}
-
-      - name: Cache Docker layers
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # 6.1.0
-        with:
-          path: ${{ runner.temp }}/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-buildx-
 
       - name: Build and push PHP ${{ matrix.version }} image with Code Coverage
         uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # 7.3.0
@@ -157,6 +157,13 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
     steps:
+      - name: Cache Docker layers
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # 6.1.0
+        with:
+          path: ${{ runner.temp }}/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-buildx-
+
       - name: Login to GitHub Packages Docker Registry
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # 4.6.0
         with:
@@ -174,13 +181,6 @@ jobs:
           github-token: ${{ secrets.GHT }}
           images: ${{ env.DOCKER_IMAGE }}
           tags: type=raw,value=${{ matrix.version }}-frankenphp
-
-      - name: Cache Docker layers
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # 6.1.0
-        with:
-          path: ${{ runner.temp }}/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-buildx-
 
       - name: Build and push PHP ${{ matrix.version }} image with Code Coverage
         uses: docker/build-push-action@53b7df96c91f9c12dcc8a07bcb9ccacbed38856a # 7.3.0
