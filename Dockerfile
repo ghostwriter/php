@@ -1,10 +1,10 @@
 ARG PHP_VERSION=8.5
-ARG PHP_VARIANT=cli
 
-FROM --platform=$BUILDPLATFORM ghcr.io/ghostwriter/php:${PHP_VERSION}-${PHP_VARIANT}
+FROM --platform=$BUILDPLATFORM ghcr.io/ghostwriter/php:${PHP_VERSION}-cli
 
 WORKDIR /srv/workspace
 
+ENV XDEBUG_ENABLED=true
 ENV XDEBUG_MODE=coverage
 
 COPY script/extensions.php script/extensions.php
