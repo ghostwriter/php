@@ -79,7 +79,8 @@ if ([] === $missingExtensions) {
     $missingExtensions = ['mbstring'];
 }
 
-if (getenv('XDEBUG_ENABLED') === 'true') {
+$xdebug = getenv('XDEBUG_ENABLED');
+if ($xdebug === true || $xdebug === 'true') {
     $missingExtensions[] =  'xdebug';
 }
 
