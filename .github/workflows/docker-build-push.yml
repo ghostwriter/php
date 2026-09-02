@@ -95,7 +95,7 @@ jobs:
     needs: [matrix, production]
     if: ${{ matrix.variant == 'cli' }}
     runs-on: ubuntu-latest
-    continue-on-error: true
+    continue-on-error: ${{ matrix.continue-on-error }}
     strategy:
       fail-fast: false
       matrix: ${{ fromJSON(needs.matrix.outputs.matrix) }}
