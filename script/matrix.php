@@ -1,6 +1,8 @@
 <?php
 
-defined('JSON_THROW_ON_ERROR') || define('JSON_THROW_ON_ERROR', 4194304);
+declare(strict_types=1);
+
+\defined('JSON_THROW_ON_ERROR') || \define('JSON_THROW_ON_ERROR', 4194304);
 
 $dev = '8.6';
 
@@ -31,9 +33,9 @@ foreach ($frankenphpVersions as $frankenphpVersion) {
 }
 
 try {
-    echo json_encode(['include' => $include], JSON_THROW_ON_ERROR);
+    echo \json_encode(['include' => $include], \JSON_THROW_ON_ERROR);
     exit(0);
-} catch (Exception $e) {
+} catch (\Exception $e) {
     echo 'Error encoding JSON';
     exit(1);
 }

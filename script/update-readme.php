@@ -11,12 +11,14 @@ $versions = ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', $dev];
 $latest = '8.5';
 $variants = ['cli', 'fpm', 'zts'];
 $extensions = [
-    //    'database' => ['mysql','pgsql'],
-    'code-coverage' => ['pcov'],
+    // 'database' => ['mysql','pgsql'],
+    'code-coverage' => [
+        // 'pcov'
+    ],
     'extension' => [
-        //    'openswoole',
-        //    'roadrunner',
-        //    'frankenphp'
+        // 'openswoole',
+        // 'roadrunner',
+        // 'frankenphp'
     ],
 ];
 
@@ -145,7 +147,7 @@ function printREADME(array $versions, array $variants, array $extensions): strin
 
 $readme = \printREADME($versions, $variants, $extensions);
 
-\file_put_contents(dirname(__DIR__) . DIRECTORY_SEPARATOR . 'README.md', $readme);
+\file_put_contents(\dirname(__DIR__) . \DIRECTORY_SEPARATOR . 'README.md', $readme);
 
 echo 'README.md updated' . \PHP_EOL;
 exit(0);

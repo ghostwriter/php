@@ -1,6 +1,8 @@
 <?php
 
-echo \implode(' ', [
+declare(strict_types=1);
+
+\printf('apk add --no-cache %s', \implode(' ', [
     'bash',
     'ca-certificates',
     'curl',
@@ -11,4 +13,4 @@ echo \implode(' ', [
     'openrc',
     'patch',
     'sudo',
-]);
+]));

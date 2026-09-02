@@ -3,30 +3,22 @@ ARG PHP_VARIANT=zts
 
 FROM --platform=$BUILDPLATFORM php:${PHP_VERSION}-${PHP_VARIANT}-alpine
 
-WORKDIR /srv/workspace
-
-ENV XDEBUG_MODE=off
-
-COPY script/extensions.php script/extensions.php
-COPY script/tools.php script/tools.php
-
 COPY --from=composer /usr/bin/composer /usr/local/bin/composer
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/install-php-extensions
+COPY script /buildxphp
 
 RUN set -euxo pipefail && \
     ln -snf /usr/share/zoneinfo/UTC /etc/localtime && echo UTC > /etc/timezone && \
     apk update && \
     apk upgrade && \
-    php script/extensions.php | sh;
-
-RUN set -euxo pipefail && \
+    $(php /buildxphp/extensions.php) && \
     apk del --no-network --purge --no-cache $PHPIZE_DEPS && \
-    apk add --no-cache $(php script/tools.php) && \
+    $(php /buildxphp/tools.php) && \
     rm -vrf /tmp/* && \
     rm -vrf /var/cache/apk/* && \
     rm -vrf /var/lib/apt/lists/* && \
     rm -vrf /var/tmp/* && \
-    rm -vrf script/* && \
+    rm -vrf /buildxphp/* && \
     rm $PHP_INI_DIR/php.ini-development && \
     mv $PHP_INI_DIR/php.ini-production $PHP_INI_DIR/php.ini && \
     sed 's/short_open_tag=On/short_open_tag=Off/' $PHP_INI_DIR/php.ini && { \
