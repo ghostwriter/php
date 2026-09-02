@@ -28,6 +28,7 @@ usort($versions, function ($left, $right) {
 
 try {
     echo json_encode([
+        'variants' => $variants,
         'include' => $include,
         'exclude' => [],
     ], JSON_THROW_ON_ERROR);
