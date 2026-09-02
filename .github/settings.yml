@@ -7,7 +7,7 @@
     "state": "open"
 "repository":
   "name": "php"
-  "description": "[WIP] Development and Production-ready PHP Alpine Images for Docker with Multi-Architecture support"
+  "description": "Development and Production-ready PHP Alpine Images for Docker with Multi-Architecture support"
   "topics": "composer, docker, ghostwriter, php, php-cli, php-fpm, php-zts, xdebug"
   "homepage": "https://github.com/ghostwriter/php"
   "default_branch": "main"
