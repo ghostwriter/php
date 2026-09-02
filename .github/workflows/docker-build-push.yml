@@ -93,7 +93,6 @@ jobs:
 
   development:
     needs: [matrix, production]
-    if: matrix.variant == 'cli'
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.continueOnError }}
     strategy:
