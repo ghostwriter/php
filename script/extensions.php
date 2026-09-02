@@ -13,7 +13,7 @@ $missingExtensions = \array_filter([
     'ds',
     'event',
     'exif',
-    'ffi',
+    // 'ffi',
     'fileinfo',
     'filter',
     'ftp',
