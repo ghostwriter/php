@@ -3,149 +3,134 @@
 declare(strict_types=1);
 
 $dev = '8.6';
+$dev = '8.5';
 
-$versions = ['7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', $dev];
+$phpVersions = array_unique(['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', $dev]);
+usort($phpVersions, static fn(string $a, string $b): int => \version_compare($b, $a));
 
-\arsort($versions);
+$frankenphpVersions = array_unique(['8.2', '8.3', '8.4', '8.5', $dev]);
+usort($frankenphpVersions, static fn(string $a, string $b): int => \version_compare($b, $a));
 
-$latest = '8.5';
-$variants = ['cli', 'fpm', 'zts'];
-$extensions = [
-    // 'database' => ['mysql','pgsql'],
-    'code-coverage' => [
-        // 'pcov'
-    ],
-    'extension' => [
-        // 'openswoole',
-        // 'roadrunner',
-        // 'frankenphp'
-    ],
-];
+$variants = ['cli', 'fpm', 'zts', 'frankenphp'];
 
-function terminalTemplate(string $phpVersion): string
-{
-    return \sprintf(
-        '#### ![Terminal](resource/icons/terminal.svg) Pull & Run `PHP %s` image from the command line',
-        $phpVersion
-    ) . \PHP_EOL;
+$include = [];
+
+foreach ($phpVersions as $phpVersion) {
+    foreach ($variants as $variant) {
+        if ($variant === 'frankenphp' && !\in_array($phpVersion, $frankenphpVersions, true)) {
+            continue;
+        }
+
+        $with = null;
+
+        if ($variant === 'cli') {
+            $include[$phpVersion] = [
+                'version' => $phpVersion,
+                'variant' => null,
+                'with' => 'xdebug',
+            ];
+        }
+
+        $include[$phpVersion . '-' . $variant] = [
+            'version' => $phpVersion,
+            'variant' => $variant,
+            'with' => $with,
+        ];
+    }
 }
 
-function codeTemplate(string $phpVersion): string
+// echo json_encode($include, JSON_PRETTY_PRINT);
+
+// foreach ($include as $key => $value) {
+//     echo $key . PHP_EOL;
+//     echo 'Version: ' . $value['version'] . PHP_EOL;
+//     echo 'Variant: ' . ($value['variant'] ?? 'cli') . PHP_EOL;
+//     echo 'With: ' . ($value['with'] ?? 'none') . PHP_EOL;
+//     echo PHP_EOL;
+// }
+
+function versionTemplate(string $phpVersion, array $variants, array $frankenphpVersions): string
 {
-    return \sprintf('#### ![Code](resource/icons/code.svg) Use `PHP %s` image in Dockerfile', $phpVersion) . \PHP_EOL;
-}
-
-function versionTemplate(string $version, array $variants, array $extensions): string
-{
-    $body = $code = $sh = [];
-
-    $code[] = '**CLI with code coverage**';
-    $code[] = \dockerFile($version);
-
-    $sh[] = '**CLI with code coverage**';
-    $sh[] = \dockerPullAndRun($version);
+    $body = $sh = [];
+    $body[] = '';
+    $sh[] = '';
+    $sh[] = \sprintf('### PHP `%s` CLI with Xdebug', $phpVersion);
+    $sh[] = \dockerTemplate($phpVersion);
 
     foreach ($variants as $variant) {
-        $code[] = \sprintf('**%s**', \mb_strtoupper($variant));
-        $code[] = \dockerFile($version, $variant);
-
-        $sh[] = \sprintf('**%s**', \mb_strtoupper($variant));
-        $sh[] = \dockerPullAndRun($version, $variant);
+        if ($variant === 'frankenphp' && !\in_array($phpVersion, $frankenphpVersions, true)) {
+            continue;
+        }
+        $sh[] = '';
+        $sapi = \mb_strtolower($phpVersion . '-' . $variant);
+        $sh[] = \sprintf('### PHP `%s`', $sapi);
+        $sh[] = \dockerTemplate($sapi);
     }
 
-    $body[] = \sprintf('## PHP %s', $version) . \PHP_EOL;
-
-    $body[] = \codeTemplate($version);
-    $body[] = \implode(\PHP_EOL, $code) . \PHP_EOL;
-
-    $body[] = \terminalTemplate($version);
+    $body[] = \sprintf('## PHP %s', $phpVersion);
+    $body[] = '';
+    $body[] = \sprintf('Use `PHP %s` image in Dockerfile or Pull & Run `PHP %s` image from the command line', $phpVersion, $phpVersion);
     $body[] = \implode(\PHP_EOL, $sh);
 
     return \implode(\PHP_EOL, $body);
 }
-function dockerFile(string $phpVersion, ?string $variant = null): string
+
+function dockerTemplate(string $sapi): string
 {
-    if (null === $variant) {
-        return \sprintf(
-            <<<'EOD'
-                ```Dockerfile
-                FROM ghcr.io/ghostwriter/php:%s
-                ```
-                EOD
-            ,
-            $phpVersion,
-            $phpVersion,
-        );
+    return \implode(PHP_EOL, [
+        '',
+        '```Dockerfile',
+        \sprintf('FROM ghcr.io/ghostwriter/php:%s', $sapi),
+        '```',
+        '',
+        '```bash',
+        \sprintf('docker pull ghcr.io/ghostwriter/php:%s', $sapi),
+        '```',
+        '',
+        '```bash',
+        \sprintf('docker run -it --rm -v $PWD:/srv/app -w /srv/app ghcr.io/ghostwriter/php:%s php -v', $sapi),
+        '```',
+    ]);
+}
+
+function printREADME(array $phpVersions, array $variants, array $frankenphpVersions): string
+{
+    $body[] = \implode(\PHP_EOL, [
+        '# PHP for Docker [![Docker CI/CD](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml)',
+        '',
+        'Development and Production-ready PHP Images for Docker',
+    ]);
+
+    $supportedVersions = \implode(', ', \array_map(static fn(string $phpVersion): string => \sprintf(
+        '[`%s`](#php-%s)',
+        $phpVersion,
+        \str_replace('.', '', \mb_strtolower($phpVersion)),
+    ), $phpVersions));
+
+    $supportedVariants = \implode(', ', \array_map(static fn(string $variant): string => \sprintf(
+        '[`%s`](#php-%s-%s)',
+        \mb_strtolower($variant),
+        \str_replace('.', '', \mb_strtolower($phpVersions[0])),
+        \mb_strtolower($variant),
+    ), $variants));
+
+    $body[] = \implode(\PHP_EOL, [
+        '',
+        \sprintf('> **Supported versions: %s**', $supportedVersions),
+        '>',
+        \sprintf('> **Supported variants: %s**', $supportedVariants),
+    ]);
+
+    foreach ($phpVersions as $phpVersion) {
+        $body[] = \versionTemplate($phpVersion, $variants, $frankenphpVersions);
     }
 
-    return \sprintf(
-        <<<'EOD'
-            ```Dockerfile
-            FROM ghcr.io/ghostwriter/php:%s-%s
-            ```
-            EOD
-        ,
-        $phpVersion,
-        $variant,
-    );
-}
-function dockerPullAndRun(string $phpVersion, ?string $variant = null): string
-{
-    $variant = $variant ? '-' . $variant : '';
-
-    return \sprintf(
-        <<<'EOD'
-            ```sh
-            docker pull ghcr.io/ghostwriter/php:%s%s
-            docker run -it --rm -v $PWD:/opt/app -w /opt/app ghcr.io/ghostwriter/php:%s%s php -v
-            ```
-            EOD
-        ,
-        $phpVersion,
-        $variant,
-        $phpVersion,
-        $variant,
-    );
-}
-function printREADME(array $versions, array $variants, array $extensions): string
-{
-    $body[] = <<<'EOD'
-        # PHP for Docker [![Docker CI/CD](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml/badge.svg)](https://github.com/ghostwriter/php/actions/workflows/docker-build-push.yml)
-
-        Development and Production-ready PHP Images for Docker
-
-        **Special thanks to [@mlocati](https://github.com/mlocati) for creating this fantastic tool [`mlocati/docker-php-extension-installer`](https://github.com/mlocati/docker-php-extension-installer), which made all of this possible!**
-        EOD;
-
-    $body[] = \sprintf(
-        '%s> **Supported versions: %s**%s',
-        \PHP_EOL,
-        \implode(
-            ', ',
-            \array_map(
-                static fn (string $version): string => \sprintf(
-                    '[`%s`](#-use-php-%s-image-in-dockerfile)',
-                    $version,
-                    \str_replace('.', '', \mb_strtolower($version))
-                ),
-                $versions
-            )
-        ),
-        \PHP_EOL
-    );
-
-    $count = 4;
-    foreach ($versions as $version) {
-        if (0 === --$count) {
-            break;
-        }
-        $body[] = \versionTemplate($version, $variants, $extensions) . \PHP_EOL;
-    }
+    $body[] = '';
 
     return \implode(\PHP_EOL, $body);
 }
 
-$readme = \printREADME($versions, $variants, $extensions);
+$readme = \printREADME($phpVersions, $variants, $frankenphpVersions);
 
 \file_put_contents(\dirname(__DIR__) . \DIRECTORY_SEPARATOR . 'README.md', $readme);
 
