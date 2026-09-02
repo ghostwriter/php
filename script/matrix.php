@@ -8,10 +8,18 @@ $include = [];
 
 $versions = array_unique(['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', $dev]);
 
+$variants = ['cli', 'fpm', 'zts'];
+
+foreach($variants as $variant) {
+    foreach($versions as $version) {
+        $include[] = ['variant' => $variant, 'version'=> $version, 'continue-on-error' => $version === $dev];
+    }
+}
+
 $frankenphpVersions = ['8.2', '8.3', '8.4', '8.5'];
 
 foreach($frankenphpVersions as $frankenphpVersion) {
-    $include[] = ['variant' => 'frankenphp', 'version'=> $frankenphpVersion];
+    $include[] = ['variant' => 'frankenphp', 'version'=> $frankenphpVersion, 'continue-on-error' => $frankenphpVersion === $dev];
 }
 
 usort($versions, function ($left, $right) {
@@ -20,10 +28,6 @@ usort($versions, function ($left, $right) {
 
 try {
     echo json_encode([
-        'dev' => [$dev],
-        'latest' => ['8.5'],
-        'version' => array_values($versions),
-        'variant' => ['cli', 'fpm', 'zts'],
         'include' => $include,
         'exclude' => [],
     ], JSON_THROW_ON_ERROR);
