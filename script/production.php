@@ -10,26 +10,22 @@ $frankenphpVersions = ['8.2', '8.3', '8.4', '8.5', '8.6'];
 
 $phpVersions = ['7.3', '7.4', '8.0', '8.1', '8.2', '8.3', '8.4', '8.5', '8.6'];
 
-$variants = ['cli', 'fpm', 'zts'];
+$variants = ['cli', 'fpm', 'zts', 'frankenphp'];
 
 $include = [];
 
-foreach ($variants as $variant) {
-    foreach ($phpVersions as $phpVersion) {
+foreach ($phpVersions as $phpVersion) {
+    foreach ($variants as $variant) {
+        if ($variant === 'frankenphp' && !\in_array($phpVersion, $frankenphpVersions, true)) {
+            continue;
+        }
+
         $include[] = [
-            'variant' => $variant,
             'version' => $phpVersion,
+            'variant' => $variant,
             'continueOnError' => $phpVersion === $dev,
         ];
     }
-}
-
-foreach ($frankenphpVersions as $frankenphpVersion) {
-    $include[] = [
-        'variant' => 'frankenphp',
-        'version' => $frankenphpVersion,
-        'continueOnError' => $frankenphpVersion === $dev,
-    ];
 }
 
 try {
