@@ -16,6 +16,7 @@ try {
         'latest' => ['8.5'],
         'version' => array_values($versions),
         'variant' => ['cli', 'fpm', 'zts'],
+        'frankenphp' => ['8.2', '8.3', '8.4', '8.5'],
     ], JSON_THROW_ON_ERROR);
     exit(0);
 } catch (Exception $e) {
