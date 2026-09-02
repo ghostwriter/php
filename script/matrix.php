@@ -12,14 +12,14 @@ $variants = ['cli', 'fpm', 'zts'];
 
 foreach($variants as $variant) {
     foreach($versions as $version) {
-        $include[] = ['variant' => $variant, 'version'=> $version, 'continue-on-error' => $version === $dev];
+        $include[] = ['variant' => $variant, 'version'=> $version, 'continueOnError' => $version === $dev];
     }
 }
 
 $frankenphpVersions = ['8.2', '8.3', '8.4', '8.5'];
 
 foreach($frankenphpVersions as $frankenphpVersion) {
-    $include[] = ['variant' => 'frankenphp', 'version'=> $frankenphpVersion, 'continue-on-error' => $frankenphpVersion === $dev];
+    $include[] = ['variant' => 'frankenphp', 'version'=> $frankenphpVersion, 'continueOnError' => $frankenphpVersion === $dev];
 }
 
 usort($versions, function ($left, $right) {
