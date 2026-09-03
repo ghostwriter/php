@@ -49,8 +49,8 @@ jobs:
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # 6.1.0
         with:
           path: ${{ runner.temp }}/${{ matrix.variant }}/${{ matrix.version }}/.buildx-cache
-          key: ${{ runner.os }}-buildx-${{ matrix.variant }}-${{ matrix.version }}-production-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-buildx-${{ matrix.variant }}-${{ matrix.version }}-production-
+          key: php-${{ matrix.version }}-${{ matrix.variant }}-production
+          restore-keys: php-${{ matrix.version }}-${{ matrix.variant }}-production
 
       - name: Login to GitHub Packages Docker Registry
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # 4.6.0
@@ -105,9 +105,9 @@ jobs:
       - name: Cache Docker layers
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # 6.1.0
         with:
-          key: ${{ runner.os }}-buildx-${{ matrix.variant }}-${{ matrix.version }}-development-${{ github.sha }}
+          key: php-${{ matrix.version }}-${{ matrix.variant }}-development
           path: ${{ runner.temp }}/${{ matrix.variant }}/${{ matrix.version }}/.buildx-cache
-          restore-keys: ${{ runner.os }}-buildx-${{ matrix.variant }}-${{ matrix.version }}-development-
+          restore-keys: php-${{ matrix.version }}-${{ matrix.variant }}-development
 
       - name: Login to GitHub Packages Docker Registry
         uses: docker/login-action@dbcb813823bdd20940b903addbd779551569679f # 4.6.0
